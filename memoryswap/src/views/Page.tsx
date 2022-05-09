@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, Flex } from '@pancakeswap/uikit'
+import { Flex } from '@pancakeswap/uikit'
 import { PageMeta } from 'components/Layout/Page'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 
@@ -7,10 +7,11 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
   padding-bottom: 0;
-  min-height: ${({ $noMinHeight }) => ($noMinHeight ? 'initial' : 'calc(100vh - 64px)')};
+  min-height: calc( 100vh - 64px );
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
 
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -48,7 +49,6 @@ const Page: React.FC<
       <PageMeta />
       <StyledPage $removePadding={removePadding} $noMinHeight={noMinHeight} {...props}>
         {children}
-        <Flex flexGrow={1} />
       </StyledPage>
     </>
   )

@@ -366,7 +366,7 @@ export default function Swap() {
   }, [hasAmount, refreshBlockNumber])
 
   return (
-    <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+    <Page  removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <Flex width="100%" justifyContent="center" position="relative">
         {!isMobile && (
           <PriceChartContainer

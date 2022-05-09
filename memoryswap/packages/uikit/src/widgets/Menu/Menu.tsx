@@ -37,21 +37,14 @@ const StyledNav = styled.nav`
   padding-right: 16px;
 `;
 
-const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
+const FixedContainer = styled.div<{ showMenu: boolean; height?: number }>`
   position: fixed;
-  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
+  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height ?? 0}px`)};
   left: 0;
   transition: top 0.2s;
   height: ${({ height }) => `${height}px`};
   width: 100%;
   z-index: 20;
-`;
-
-const TopBannerContainer = styled.div<{ height: number }>`
-  height: ${({ height }) => `${height}px`};
-  min-height: ${({ height }) => `${height}px`};
-  max-height: ${({ height }) => `${height}px`};
-  width: 100%;
 `;
 
 const BodyWrapper = styled(Box)`
@@ -138,8 +131,7 @@ const Menu: React.FC<NavProps> = ({
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
-        <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
-          {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
+        <FixedContainer showMenu={showMenu}>
           <StyledNav>
             <Flex>
               <Logo
