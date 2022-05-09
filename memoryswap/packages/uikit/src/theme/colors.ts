@@ -24,7 +24,7 @@ export const lightColors: Colors = {
   backgroundNav:"#F9F9F9",
   background: "#FAF9FA",
   backgroundDisabled: "#E9EAEB",
-  backgroundAlt: "rgba(250, 252, 254, 0.7);",
+  backgroundAlt: "#f9f9f9",
   backgroundAlt2: "rgba(255, 255, 255, 0.7)",
   cardBorder: "#E7E3EB",
   contrast: "#191326",
