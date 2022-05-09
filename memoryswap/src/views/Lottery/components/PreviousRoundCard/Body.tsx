@@ -96,7 +96,7 @@ const PreviousRoundCardBody: React.FC<{ lotteryNodeData: LotteryRound; lotteryId
               />
             ) : (
               <Skeleton
-                width={['240px', null, null, '450px']}
+                width={['240px', null, null, '328px']}
                 height={['34px', null, null, '71px']}
                 mr={[null, null, null, '32px']}
               />
