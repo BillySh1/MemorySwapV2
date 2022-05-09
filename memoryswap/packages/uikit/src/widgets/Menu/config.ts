@@ -10,12 +10,16 @@ export const links = [
     items: [
       {
         label: "Exchange",
-        href: "https://exchange.pancakeswap.finance",
+        href: "/swap",
       },
       {
         label: "Liquidity",
-        href: "https://exchange.pancakeswap.finance/#/pool",
+        href: "/liquidity",
       },
+      {
+        label:"Bridge",
+        href:"/bridge"
+      }
     ],
   },
   {
@@ -29,29 +33,38 @@ export const links = [
     href: "/syrup",
   },
   {
-    label: "Lottery",
+    label: "TimeLock",
     icon: "TicketIcon",
-    href: "/lottery",
+    href: "/TimeLock",
   },
   {
-    label: "NFT",
+    label: "DAO",
     icon: "NftIcon",
-    href: "/nft",
+    href: "/dao",
   },
   {
-    label: "Profile & Teams",
+    label: "WhiteList",
+    icon: "NftIcon",
+    href: "/whiteList",
+  },
+  {
+    label: "NFTs",
     icon: "GroupsIcon",
     items: [
       {
-        label: "Leaderboard",
-        href: "/",
+        label: "Market",
+        href: "/market",
       },
       {
-        label: "YourProfile",
-        href: "/",
+        label: "BlindBox",
+        href: "/blindbox",
       },
     ],
-    // calloutClass: "rainbow",
+  },
+  {
+    label: "Lottery",
+    icon: "TicketIcon",
+    href: "/lottery",
   },
   {
     label: "Info",
@@ -105,10 +118,10 @@ export const links = [
         label: "Docs",
         href: "https://docs.huskyinu.netlify.app/",
       },
-      {
-        label: "Blog",
-        href: "https://medium.com/@huskyinucoin",
-      },
+      // {
+      //   label: "Blog",
+      //   href: "https://medium.com/@huskyinucoin",
+      // },
     ],
   },
 ];
@@ -117,11 +130,11 @@ export const socials = [
   {
     label: "Telegram",
     icon: "TelegramIcon",
-    items: [
-      {
-        label: "English",
-        href: "https://t.me/HuskyINUGlobal",
-      },
+    // items: [
+    //   {
+    //     label: "English",
+    //     href: "https://t.me/HuskyINUGlobal",
+    //   },
       // {
       //   label: "Bahasa Indonesia",
       //   href: "https://t.me/PancakeSwapIndonesia",
@@ -135,11 +148,11 @@ export const socials = [
       //   label: "Português",
       //   href: "https://t.me/PancakeSwapPortuguese",
       // },
-      {
-        label: "Announcements",
-        href: "https://t.me/HuskyINUann",
-      },
-    ],
+    //   {
+    //     label: "Announcements",
+    //     href: "https://t.me/HuskyINUann",
+    //   },
+    // ],
   },
   {
     label: "Twitter",
