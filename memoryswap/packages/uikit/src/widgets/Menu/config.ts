@@ -44,7 +44,7 @@ export const links = [
   },
   {
     label: "WhiteList",
-    icon: "NftIcon",
+    icon: "WhiteListIcon",
     href: "/whiteList",
   },
   {
@@ -63,7 +63,7 @@ export const links = [
   },
   {
     label: "Lottery",
-    icon: "TicketIcon",
+    icon: "LotteryIcon",
     href: "/lottery",
   },
   {
@@ -72,56 +72,44 @@ export const links = [
     items: [
       {
         label: "Overview",
-        href: "https://pancakeswap.info",
+        href: "/overview",
       },
       {
         label: "Tokens",
-        href: "https://pancakeswap.info/tokens",
+        href: "/tokens",
       },
       {
         label: "Pairs",
-        href: "https://pancakeswap.info/pairs",
+        href: "/pairs",
       },
       {
         label: "Accounts",
-        href: "https://pancakeswap.info/accounts",
+        href: "/accounts",
       },
     ],
   },
   {
     label: "IFO",
     icon: "IfoIcon",
-    items: [
-      {
-        label: "Next",
-        href: "/ifo",
-      },
-      {
-        label: "History",
-        href: "/ifo/history",
-      },
-    ],
+  },
+  {
+    label:'GameFi',
+    icon:'GameFiIcon',
   },
   {
     label: "More",
     icon: "MoreIcon",
     items: [
-      // {
-      //   label: "Voting",
-      //   href: "https://voting.pancakeswap.finance",
-      // },
+   
       {
         label: "Github",
-        href: "https://github.com/huskyinucoin/",
+        href: "",
       },
       {
         label: "Docs",
-        href: "https://docs.huskyinu.netlify.app/",
+        href: "",
       },
-      // {
-      //   label: "Blog",
-      //   href: "https://medium.com/@huskyinucoin",
-      // },
+     
     ],
   },
 ];
@@ -130,34 +118,21 @@ export const socials = [
   {
     label: "Telegram",
     icon: "TelegramIcon",
-    // items: [
-    //   {
-    //     label: "English",
-    //     href: "https://t.me/HuskyINUGlobal",
-    //   },
-      // {
-      //   label: "Bahasa Indonesia",
-      //   href: "https://t.me/PancakeSwapIndonesia",
-      // },
-      // {
-      //   label: "Tiếng Việt",
-      //   href: "https://t.me/PancakeSwapVN",
-      // },
-      
-      // {
-      //   label: "Português",
-      //   href: "https://t.me/PancakeSwapPortuguese",
-      // },
-    //   {
-    //     label: "Announcements",
-    //     href: "https://t.me/HuskyINUann",
-    //   },
-    // ],
+    items: [
+      {
+        label: "English",
+        href: "https://t.me/Memory_Swap",
+      },
+      {
+        label: "简体中文",
+        href: "https://t.me/MemorySwapDao",
+      },
+    ],
   },
   {
     label: "Twitter",
     icon: "TwitterIcon",
-    href: "https://twitter.com/huskyinucoin",
+    href: "https://twitter.com/MemoryLabsDao",
   },
 ];
 
