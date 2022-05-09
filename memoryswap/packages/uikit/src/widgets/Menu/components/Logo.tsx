@@ -3,10 +3,14 @@ import styled, { keyframes } from "styled-components";
 import Flex from "../../../components/Box/Flex";
 import { LogoIcon, LogoWithTextIcon } from "../../../components/Svg";
 import { MenuContext } from "../context";
+import MenuButton from "./MenuButton";
+import { HamburgerIcon, HamburgerCloseIcon } from "../icons";
 
 interface Props {
   isDark: boolean;
   href: string;
+  isPushed: boolean;
+  togglePush: () => void;
 }
 
 const blink = keyframes`
@@ -43,19 +47,26 @@ const StyledLink = styled("a")`
   }
 `;
 
-const Logo: React.FC<Props> = ({ isDark, href }) => {
-  const { linkComponent } = useContext(MenuContext);
-  const isAbsoluteUrl = href.startsWith("http");
-  const innerLogo = (
-    <>
-      <LogoIcon className="mobile-icon" />
-      <LogoWithTextIcon className="desktop-icon" isDark={isDark} />
-    </>
-  );
+const Logo: React.FC<Props> = ({ isDark, href, isPushed, togglePush }) => {
+  // const { linkComponent } = useContext(MenuContext);
+  // const isAbsoluteUrl = href.startsWith("http");
+  // const innerLogo = (
+  //   <>
+  //     <LogoIcon className="mobile-icon" />
+  //     <LogoWithTextIcon className="desktop-icon" isDark={isDark} />
+  //   </>
+  // );
 
   return (
     <Flex>
-      {isAbsoluteUrl ? (
+      <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
+        {isPushed ? (
+          <HamburgerCloseIcon width="24px" color="textSubtle" />
+        ) : (
+          <HamburgerIcon width="24px" color="textSubtle" />
+        )}
+      </MenuButton>
+      {/* {isAbsoluteUrl ? (
         <StyledLink as="a" href={href} aria-label="Pancake home page">
           {innerLogo}
         </StyledLink>
@@ -63,7 +74,7 @@ const Logo: React.FC<Props> = ({ isDark, href }) => {
         <StyledLink href={href} as={linkComponent} aria-label="Pancake home page">
           {innerLogo}
         </StyledLink>
-      )}
+      )} */}
     </Flex>
   );
 };

@@ -1,18 +1,22 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
-import Footer from "../../components/Footer";
-import MenuItems from "../../components/MenuItems/MenuItems";
 import { useMatchBreakpoints } from "../../hooks";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
-import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
+import {
+  MENU_HEIGHT,
+  TOP_BANNER_HEIGHT_MOBILE,
+  TOP_BANNER_HEIGHT,
+  SIDEBAR_WIDTH_FULL,
+  SIDEBAR_WIDTH_REDUCED,
+  links,
+} from "./config";
 import { NavProps } from "./types";
-import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
+import Panel from "./Panel";
 
 const Wrapper = styled.div`
   position: relative;
@@ -33,21 +37,14 @@ const StyledNav = styled.nav`
   padding-right: 16px;
 `;
 
-const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
+const FixedContainer = styled.div<{ showMenu: boolean; height?: number }>`
   position: fixed;
-  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
+  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height ?? 0}px`)};
   left: 0;
   transition: top 0.2s;
   height: ${({ height }) => `${height}px`};
   width: 100%;
   z-index: 20;
-`;
-
-const TopBannerContainer = styled.div<{ height: number }>`
-  height: ${({ height }) => `${height}px`};
-  min-height: ${({ height }) => `${height}px`};
-  max-height: ${({ height }) => `${height}px`};
-  width: 100%;
 `;
 
 const BodyWrapper = styled(Box)`
@@ -57,10 +54,21 @@ const BodyWrapper = styled(Box)`
 
 const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   flex-grow: 1;
-  transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT}px` : 0)};
+  transition: margin-left 0.2s;
   transform: translate3d(0, 0, 0);
+  ${({ theme }) => theme.mediaQueries.nav} {
+    margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
+  }
   max-width: 100%;
 `;
+
+// const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
+//   flex-grow: 1;
+//   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+//   transform: translate3d(0, 0, 0);
+//   max-width: 100%;
+// `;
 
 const Menu: React.FC<NavProps> = ({
   linkComponent = "a",
@@ -72,7 +80,6 @@ const Menu: React.FC<NavProps> = ({
   currentLang,
   setLang,
   cakePriceUsd,
-  links,
   footerLinks,
   activeItem,
   activeSubItem,
@@ -81,6 +88,7 @@ const Menu: React.FC<NavProps> = ({
   children,
 }) => {
   const { isMobile, isMd } = useMatchBreakpoints();
+  const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
 
@@ -123,51 +131,41 @@ const Menu: React.FC<NavProps> = ({
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
-        <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
-          {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
+        <FixedContainer showMenu={showMenu}>
           <StyledNav>
             <Flex>
-              <Logo isDark={isDark} href={homeLink?.href ?? "/"} />
-              {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
+              <Logo
+                isPushed={isPushed}
+                togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+                isDark={isDark}
+                href={homeLink?.href ?? "/"}
+              />
             </Flex>
             <Flex alignItems="center" height="100%">
-              {/* {!isMobile && !isMd && (
-                <Box mr="12px">
-                  <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
-                </Box>
-              )}
-              <Box mt="4px">
-                <LangSelector
-                  currentLang={currentLang}
-                  langs={langs}
-                  setLang={setLang}
-                  buttonScale="xs"
-                  color="textSubtle"
-                  hideLanguage
-                />
-              </Box> */}
               {globalMenu} {userMenu}
             </Flex>
           </StyledNav>
         </FixedContainer>
 
-        <BodyWrapper mt={`${totalTopMenuHeight + 1}px`}>
-          <Inner isPushed={false} showMenu={showMenu}>
+        <BodyWrapper>
+          <Panel
+            isPushed={isPushed}
+            isMobile={isMobile}
+            showMenu={showMenu}
+            isDark={isDark}
+            toggleTheme={toggleTheme}
+            langs={langs}
+            setLang={setLang}
+            currentLang={currentLang}
+            cakePriceUsd={cakePriceUsd}
+            pushNav={setIsPushed}
+            links={links}
+            priceLink={" "}
+          />
+          <Inner isPushed={isPushed} showMenu={showMenu}>
             {children}
-            <Footer
-              items={footerLinks}
-              isDark={isDark}
-              toggleTheme={toggleTheme}
-              langs={langs}
-              setLang={setLang}
-              currentLang={currentLang}
-              cakePriceUsd={cakePriceUsd}
-              buyCakeLabel={buyCakeLabel}
-              mb={[`${MOBILE_MENU_HEIGHT}px`, null, "0px"]}
-            />
           </Inner>
         </BodyWrapper>
-        {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
       </Wrapper>
     </MenuContext.Provider>
   );
