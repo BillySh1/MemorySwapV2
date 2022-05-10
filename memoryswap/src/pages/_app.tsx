@@ -64,7 +64,7 @@ function MyApp(props: AppProps) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="🥞 PancakeSwap - A next evolution DeFi exchange on BNB Smart Chain (BSC)" />
-        <title>PancakeSwap</title>
+        <title>MemorySwap</title>
       </Head>
       <Providers store={store}>
         <Blocklist>

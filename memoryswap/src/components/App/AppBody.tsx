@@ -8,7 +8,7 @@ export const BodyWrapper = styled(Card)`
   z-index: 1;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    max-width: 328px;
+    max-width: 400px;
   }
 `
 
