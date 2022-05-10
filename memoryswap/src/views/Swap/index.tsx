@@ -87,6 +87,12 @@ const SwitchIconButton = styled(IconButton)`
     }
   }
 `
+const BackgroundWrapper = styled(Page)`
+  background: ${({ theme }) => (theme.isDark ? `url('/images/bg/dark.png')` : `url('/images/bg/light.png')`)};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`
 
 export default function Swap() {
   const router = useRouter()
@@ -366,7 +372,7 @@ export default function Swap() {
   }, [hasAmount, refreshBlockNumber])
 
   return (
-    <Page  removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+    <BackgroundWrapper removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <Flex width="100%" justifyContent="center" position="relative">
         {!isMobile && (
           <PriceChartContainer
@@ -614,6 +620,6 @@ export default function Swap() {
           </StyledSwapContainer>
         </Flex>
       </Flex>
-    </Page>
+    </BackgroundWrapper>
   )
 }

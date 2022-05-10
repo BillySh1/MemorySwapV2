@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PancakeRoundIcon, CogIcon, SvgProps } from "../../components/Svg";
+import { CogIcon, SvgProps } from "../../components/Svg";
 import Text from "../../components/Text/Text";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Link from "../../components/Link/Link";
@@ -16,7 +16,7 @@ import { PanelProps, PushedProps } from "./types";
 interface Props extends PanelProps, PushedProps {}
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
-const {  LanguageIcon } = Icons;
+const { LanguageIcon } = Icons;
 
 const Container = styled.div`
   flex: none;
@@ -85,7 +85,11 @@ const PanelFooter: React.FC<Props> = ({
       <SocialEntry>
         {cakePriceUsd ? (
           <PriceLink href={priceLink} target="_blank">
-            <PancakeRoundIcon width="24px" mr="8px" />
+            <img
+              style={{ width: 24, height: 24, marginRight: 8 }}
+              src={new URL("../../components/Svg/assets/logo.svg", import.meta.url).toString()}
+              alt=""
+            />
             <Text color="textSubtle" bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
           </PriceLink>
         ) : (
@@ -116,7 +120,7 @@ const PanelFooter: React.FC<Props> = ({
         </Flex>
       </SocialEntry>
       <SettingsEntry>
-      <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
+        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
         <Dropdown
           position="top-right"
           target={
