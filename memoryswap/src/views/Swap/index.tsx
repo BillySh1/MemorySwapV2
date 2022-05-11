@@ -376,7 +376,7 @@ export default function Swap() {
       <Flex width="100%" justifyContent="center" position="relative">
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
-            <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
+            <StyledInputCurrencyWrapper style={{ width: !isMobile && '400px' }} mt={isChartExpanded ? '24px' : '0'}>
               <AppBody>
                 <CurrencyInputHeader
                   title={t('Swap')}

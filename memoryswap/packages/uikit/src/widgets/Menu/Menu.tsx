@@ -142,7 +142,7 @@ const Menu: React.FC<NavProps> = ({
               />
             </Flex>
             <Flex alignItems="center" height="100%">
-              {globalMenu} {userMenu}
+              {userMenu}
             </Flex>
           </StyledNav>
         </FixedContainer>
