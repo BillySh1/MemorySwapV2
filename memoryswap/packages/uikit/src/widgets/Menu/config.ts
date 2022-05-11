@@ -42,11 +42,11 @@ export const links = [
     icon: "NftIcon",
     href: "/dao",
   },
-  {
-    label: "WhiteList",
-    icon: "WhiteListIcon",
-    href: "/whiteList",
-  },
+  // {
+  //   label: "WhiteList",
+  //   icon: "WhiteListIcon",
+  //   href: "/whiteList",
+  // },
   {
     label: "NFTs",
     icon: "GroupsIcon",
