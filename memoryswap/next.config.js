@@ -37,7 +37,8 @@ const config = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['static-nft.pancakeswap.com'],
+    loader: 'akamai',
+    path: '',
   },
   async rewrites() {
     return [
