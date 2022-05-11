@@ -5,7 +5,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 `
 
 const RoundBox = styled.div`
@@ -21,23 +20,24 @@ const RoundBox = styled.div`
   border: 1.5px solid #637cbb;
   padding: 6px 16px;
   box-sizing: border-box;
+  margin-bottom: 16px;
 `
 
 const Intro = styled.div`
-  margin: 16px 0;
+  margin-bottom: 16px;
 `
 
-export const TxMining = () => {
+export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
   return (
     <Wrapper>
-      <RoundBox>
-        <div>Trade Mining Reward 0.0024 MDAO</div>
+      <RoundBox style={{ borderRadius: !isMobile ? '35px' : '15px', width: isMobile ? '350px' : 'fit-content' }}>
+        <div style={{ textAlign: 'left', lineHeight: 1.2 }}>Trade Mining Reward 0.0024 MDAO</div>
         <IconButton style={{ width: 'unset', borderRadius: 35, padding: '12px 16px', fontSize: 14, height: 'unset' }}>
           <span style={{ marginRight: '8px' }}>Withdraw</span>
-          <TxMiningIcon  color="invertedContrast" />
+          <TxMiningIcon color="invertedContrast" />
         </IconButton>
       </RoundBox>
-      <Intro>{'Try Smart Router for a better Slippage ->'}</Intro>
+      {!isMobile && <Intro>{'Try Smart Router for a better Slippage ->'}</Intro>}
     </Wrapper>
   )
 }

@@ -26,14 +26,16 @@ export const StyledUserMenu = styled(Flex)`
 
 export const LabelText = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  display: none;
+  display: block;
+  margin-left: 8px;
+  margin-right: 4px;
   font-weight: 600;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  /* ${({ theme }) => theme.mediaQueries.sm} {
     display: block;
     margin-left: 8px;
     margin-right: 4px;
-  }
+  } */
 `;
 
 const Menu = styled.div<{ isOpen: boolean }>`

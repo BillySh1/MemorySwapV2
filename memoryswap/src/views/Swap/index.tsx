@@ -375,7 +375,7 @@ export default function Swap() {
   return (
     <BackgroundWrapper removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <CardNav />
-      <TxMining/>
+      <TxMining isMobile={isMobile}/>
       <Flex width="100%" justifyContent="center" position="relative">
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
