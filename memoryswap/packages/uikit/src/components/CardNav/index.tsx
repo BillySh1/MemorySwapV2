@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ButtonMenu, ButtonMenuItem } from "@pancakeswap/uikit";
+import { ButtonMenu, ButtonMenuItem } from "../ButtonMenu";
 
 const StyledNav = styled.div`
   margin-bottom: 40px;
