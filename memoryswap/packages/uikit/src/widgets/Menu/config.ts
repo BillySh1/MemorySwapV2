@@ -18,29 +18,29 @@ export const links = [
       },
       {
         label:"Bridge",
-        href:"/bridge"
+        href:""
       }
     ],
   },
   {
     label: "Farms",
     icon: "FarmIcon",
-    href: "/farms",
+    href: "",
   },
   {
     label: "Pools",
     icon: "PoolIcon",
-    href: "/syrup",
+    href: "",
   },
   {
     label: "TimeLock",
     icon: "TicketIcon",
-    href: "/TimeLock",
+    href: "",
   },
   {
     label: "DAO",
     icon: "NftIcon",
-    href: "/dao",
+    href: "",
   },
   // {
   //   label: "WhiteList",
@@ -53,18 +53,18 @@ export const links = [
     items: [
       {
         label: "Market",
-        href: "/market",
+        href: "",
       },
       {
         label: "BlindBox",
-        href: "/blindbox",
+        href: "",
       },
     ],
   },
   {
     label: "Lottery",
     icon: "LotteryIcon",
-    href: "/lottery",
+    href: "",
   },
   {
     label: "Info",
@@ -72,19 +72,19 @@ export const links = [
     items: [
       {
         label: "Overview",
-        href: "/overview",
+        href: "",
       },
       {
         label: "Tokens",
-        href: "/tokens",
+        href: "",
       },
       {
         label: "Pairs",
-        href: "/pairs",
+        href: "",
       },
       {
         label: "Accounts",
-        href: "/accounts",
+        href: "",
       },
     ],
   },
