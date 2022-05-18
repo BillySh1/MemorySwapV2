@@ -123,18 +123,18 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0xA7f552078dcC247C2684336020c03648500C6d9F.png"
     },
     {
-      "name": "PancakeSwap Token",
-      "symbol": "CAKE",
-      "address": "0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe",
-      "chainId": 97,
+      "name": "MemorySwap Token",
+      "symbol": "MDAO",
+      "address": "0x8D5E212E640a04D604143F9097F7B655866F7c5D",
+      "chainId": 322,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
-      "name": "BUSD Token",
-      "symbol": "BUSD",
-      "address": "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee",
-      "chainId": 97,
+      "name": "Tether USDT",
+      "symbol": "USDT",
+      "address": "0x67f6a7bbe0da067a747c6b2bedf8abbf7d6f60dc",
+      "chainId": 322,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.png"
     }

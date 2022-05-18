@@ -2130,6 +2130,30 @@ export const testnetTokens = defineTokens({
     'Bakeryswap Token',
     'https://www.bakeryswap.org/',
   ),
+  wkcs: new Token(
+    TESTNET,
+    '0xC27d56e6A10919CffBE2222bC77278819b64c180',
+    18,
+    'WKCS',
+    'Wrapped KuCoin Token',
+    'https://www.kucoin.com/'
+  ),
+  mdao: new Token(
+    TESTNET,
+    '0x8D5E212E640a04D604143F9097F7B655866F7c5D',
+    18,
+    'MDAO',
+    'MemoryLab Token',
+    'https://www.google.com'
+  ),
+  usdt: new Token(
+    TESTNET,
+    '0x67f6a7bbe0da067a747c6b2bedf8abbf7d6f60dc',
+    18,
+    'USDT',
+    'Tether USD',
+    'https://tether.to/en/'
+  )
 } as const)
 
 const tokens = () => {

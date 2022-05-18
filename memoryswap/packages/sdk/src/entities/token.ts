@@ -71,15 +71,15 @@ export const WETH = {
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     18,
     'WBNB',
-    'Wrapped BNB',
+    'KuCoin',
     'https://www.binance.org'
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',
+    '0xC27d56e6A10919CffBE2222bC77278819b64c180',
     18,
-    'WBNB',
-    'Wrapped BNB',
-    'https://www.binance.org'
+    'WKCS',
+    'Wrapped KuCoin',
+    'https://www.kucoin.com/'
   )
 }
