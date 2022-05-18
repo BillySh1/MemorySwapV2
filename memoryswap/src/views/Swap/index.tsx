@@ -332,7 +332,6 @@ export default function Swap() {
 
     [onCurrencySelection],
   )
-
   const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
 
   const [onPresentImportTokenWarningModal] = useModal(

@@ -80,6 +80,6 @@ export const WETH = {
     18,
     'WKCS',
     'Wrapped KuCoin',
-    'https://www.kucoin.com/'
+    'https://www.binance.org'
   )
 }

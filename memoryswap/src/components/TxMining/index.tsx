@@ -37,7 +37,7 @@ export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
           <TxMiningIcon color="invertedContrast" />
         </IconButton>
       </RoundBox>
-      {!isMobile && <Intro>{'Try Smart Router for a better Slippage ->'}</Intro>}
+      {/* {!isMobile && <Intro>{'Try Smart Router for a better Slippage ->'}</Intro>} */}
     </Wrapper>
   )
 }
