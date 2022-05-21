@@ -33,8 +33,8 @@ export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
       <RoundBox style={{ borderRadius: !isMobile ? '35px' : '15px', width: isMobile ? '350px' : 'fit-content' }}>
         <div style={{ textAlign: 'left', lineHeight: 1.2 }}>Trade Mining Reward 0.0024 MDAO</div>
         <IconButton style={{ width: 'unset', borderRadius: 35, padding: '12px 16px', fontSize: 14, height: 'unset' }}>
-          <span style={{ marginRight: '8px' }}>Withdraw</span>
-          <TxMiningIcon color="invertedContrast" />
+          <span>Withdraw</span>
+          {/* <TxMiningIcon color="invertedContrast" /> */}
         </IconButton>
       </RoundBox>
       {/* {!isMobile && <Intro>{'Try Smart Router for a better Slippage ->'}</Intro>} */}
