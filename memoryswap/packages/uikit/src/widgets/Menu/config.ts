@@ -17,54 +17,54 @@ export const links = [
         href: "/liquidity",
       },
       {
-        label:"Bridge",
-        href:""
-      }
+        label: "Bridge",
+        href: "/bridge",
+      },
     ],
   },
   {
     label: "Farms",
     icon: "FarmIcon",
-    href: "",
+    href: "/farm",
   },
   {
     label: "Pools",
     icon: "PoolIcon",
-    href: "",
+    href: "/pools",
   },
   {
     label: "TimeLock",
     icon: "TicketIcon",
-    href: "",
+    href: "/timelock",
   },
   {
     label: "DAO",
     icon: "NftIcon",
-    href: "",
+    href: "/dao",
   },
-  // {
-  //   label: "WhiteList",
-  //   icon: "WhiteListIcon",
-  //   href: "/whiteList",
-  // },
+  {
+    label: "WhiteList",
+    icon: "WhiteListIcon",
+    href: "/whiteList",
+  },
   {
     label: "NFTs",
     icon: "GroupsIcon",
     items: [
       {
         label: "Market",
-        href: "",
+        href: "/market",
       },
       {
         label: "BlindBox",
-        href: "",
+        href: "/blind",
       },
     ],
   },
   {
     label: "Lottery",
     icon: "LotteryIcon",
-    href: "",
+    href: "/lottery",
   },
   {
     label: "Info",
@@ -72,44 +72,44 @@ export const links = [
     items: [
       {
         label: "Overview",
-        href: "",
+        href: "/overview",
       },
       {
         label: "Tokens",
-        href: "",
+        href: "/tokens",
       },
       {
         label: "Pairs",
-        href: "",
+        href: "/pairs",
       },
       {
         label: "Accounts",
-        href: "",
+        href: "/accounts",
       },
     ],
   },
   {
-    label: "IFO",
+    label: "IDO",
     icon: "IfoIcon",
+    href: "/ido",
   },
   {
-    label:'GameFi',
-    icon:'GameFiIcon',
+    label: "GameFi",
+    icon: "GameFiIcon",
+    href: "/gamefi",
   },
   {
     label: "More",
     icon: "MoreIcon",
     items: [
-   
       {
         label: "Github",
-        href: "",
+        href: "/github",
       },
       {
         label: "Docs",
-        href: "",
+        href: "https://docs.memorylabs.cloud",
       },
-     
     ],
   },
 ];
@@ -136,7 +136,7 @@ export const socials = [
   },
 ];
 
-export const MENU_HEIGHT = 64;
+export const MENU_HEIGHT = 50;
 export const MENU_ENTRY_HEIGHT = 48;
 export const MOBILE_MENU_HEIGHT = 44;
 export const SIDEBAR_WIDTH_FULL = 240;

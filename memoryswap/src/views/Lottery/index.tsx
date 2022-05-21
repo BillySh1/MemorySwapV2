@@ -27,7 +27,7 @@ import useShowMoreUserHistory from './hooks/useShowMoreUserRounds'
 import { PageMeta } from '../../components/Layout/Page'
 
 const LotteryPage = styled.div`
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 50px);
 `
 
 const Lottery = () => {
