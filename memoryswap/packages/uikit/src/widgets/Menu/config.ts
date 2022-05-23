@@ -35,7 +35,7 @@ export const links = [
   {
     label: "TimeLock",
     icon: "TicketIcon",
-    href: "/timelock",
+    href: "/timeLock",
   },
   {
     label: "DAO",
