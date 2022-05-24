@@ -15,8 +15,7 @@ export default function TimeLock() {
         <AppHeader title="TimeLock" subtitle="LockYourToken" />
         <Body>
           <Flex width="100%" alignItems="center" flexDirection="column">
-            <div>222</div>
-            <div>2222</div>
+            <div>timelock</div>
           </Flex>
         </Body>
         <CardFooter style={{ textAlign: 'center' }}>
