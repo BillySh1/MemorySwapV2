@@ -1,5 +1,5 @@
 {
-  "name": "MemorySwap",
+  "name": "new-memory-swap",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -20,7 +20,6 @@
     "format:check:staged": "lint-staged",
     "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "updateLPsAPR": "NODE_PATH=./src ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/updateLPsAPR.ts",
-    "prepare": "husky install",
     "postinstall": "yarn run typechain",
     "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
   },

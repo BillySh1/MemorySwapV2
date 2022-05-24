@@ -5,9 +5,13 @@
     "jest": true
   },
   "plugins": ["lodash"],
-  "extends": ["@pancakeswap/eslint-config-pancake", "plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
+  "extends": ["plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
   "rules": {
     "import/no-unresolved": 0,
+    "no-shadow": [
+      "warn",
+      { "builtinGlobals": false, "hoist": "functions", "allow": [], "ignoreOnInitialization": false }
+    ],
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
