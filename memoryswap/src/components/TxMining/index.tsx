@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const RoundBox = styled.div`
+const RoundBox = styled.div<{ isMobile }>`
   font-size: 14px;
   width: fit-content;
   border-radius: 35px;
@@ -17,21 +17,35 @@ const RoundBox = styled.div`
   justify-content: center;
   border-radius: 35px;
   font-weight: 800;
-  border: 1.5px solid #637cbb;
+  border: 2px solid transparent;
+
+  background-image: ${({ theme }) =>
+      theme.isDark ? 'linear-gradient(#3E3D5B,#3E3D5B)' : 'linear-gradient(#B3D2F5,#B3D2F5)'},
+    linear-gradient(90deg, #ffffff 1.47%, #007be4 100%);
+  background-origin: border-box;
+
+  background-clip: padding-box, border-box;
+
   padding: 6px 16px;
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin: 16px 0;
+  width: ${({ isMobile }) => (isMobile ? '328px' : '400px')};
 `
 
 const Intro = styled.div`
-  margin-bottom: 16px;
+  text-align: left;
+  line-height: 1.2;
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
   return (
     <Wrapper>
-      <RoundBox style={{ borderRadius: !isMobile ? '35px' : '15px', width: isMobile ? '350px' : 'fit-content' }}>
-        <div style={{ textAlign: 'left', lineHeight: 1.2 }}>Trade Mining Reward 0.0024 MDAO</div>
+      <RoundBox isMobile={isMobile} style={{ borderRadius: !isMobile ? '35px' : '15px' }}>
+        <Intro>
+          Trade Mining {isMobile && <br />}
+          Reward 0.0024 MDAO
+        </Intro>
         <IconButton style={{ width: 'unset', borderRadius: 35, padding: '12px 16px', fontSize: 14, height: 'unset' }}>
           <span>Withdraw</span>
           {/* <TxMiningIcon color="invertedContrast" /> */}

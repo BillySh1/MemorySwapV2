@@ -31,7 +31,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
     <Container>
       {links.map((entry) => {
         const Icon = Icons[entry.icon];
-        const iconElement = <Icon width="24px" mr="8px" />;
+        const iconElement = <Icon width="24px" mr="24px" />;
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         return entry.items ? (
           <Accordion
@@ -46,7 +46,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
             {isPushed &&
               entry.items.map((item) => (
                 <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                  <MenuLink href={item.href}>{item.label}</MenuLink>
+                  <MenuLink style={{ fontWeight: 500 }} href={item.href}>
+                    {item.label}
+                  </MenuLink>
                 </MenuEntry>
               ))}
           </Accordion>
@@ -54,7 +56,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
             <MenuLink href={entry.href} onClick={handleClick}>
               {iconElement}
-              <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+              <LinkLabel style={{ fontWeight: 500 }} isPushed={isPushed}>
+                {entry.label}
+              </LinkLabel>
             </MenuLink>
           </MenuEntry>
         );
@@ -64,4 +68,3 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
 };
 
 export default PanelBody;
-

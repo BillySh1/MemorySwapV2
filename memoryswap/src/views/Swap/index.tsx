@@ -38,7 +38,7 @@ import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import CardNav from '../../components/CardNav'
-import {TxMining} from '../../components/TxMining'
+import { TxMining } from '../../components/TxMining'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
@@ -374,7 +374,7 @@ export default function Swap() {
   return (
     <BackgroundWrapper removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <CardNav />
-      <TxMining isMobile={isMobile}/>
+      <TxMining isMobile={isMobile} />
       <Flex width="100%" justifyContent="center" position="relative">
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
