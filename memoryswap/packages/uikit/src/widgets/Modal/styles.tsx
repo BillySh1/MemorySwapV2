@@ -11,7 +11,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
   background: ${({ background }) => background || "transparent"};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
-  padding: 12px 24px;
+  padding: 2px 24px;
 `;
 
 export const ModalTitle = styled(Flex)`
