@@ -5,7 +5,7 @@
     "jest": true
   },
   "plugins": ["lodash"],
-  "extends": ["plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
+  // "extends": ["plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
   "rules": {
     "import/no-unresolved": 0,
     "no-shadow": [
