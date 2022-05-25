@@ -14,7 +14,7 @@ export const StyledUserMenu = styled(Flex)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: inline-flex;
-  height: 32px;
+  height: 28px;
   padding-left: 40px;
   padding-right: 8px;
   position: relative;
@@ -30,6 +30,7 @@ export const LabelText = styled.div`
   margin-left: 8px;
   margin-right: 4px;
   font-weight: 600;
+  font-size: 0.8rem;
 
   /* ${({ theme }) => theme.mediaQueries.sm} {
     display: block;
@@ -76,7 +77,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [targetRef, setTargetRef] = useState<HTMLDivElement | null>(null);
   const [tooltipRef, setTooltipRef] = useState<HTMLDivElement | null>(null);
-  const accountEllipsis = account ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}` : null;
+  const accountEllipsis = account ? `${account.substring(0, 2)}...${account.substring(account.length - 6)}` : null;
   const { styles, attributes } = usePopper(targetRef, tooltipRef, {
     strategy: "fixed",
     placement: "bottom-end",
@@ -114,7 +115,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
       >
         <MenuIcon avatarSrc={avatarSrc} variant={variant} />
         <LabelText title={text || account}>{text || accountEllipsis}</LabelText>
-        <ChevronDownIcon color="text" width="24px" />
+        <ChevronDownIcon color="text" width="16px" />
       </StyledUserMenu>
       <Menu style={styles.popper} ref={setTooltipRef} {...attributes.popper} isOpen={isOpen}>
         <Box onClick={() => setIsOpen(false)}>{children}</Box>

@@ -17,6 +17,10 @@ const InactiveButton: PolymorphicComponent<InactiveButtonProps, "button"> = styl
   }
 `;
 
+const StyledButton = styled(Button)`
+  /* background-color: ${({ theme }) => (theme.isDark ? "$007AE3" : "#F1FBFF")}; */
+`;
+
 const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   isActive = false,
   variant = variants.PRIMARY,
@@ -24,10 +28,17 @@ const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   ...props
 }: ButtonMenuItemProps) => {
   if (!isActive) {
-    return <InactiveButton forwardedAs={as} variant={variant} {...props} />;
+    return (
+      <InactiveButton
+        style={{ fontWeight: 700, fontFamily: "system-ui" }}
+        forwardedAs={as}
+        variant={variant}
+        {...props}
+      />
+    );
   }
 
-  return <Button as={as} variant={variant} {...props} />;
+  return <StyledButton style={{ fontWeight: 700, fontFamily: "system-ui" }} as={as} variant={variant} {...props} />;
 };
 
 export default ButtonMenuItem;
