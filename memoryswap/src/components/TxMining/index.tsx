@@ -35,7 +35,7 @@ const RoundBox = styled.div<{ isMobile }>`
 const Intro = styled.div`
   text-align: left;
   line-height: 1.2;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.textSubtle};
 `
 
 export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
