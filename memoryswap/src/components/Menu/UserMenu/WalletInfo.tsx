@@ -34,10 +34,10 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       </Text>
       <CopyAddress account={account} mb="24px" />
       {hasLowBnbBalance && (
-        <Message variant="danger" mb="24px">
+        <Message variant="warning" mb="24px">
           <Box>
             <Text fontWeight="bold">KCC Balance Low</Text>
-            <Text as="p">{t('You need BNB for transaction fees.')}</Text>
+            <Text as="p">{t('You need KCS for transaction fees.')}</Text>
           </Box>
         </Message>
       )}

@@ -16,7 +16,7 @@ const Icons = {
 };
 
 const MessageContainer = styled.div<MessageProps>`
-  background-color: gray;
+  background-color: #D67E0A;
   padding: 16px;
   border-radius: 16px;
   border: solid 1px;
