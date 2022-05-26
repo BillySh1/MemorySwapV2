@@ -10,48 +10,61 @@ export const links = [
     items: [
       {
         label: "Exchange",
-        href: "https://exchange.pancakeswap.finance",
+        href: "/swap",
       },
       {
         label: "Liquidity",
-        href: "https://exchange.pancakeswap.finance/#/pool",
+        href: "/liquidity",
+      },
+      {
+        label: "Bridge",
+        href: "/bridge",
       },
     ],
   },
   {
     label: "Farms",
     icon: "FarmIcon",
-    href: "/farms",
+    href: "/farm",
   },
   {
     label: "Pools",
     icon: "PoolIcon",
-    href: "/syrup",
+    href: "/pools",
   },
   {
-    label: "Lottery",
+    label: "TimeLock",
     icon: "TicketIcon",
-    href: "/lottery",
+    href: "/timeLock",
   },
   {
-    label: "NFT",
+    label: "DAO",
     icon: "NftIcon",
-    href: "/nft",
+    href: "/dao",
   },
   {
-    label: "Profile & Teams",
+    label: "WhiteList",
+    icon: "WhiteListIcon",
+    href: "/whiteList",
+  },
+  {
+    label: "NFTs",
     icon: "GroupsIcon",
     items: [
       {
-        label: "Leaderboard",
-        href: "/",
+        label: "Market",
+        href: "/market",
       },
       {
-        label: "YourProfile",
-        href: "/",
+        label: "BlindBox",
+        href: "/blind",
       },
     ],
-    // calloutClass: "rainbow",
+  },
+  {
+    label: "Lottery",
+    icon: "LotteryIcon",
+    href: "/lottery",
   },
   {
     label: "Info",
@@ -59,55 +72,43 @@ export const links = [
     items: [
       {
         label: "Overview",
-        href: "https://pancakeswap.info",
+        href: "/overview",
       },
       {
         label: "Tokens",
-        href: "https://pancakeswap.info/tokens",
+        href: "/tokens",
       },
       {
         label: "Pairs",
-        href: "https://pancakeswap.info/pairs",
+        href: "/pairs",
       },
       {
         label: "Accounts",
-        href: "https://pancakeswap.info/accounts",
+        href: "/accounts",
       },
     ],
   },
   {
-    label: "IFO",
+    label: "IDO",
     icon: "IfoIcon",
-    items: [
-      {
-        label: "Next",
-        href: "/ifo",
-      },
-      {
-        label: "History",
-        href: "/ifo/history",
-      },
-    ],
+    href: "/ido",
+  },
+  {
+    label: "GameFi",
+    icon: "GameFiIcon",
+    href: "/gamefi",
   },
   {
     label: "More",
     icon: "MoreIcon",
     items: [
-      // {
-      //   label: "Voting",
-      //   href: "https://voting.pancakeswap.finance",
-      // },
       {
         label: "Github",
-        href: "https://github.com/huskyinucoin/",
+        href: "/github",
       },
       {
         label: "Docs",
-        href: "https://docs.huskyinu.netlify.app/",
-      },
-      {
-        label: "Blog",
-        href: "https://medium.com/@huskyinucoin",
+        href: "https://docs.memorylabs.cloud",
       },
     ],
   },
@@ -120,35 +121,22 @@ export const socials = [
     items: [
       {
         label: "English",
-        href: "https://t.me/HuskyINUGlobal",
+        href: "https://t.me/Memory_Swap",
       },
-      // {
-      //   label: "Bahasa Indonesia",
-      //   href: "https://t.me/PancakeSwapIndonesia",
-      // },
-      // {
-      //   label: "Tiếng Việt",
-      //   href: "https://t.me/PancakeSwapVN",
-      // },
-      
-      // {
-      //   label: "Português",
-      //   href: "https://t.me/PancakeSwapPortuguese",
-      // },
       {
-        label: "Announcements",
-        href: "https://t.me/HuskyINUann",
+        label: "简体中文",
+        href: "https://t.me/MemorySwapDao",
       },
     ],
   },
   {
     label: "Twitter",
     icon: "TwitterIcon",
-    href: "https://twitter.com/huskyinucoin",
+    href: "https://twitter.com/MemoryLabsDao",
   },
 ];
 
-export const MENU_HEIGHT = 64;
+export const MENU_HEIGHT = 50;
 export const MENU_ENTRY_HEIGHT = 48;
 export const MOBILE_MENU_HEIGHT = 44;
 export const SIDEBAR_WIDTH_FULL = 240;

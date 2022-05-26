@@ -81,7 +81,7 @@ export const ConfirmLimitOrderModal: React.FC<ConfirmLimitOrderModalProps> = ({
       title={t('Confirm Limit Order')}
       headerBackground={theme.colors.gradients.cardHeader}
       onDismiss={handleDismiss}
-      style={{ width: '328px' }}
+      style={{ width: '400px' }}
     >
       {attemptingTxn ? (
         <LoadingContent />

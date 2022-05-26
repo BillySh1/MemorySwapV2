@@ -27,7 +27,7 @@ import useShowMoreUserHistory from './hooks/useShowMoreUserRounds'
 import { PageMeta } from '../../components/Layout/Page'
 
 const LotteryPage = styled.div`
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 50px);
 `
 
 const Lottery = () => {
@@ -47,6 +47,9 @@ const Lottery = () => {
     <>
       <PageMeta />
       <LotteryPage>
+        <PageSection background={CHECK_PRIZES_BG} hasCurvedDivider={false} index={2}>
+          <CheckPrizesSection />
+        </PageSection>
         <PageSection background={TITLE_BG} index={1} hasCurvedDivider={false}>
           <Hero />
         </PageSection>
@@ -78,9 +81,7 @@ const Lottery = () => {
             <NextDrawCard />
           </Flex>
         </PageSection>
-        <PageSection background={CHECK_PRIZES_BG} hasCurvedDivider={false} index={2}>
-          <CheckPrizesSection />
-        </PageSection>
+
         <PageSection
           innerProps={{ style: { margin: '0', width: '100%' } }}
           background={isDark ? FINISHED_ROUNDS_BG_DARK : FINISHED_ROUNDS_BG}
@@ -107,14 +108,14 @@ const Lottery = () => {
             )}
           </Flex>
         </PageSection>
-        <PageSection
+        {/* <PageSection
           dividerPosition="top"
           dividerFill={{ light: theme.colors.background }}
           clipFill={{ light: '#9A9FD0', dark: '#66578D' }}
           index={2}
         >
           <HowToPlay />
-        </PageSection>
+        </PageSection> */}
       </LotteryPage>
     </>
   )

@@ -37,7 +37,8 @@ import ImportTokenWarningModal from './components/ImportTokenWarningModal'
 import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
+import CardNav from '../../components/CardNav'
+import {TxMining} from '../../components/TxMining'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
@@ -86,6 +87,12 @@ const SwitchIconButton = styled(IconButton)`
       fill: white;
     }
   }
+`
+const BackgroundWrapper = styled(Page)`
+  background-image: ${({ theme }) => (theme.isDark ? `url('/images/bg/dark.png')` : `url('/images/bg/light.png')`)};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `
 
 export default function Swap() {
@@ -325,7 +332,6 @@ export default function Swap() {
 
     [onCurrencySelection],
   )
-
   const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
 
   const [onPresentImportTokenWarningModal] = useModal(
@@ -366,40 +372,13 @@ export default function Swap() {
   }, [hasAmount, refreshBlockNumber])
 
   return (
-    <Page  removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+    <BackgroundWrapper removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+      <CardNav />
+      <TxMining isMobile={isMobile}/>
       <Flex width="100%" justifyContent="center" position="relative">
-        {!isMobile && (
-          <PriceChartContainer
-            inputCurrencyId={inputCurrencyId}
-            inputCurrency={currencies[Field.INPUT]}
-            outputCurrencyId={outputCurrencyId}
-            outputCurrency={currencies[Field.OUTPUT]}
-            isChartExpanded={isChartExpanded}
-            setIsChartExpanded={setIsChartExpanded}
-            isChartDisplayed={isChartDisplayed}
-            currentSwapPrice={singleTokenPrice}
-          />
-        )}
-        <BottomDrawer
-          content={
-            <PriceChartContainer
-              inputCurrencyId={inputCurrencyId}
-              inputCurrency={currencies[Field.INPUT]}
-              outputCurrencyId={outputCurrencyId}
-              outputCurrency={currencies[Field.OUTPUT]}
-              isChartExpanded={isChartExpanded}
-              setIsChartExpanded={setIsChartExpanded}
-              isChartDisplayed={isChartDisplayed}
-              currentSwapPrice={singleTokenPrice}
-              isMobile
-            />
-          }
-          isOpen={isChartDisplayed}
-          setIsOpen={setIsChartDisplayed}
-        />
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
-            <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
+            <StyledInputCurrencyWrapper style={{ width: !isMobile && '400px' }} mt={isChartExpanded ? '24px' : '0'}>
               <AppBody>
                 <CurrencyInputHeader
                   title={t('Swap')}
@@ -614,6 +593,6 @@ export default function Swap() {
           </StyledSwapContainer>
         </Flex>
       </Flex>
-    </Page>
+    </BackgroundWrapper>
   )
 }

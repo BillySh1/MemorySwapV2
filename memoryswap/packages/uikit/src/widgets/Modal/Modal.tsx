@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({
       <ModalHeader background={getThemeValue(`colors.${headerBackground}`, headerBackground)(theme)}>
         <ModalTitle>
           {onBack && <ModalBackButton onBack={onBack} />}
-          <Heading>{title}</Heading>
+          <Heading scale="xs">{title}</Heading>
         </ModalTitle>
         {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       </ModalHeader>

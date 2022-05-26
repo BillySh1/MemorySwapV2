@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const nextJest = require('next/jest')
+import nextJest from 'next/jest'
 
 // Providing the path to your Next.js app which will enable loading next.config.js and .env files
 const createJestConfig = nextJest({ dir: './' })
@@ -9,6 +8,7 @@ const customJestConfig = {
   testPathIgnorePatterns: ['<rootDir>/cypress/', '<rootDir>/src/config/__tests__/', '<rootDir>/packages'],
   moduleNameMapper: {
     '^@pancakeswap/uikit': '<rootDir>/packages/uikit/src',
+    '^@pancakeswap/sdk': '<rootDir>/packages/sdk/src',
   },
   moduleDirectories: ['node_modules', 'src'],
   testTimeout: 20000,
@@ -17,4 +17,4 @@ const customJestConfig = {
 }
 
 // createJestConfig is exported in this way to ensure that next/jest can load the Next.js configuration, which is async
-module.exports = createJestConfig(customJestConfig)
+export default createJestConfig(customJestConfig)

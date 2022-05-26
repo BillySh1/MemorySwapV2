@@ -86,5 +86,6 @@ export const useLpTokenPrice = (symbol: string) => {
  * @@deprecated use the BUSD hook in /hooks
  */
 export const usePriceCakeBusd = (): BigNumber => {
-  return useSelector(priceCakeFromPidSelector)
+  // return useSelector(priceCakeFromPidSelector)
+  return new BigNumber('10000000')
 }

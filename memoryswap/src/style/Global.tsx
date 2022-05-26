@@ -3,7 +3,7 @@ import { PancakeTheme } from '@pancakeswap/uikit'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */
-  export interface DefaultTheme extends PancakeTheme {}
+  export interface DefaultTheme extends PancakeTheme { }
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family:  sans-serif;
   }
   body {
+    overflow-x: hidden;
     background-color: ${({ theme }) => theme.colors.background};
 
     img {

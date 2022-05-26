@@ -6,6 +6,7 @@ import Accordion from "./Accordion";
 import { MenuEntry, LinkLabel } from "./MenuEntry";
 import MenuLink from "./MenuLink";
 import { PanelProps, PushedProps } from "./types";
+import { useRouter } from "next/router";
 
 interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
@@ -23,13 +24,14 @@ const Container = styled.div`
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   // Close the menu when a user clicks a link on mobile
+  const location = useRouter();
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
   return (
     <Container>
       {links.map((entry) => {
         const Icon = Icons[entry.icon];
-        const iconElement = <Icon width="24px" mr="8px" />;
+        const iconElement = <Icon width="24px" mr="24px" />;
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         return entry.items ? (
           <Accordion
@@ -43,21 +45,20 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           >
             {isPushed &&
               entry.items.map((item) => (
-                <MenuEntry
-                  key={item.href}
-                  secondary
-                  isActive={item.href === window.location.pathname}
-                  onClick={handleClick}
-                >
-                  <MenuLink href={item.href}>{item.label}</MenuLink>
+                <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
+                  <MenuLink style={{ fontWeight: 500 }} href={item.href}>
+                    {item.label}
+                  </MenuLink>
                 </MenuEntry>
               ))}
           </Accordion>
         ) : (
-          <MenuEntry key={entry.label} isActive={entry.href === window.location.pathname} className={calloutClass}>
+          <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
             <MenuLink href={entry.href} onClick={handleClick}>
               {iconElement}
-              <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+              <LinkLabel style={{ fontWeight: 500 }} isPushed={isPushed}>
+                {entry.label}
+              </LinkLabel>
             </MenuLink>
           </MenuEntry>
         );

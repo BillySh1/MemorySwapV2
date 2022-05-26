@@ -8,6 +8,7 @@ export const tags = {
 };
 
 export const scales = {
+  XS: "xs",
   MD: "md",
   LG: "lg",
   XL: "xl",

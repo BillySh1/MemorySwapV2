@@ -1,13 +1,16 @@
 import { darkColors, lightColors } from "../../theme/colors";
 
 export interface NavThemeType {
+  topbar: string;
   background: string;
 }
 
 export const light: NavThemeType = {
-  background: lightColors.backgroundAlt,
+  topbar: '#B7D4F4',
+  background: lightColors.backgroundNav,
 };
 
 export const dark: NavThemeType = {
-  background: darkColors.backgroundAlt,
+  topbar:'#37376E',
+  background: darkColors.backgroundNav,
 };

@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { useState } from 'react'
 import { escapeRegExp } from 'utils'
 import { Text, Button, Input, Flex, Box } from '@pancakeswap/uikit'
@@ -14,6 +15,9 @@ enum SlippageError {
 enum DeadlineError {
   InvalidInput = 'InvalidInput',
 }
+const WarppedBtn = styled(Button)`
+  border-radius: 4px;
+`
 
 const inputRegex = RegExp(`^\\d*(?:\\\\[.])?\\d*$`) // match escaped "." characters via in a non-capturing group
 
@@ -77,9 +81,9 @@ const SlippageTabs = () => {
 
   return (
     <Flex flexDirection="column">
-      <Flex flexDirection="column" mb="24px">
+      <Flex flexDirection="column" mb="12px">
         <Flex mb="12px">
-          <Text>{t('Slippage Tolerance')}</Text>
+          <Text fontSize={14}>{t('Slippage Tolerance')}</Text>
           <QuestionHelper
             text={t(
               'Setting a high slippage tolerance can help transactions succeed, but you may not get such a good price. Use with caution.',
@@ -89,7 +93,7 @@ const SlippageTabs = () => {
           />
         </Flex>
         <Flex flexWrap="wrap">
-          <Button
+          <WarppedBtn
             mt="4px"
             mr="4px"
             scale="sm"
@@ -100,8 +104,8 @@ const SlippageTabs = () => {
             variant={userSlippageTolerance === 10 ? 'primary' : 'tertiary'}
           >
             0.1%
-          </Button>
-          <Button
+          </WarppedBtn>
+          <WarppedBtn
             mt="4px"
             mr="4px"
             scale="sm"
@@ -112,8 +116,8 @@ const SlippageTabs = () => {
             variant={userSlippageTolerance === 50 ? 'primary' : 'tertiary'}
           >
             0.5%
-          </Button>
-          <Button
+          </WarppedBtn>
+          <WarppedBtn
             mr="4px"
             mt="4px"
             scale="sm"
@@ -124,31 +128,32 @@ const SlippageTabs = () => {
             variant={userSlippageTolerance === 100 ? 'primary' : 'tertiary'}
           >
             1.0%
-          </Button>
-          <Flex alignItems="center">
-            <Box width="76px" mt="4px">
-              <Input
-                scale="sm"
-                inputMode="decimal"
-                pattern="^[0-9]*[.,]?[0-9]{0,2}$"
-                placeholder={(userSlippageTolerance / 100).toFixed(2)}
-                value={slippageInput}
-                onBlur={() => {
-                  parseCustomSlippage((userSlippageTolerance / 100).toFixed(2))
-                }}
-                onChange={(event) => {
-                  if (event.currentTarget.validity.valid) {
-                    parseCustomSlippage(event.target.value.replace(/,/g, '.'))
-                  }
-                }}
-                isWarning={!slippageInputIsValid}
-                isSuccess={![10, 50, 100].includes(userSlippageTolerance)}
-              />
-            </Box>
-            <Text color="primary" bold ml="2px">
-              %
-            </Text>
-          </Flex>
+          </WarppedBtn>
+        </Flex>
+        <Flex alignItems="center">
+          <Box width="100%" mt="8px">
+            <Input
+              style={{ borderRadius: 4 }}
+              scale="sm"
+              inputMode="decimal"
+              pattern="^[0-9]*[.,]?[0-9]{0,2}$"
+              placeholder={(userSlippageTolerance / 100).toFixed(2)}
+              value={slippageInput}
+              onBlur={() => {
+                parseCustomSlippage((userSlippageTolerance / 100).toFixed(2))
+              }}
+              onChange={(event) => {
+                if (event.currentTarget.validity.valid) {
+                  parseCustomSlippage(event.target.value.replace(/,/g, '.'))
+                }
+              }}
+              isWarning={!slippageInputIsValid}
+              isSuccess={![10, 50, 100].includes(userSlippageTolerance)}
+            />
+          </Box>
+          <Text color="primary" bold ml="2px">
+            %
+          </Text>
         </Flex>
         {!!slippageError && (
           <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
@@ -162,7 +167,7 @@ const SlippageTabs = () => {
       </Flex>
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
         <Flex alignItems="center">
-          <Text>{t('Tx deadline (mins)')}</Text>
+          <Text fontSize={14}>{t('Tx deadline (mins)')}</Text>
           <QuestionHelper
             text={t('Your transaction will revert if it is left confirming for longer than this time.')}
             placement="top-start"
