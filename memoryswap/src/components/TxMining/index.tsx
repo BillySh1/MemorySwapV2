@@ -14,11 +14,10 @@ const RoundBox = styled.div<{ isMobile }>`
   display: flex;
   align-items: center;
   gap: 16px;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 35px;
   font-weight: 800;
   border: 2px solid transparent;
-
   background-image: ${({ theme }) =>
       theme.isDark ? 'linear-gradient(#3E3D5B,#3E3D5B)' : 'linear-gradient(#B3D2F5,#B3D2F5)'},
     linear-gradient(90deg, #ffffff 1.47%, #007be4 100%);

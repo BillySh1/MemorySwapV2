@@ -38,7 +38,7 @@ const config = {
   reactStrictMode: true,
   images: {
     loader: 'akamai',
-    path: '',
+    path: '/',
   },
   async rewrites() {
     return [

@@ -21,7 +21,7 @@ const NotFound = () => {
         <LogoIcon width="64px" mb="8px" />
         <Heading scale="xl">Comming Soon</Heading>
         <Text mb="16px">Please Stay tuned</Text>
-        <Link href="/swap" passHref>
+        <Link href="/" passHref>
           <Button as="a" scale="sm">
             {t('Back')}
           </Button>

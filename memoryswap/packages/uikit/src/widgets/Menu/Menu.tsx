@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import { useMatchBreakpoints } from "../../hooks";
+import Overlay from "../../components/Overlay/Overlay";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
 import {
@@ -61,6 +62,14 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
     margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
   }
   max-width: 100%;
+`;
+const MobileOnlyOverlay = styled(Overlay)`
+  position: fixed;
+  height: 100%;
+
+  ${({ theme }) => theme.mediaQueries.nav} {
+    display: none;
+  }
 `;
 
 // const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
@@ -165,6 +174,7 @@ const Menu: React.FC<NavProps> = ({
           <Inner isPushed={isPushed} showMenu={showMenu}>
             {children}
           </Inner>
+          <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />
         </BodyWrapper>
       </Wrapper>
     </MenuContext.Provider>
