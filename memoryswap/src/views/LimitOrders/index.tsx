@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { CurrencyAmount, Token, Trade } from '@pancakeswap/sdk'
-import { Button, Box, Flex, useModal, useMatchBreakpoints, BottomDrawer, Link } from '@pancakeswap/uikit'
+import { Button, Box, Flex, useModal, useMatchBreakpoints, Link } from '@pancakeswap/uikit'
 
 import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from 'components/Layout/Column'
@@ -402,8 +402,8 @@ const LimitOrders = () => {
           )}
         </Flex>
       </Flex>
-      {/* Fixed position, doesn't take normal DOM space */}
-      <BottomDrawer
+      Fixed position, doesn't take normal DOM space
+      {/* <BottomDrawer
         content={
           <PriceChartContainer
             inputCurrencyId={currencyIds.input}
@@ -419,7 +419,7 @@ const LimitOrders = () => {
         }
         isOpen={isChartDisplayed}
         setIsOpen={setIsChartDisplayed}
-      />
+      /> */}
     </Page>
   )
 }

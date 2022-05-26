@@ -9,7 +9,6 @@ import {
   useModal,
   Flex,
   IconButton,
-  BottomDrawer,
   useMatchBreakpoints,
   ArrowUpDownIcon,
   Skeleton,
