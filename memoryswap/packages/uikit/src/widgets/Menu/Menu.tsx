@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import { useMatchBreakpoints } from "../../hooks";
-import Overlay from "../../components/Overlay/Overlay";
+import Mask from "./Mask";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
 import {
@@ -63,7 +63,7 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   }
   max-width: 100%;
 `;
-const MobileOnlyOverlay = styled(Overlay)`
+const MobileOnlyOverlay = styled(Mask)`
   position: fixed;
   height: 100%;
 

@@ -1,26 +1,72 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+import { FC, useEffect } from "react";
+import { Box, BoxProps } from "../Box";
 
-export type OverlayProps = {
-  show: boolean;
-  zIndex?: number;
-};
+const unmountAnimation = keyframes`
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  `;
 
-const Overlay = styled.div.attrs({ role: "presentation" })<OverlayProps>`
+const mountAnimation = keyframes`
+    0% {
+     opacity: 0;
+    }
+    100% {
+     opacity: 1;
+    }
+  `;
+
+const StyledOverlay = styled(Box)<{ isUnmounting?: boolean, show?: boolean }>`
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  transition: opacity 0.4s;
-  opacity: ${({ show }) => (show ? 0.6 : 0)};
-  z-index: ${({ zIndex }) => zIndex};
-  pointer-events: ${({ show }) => (show ? "initial" : "none")};
+  background-color: ${({ theme }) => `${theme.colors.text}99`};
+  z-index: 20;
+  will-change: opacity;
+  animation: ${mountAnimation} 350ms ease forwards;
+  ${({ isUnmounting }) =>
+    isUnmounting &&
+    css`
+      animation: ${unmountAnimation} 350ms ease forwards;
+    `}
+
 `;
 
-Overlay.defaultProps = {
-  show: false,
-  zIndex: 10,
+const BodyLock = () => {
+  useEffect(() => {
+    document.body.style.cssText = `
+      overflow: hidden;
+    `;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.cssText = `
+        overflow: visible;
+        overflow: overlay;
+      `;
+    };
+  }, []);
+
+  return null;
+};
+
+interface OverlayProps extends BoxProps {
+  isUnmounting?: boolean;
+  show?: boolean;
+}
+
+export const Overlay: FC<OverlayProps> = (props) => {
+  return (
+    <>
+      <BodyLock />
+      <StyledOverlay role="presentation" {...props} />
+    </>
+  );
 };
 
 export default Overlay;
