@@ -29,11 +29,11 @@ export const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
   const cakePriceUsdDisplay = cakePriceUsd ? `$${cakePriceUsd.toFixed(3)}` : '...'
 
   const pageMeta = getCustomMeta(pathname, t) || {}
-  const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
-  if (symbol) {
-    pageTitle = [symbol, title].join(' - ')
-  }
+  const { title, description, image } = { ...DEFAULT_META }
+  let pageTitle = title
+  // if (symbol) {
+  //   pageTitle = [symbol, title].join(' - ')
+  // }
 
   return (
     <Head>

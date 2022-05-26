@@ -46,8 +46,7 @@ const BodyLock = () => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.cssText = `
-        overflow: visible;
-        overflow: overlay;
+        overflow: hidden;
       `;
     };
   }, []);
