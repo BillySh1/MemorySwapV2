@@ -1,8 +1,8 @@
 {
   "short_name": "MemorySwap",
   "name": "MemorySwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "description": "Farm MDAO with Memrory LP Tokens",
+  "homepage_url": "http://www.mdaoswap.xyz",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",
