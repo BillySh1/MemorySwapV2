@@ -5,7 +5,7 @@ export const DEFAULT_META: PageMeta = {
   title: 'MemorySwap',
   description:
     'MemorySwap---DEX 2.0',
-  // image: 'https://pancakeswap.finance/images/hero.png',
+  image: '/hero.jpg',
 }
 
 export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
