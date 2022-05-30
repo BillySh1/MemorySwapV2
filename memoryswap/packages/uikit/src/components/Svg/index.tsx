@@ -154,5 +154,6 @@ export { default as WalletIcon } from "./Icons/Wallet";
 export { default as WarningIcon } from "./Icons/Warning";
 export { default as TxMiningIcon } from "./Icons/TxMining";
 export { default as KuCoinIcon } from "./Icons/KuCoin";
+export { default as TimeLockIcon } from "./Icons/TimeLock";
 export { default as Svg } from "./Svg";
 export type { SvgProps } from "./types";
