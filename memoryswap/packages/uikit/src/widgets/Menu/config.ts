@@ -45,7 +45,7 @@ export const links = [
   {
     label: "WhiteList",
     icon: "WhiteListIcon",
-    href: "/whiteList",
+    href: "/whitelist",
   },
   {
     label: "NFTs",
