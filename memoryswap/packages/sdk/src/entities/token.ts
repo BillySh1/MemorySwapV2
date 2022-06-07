@@ -76,7 +76,7 @@ export const WETH = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xC27d56e6A10919CffBE2222bC77278819b64c180',
+    '0xdB3A5a38C38b06A406BBBe7791c69e2B9116FBA9',
     18,
     'WKCS',
     'Wrapped KuCoin',

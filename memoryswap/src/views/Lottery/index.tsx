@@ -50,9 +50,9 @@ const Lottery = () => {
         <PageSection background={CHECK_PRIZES_BG} hasCurvedDivider={false} index={2}>
           <CheckPrizesSection />
         </PageSection>
-        <PageSection background={TITLE_BG} index={1} hasCurvedDivider={false}>
+        {/* <PageSection background={TITLE_BG} index={1} hasCurvedDivider={false}>
           <Hero />
-        </PageSection>
+        </PageSection> */}
         <PageSection
           containerProps={{ style: { marginTop: '-30px' } }}
           background={GET_TICKETS_BG}

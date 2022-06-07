@@ -13,7 +13,7 @@
     {
       "name": "Wrapped KCS",
       "symbol": "WKCS",
-      "address": "0xC27d56e6A10919CffBE2222bC77278819b64c180",
+      "address": "0xdB3A5a38C38b06A406BBBe7791c69e2B9116FBA9",
       "chainId": 322,
       "decimals": 18,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/2087.png"
@@ -21,7 +21,7 @@
     {
       "name": "MemorySwap Token",
       "symbol": "MDAO",
-      "address": "0x8D5E212E640a04D604143F9097F7B655866F7c5D",
+      "address": "0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41",
       "chainId": 322,
       "decimals": 18,
       "logoURI": "../../../../public/images/tokens/0x8D5E212E640a04D604143F9097F7B655866F7c5D.png"
@@ -29,7 +29,7 @@
     {
       "name": "Tether USDT",
       "symbol": "USDT",
-      "address": "0x67f6a7bbe0da067a747c6b2bedf8abbf7d6f60dc",
+      "address": "0x67f6a7BbE0da067A747C6b2bEdF8aBBF7D6f60dc",
       "chainId": 322,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x55d398326f99059fF775485246999027B3197955.png"
