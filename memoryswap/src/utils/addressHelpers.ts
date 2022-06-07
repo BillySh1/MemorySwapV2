@@ -99,3 +99,11 @@ export const getNftSaleAddress = () => {
 export const getPancakeSquadAddress = () => {
   return getAddress(addresses.pancakeSquad)
 }
+
+export const getFactoryAddress = () => {
+  return getAddress(addresses.factory)
+}
+
+export const getTimeLockerAddress = ()=>{
+  return getAddress(addresses.timeLocker)
+}

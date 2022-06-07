@@ -1,3 +1,4 @@
+import { useFactory, useTimeLocker } from 'hooks/useContract'
 import { useState } from 'react'
 import styled from 'styled-components'
 import Page from 'views/Page'
@@ -37,7 +38,8 @@ const tempList = [
 export default function WhiteList() {
   const ThMap = ['name', 'market', 'price', 'total liquidity', 'addresses', 'chain']
   const [tableData, setTableData] = useState<WhiteListData[]>(tempList)
-
+  const factoryContract = useFactory()
+  console.log(factoryContract,'sss')
   return (
     <Page>
       <div style={{ width: '80vw' }}>

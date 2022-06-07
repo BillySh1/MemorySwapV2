@@ -34,6 +34,8 @@ import {
   getErc721CollectionContract,
   getBunnySpecialXmasContract,
   getGalaxyNTFClaimingContract,
+  getFactoryContract,
+  getTimeLockerContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 import { Erc20, Erc20Bytes32, Multicall, Weth, Cake, Erc721collection, CakeVaultV2 } from 'config/abi/types'
@@ -233,6 +235,16 @@ export const useBunnySpecialXmasContract = () => {
 export const useAnniversaryAchievementContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getAnniversaryAchievementContract(library.getSigner()), [library])
+}
+
+export const useFactory = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getFactoryContract(library.getSigner()), [library])
+}
+
+export const useTimeLocker = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getTimeLockerContract(library.getSigner()), [library])
 }
 
 export const useGalaxyNFTClaimingContract = () => {

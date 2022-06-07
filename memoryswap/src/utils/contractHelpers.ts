@@ -36,6 +36,8 @@ import {
   getTradingCompetitionAddressMobox,
   getBunnySpecialXmasAddress,
   getGalaxyNFTClaimingAddress,
+  getFactoryAddress,
+  getTimeLockerAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -76,6 +78,8 @@ import nftMarketAbi from 'config/abi/nftMarket.json'
 import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
+import factoryAbi from 'config/abi/Factory.json'
+import timeLockerAbi from 'config/abi/TokenLocker.json'
 
 // Types
 import type {
@@ -237,4 +241,11 @@ export const getPancakeSquadContract = (signer?: Signer | Provider) => {
 }
 export const getErc721CollectionContract = (signer?: Signer | Provider, address?: string) => {
   return getContract(erc721CollectionAbi, address, signer) as Erc721collection
+}
+
+export const getFactoryContract = (signer?: Signer | Provider) => {
+  return getContract(factoryAbi, getFactoryAddress(), signer) as any
+}
+export const getTimeLockerContract = (signer?: Signer | Provider) => {
+  return getContract(timeLockerAbi, getTimeLockerAddress(), signer) as any
 }
