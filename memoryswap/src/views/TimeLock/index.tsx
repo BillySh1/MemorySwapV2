@@ -47,7 +47,6 @@ export default function TimeLock() {
   const [remainTime, setRemainTime] = useState(['00', '00', '00'])
   const [lockTime, setLockTiem] = useState<Date>(new Date())
   const inputRef = useRef<HTMLInputElement>()
-
   useEffect(() => {
     inputRef.current.focus()
   }, [])

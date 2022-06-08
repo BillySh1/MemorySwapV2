@@ -2092,7 +2092,7 @@ export const mainnetTokens = defineTokens({
 export const testnetTokens = defineTokens({
   wkcs: new Token(
     TESTNET,
-    '0xC27d56e6A10919CffBE2222bC77278819b64c180',
+    '0xdB3A5a38C38b06A406BBBe7791c69e2B9116FBA9',
     18,
     'WKCS',
     'Wrapped KuCoin Token',
@@ -2100,7 +2100,7 @@ export const testnetTokens = defineTokens({
   ),
   mdao: new Token(
     TESTNET,
-    '0x8D5E212E640a04D604143F9097F7B655866F7c5D',
+    '0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41',
     18,
     'MDAO',
     'MemoryLab Token',

@@ -70,7 +70,7 @@ export const WETH = {
     ChainId.MAINNET,
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     18,
-    'WBNB',
+    'KCS',
     'KuCoin',
     'https://www.binance.org'
   ),

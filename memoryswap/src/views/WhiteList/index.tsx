@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Page from 'views/Page'
 import { Card } from '../../../packages/uikit/src/components/Card'
 import { Table, Td, Th } from '../../../packages/uikit/src/components/Table'
+import useWhiteList from './hooks/useWhiteList'
 
 const StyledTr = styled.tr`
   background-color: ${({ theme }) => theme.nav.background};
@@ -38,8 +39,7 @@ const tempList = [
 export default function WhiteList() {
   const ThMap = ['name', 'market', 'price', 'total liquidity', 'addresses', 'chain']
   const [tableData, setTableData] = useState<WhiteListData[]>(tempList)
-  const factoryContract = useFactory()
-  console.log(factoryContract,'sss')
+  const list = useWhiteList()
   return (
     <Page>
       <div style={{ width: '80vw' }}>
