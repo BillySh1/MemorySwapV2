@@ -117,7 +117,7 @@ export default {
   },
   factory: {
     321: '',
-    322: '0x393333867902e58801Bd335A75d5810F234b78b6',
+    322: '0xa12C6181b45691a0eA4f1026F6FDC7994cf68BA5',
   },
   lotteryPool: {
     321: '',

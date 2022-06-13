@@ -1,16 +1,10 @@
 import { useFactory } from 'hooks/useContract'
-import { useState } from 'react'
+import { useSWRContract } from 'hooks/useSWRContract'
 
 const useWhiteList = () => {
-  const [list, setList] = useState([])
   const factory = useFactory()
-  try {
-    console.log(factory,'factory')
-  } catch (e) {
-    console.error('whitelist', e)
-  }
-
-  return list
+  const { data } = useSWRContract([factory, 'getAllMarket'])
+  return data ?? []
 }
 
 export default useWhiteList
