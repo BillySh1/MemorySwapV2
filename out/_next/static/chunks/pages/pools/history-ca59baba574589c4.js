@@ -1,2 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3273],{89775:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/pools/history",function(){return _(43894)}])},43894:function(n,u,_){"use strict";_.r(u);var t=_(21796);u.default=t.Z}},function(n){n.O(0,[7857,2298,2170,2986,4998,404,1796,9774,2888,179],(function(){return u=89775,n(n.s=u);var u}));var u=n.O();_N_E=u}]);
-//# sourceMappingURL=history-ca59baba574589c4.js.map
