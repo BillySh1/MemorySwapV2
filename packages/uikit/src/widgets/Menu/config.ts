@@ -64,7 +64,16 @@ export const links = [
   {
     label: "Lottery",
     icon: "LotteryIcon",
-    href: "/lottery",
+    items: [
+      {
+        label: "5+2",
+        href: "/fivePlusTwo",
+      },
+      {
+        label: "6+1",
+        href: "/SixPlusOne",
+      },
+    ],
   },
   {
     label: "Info",
