@@ -71,8 +71,12 @@ export const links = [
       },
       {
         label: "6+1",
-        href: "/SixPlusOne",
+        href: "/sixPlusOne",
       },
+      {
+        label:'History',
+        href:'/lotteryHistory'
+      }
     ],
   },
   {
