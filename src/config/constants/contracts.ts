@@ -113,7 +113,7 @@ export default {
   },
   timeLocker: {
     321: '',
-    322: '0x173b2836676E0963D84416C88Cc955e7E5207Ea3',
+    322: '0xEff77Eafb826bC9543d32E1A33dfDBEa9BCB66F3',
   },
   factory: {
     321: '',
