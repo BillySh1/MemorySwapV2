@@ -13,6 +13,7 @@ import { parseUnits } from '@ethersproject/units'
 import { getTimeLockerAddress } from 'utils/addressHelpers'
 import useCatchTxError from 'hooks/useCatchTxError'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTimeLocker } from 'hooks/useContract'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt2};
@@ -30,6 +31,7 @@ export default function NewLock() {
   const [lockNum, setLockNum] = useState<string>('0')
   const [lockTime, setLockTime] = useState<Date>(new Date())
   const [isApproved, setIsApproved] = useState(false)
+  const lockerContract = useTimeLocker()
   const { callWithGasPrice } = useCallWithGasPrice()
   const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
   const { toastSuccess, toastError } = useToast()
@@ -67,7 +69,16 @@ export default function NewLock() {
       setIsApproved(true)
     }
   }
-  const handleLock = async () => {}
+  const handleLock = async () => {
+    const time = new Date(lockTime).getTime() / 1000
+    const receipt = await fetchWithCatchTxError(() =>
+      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 'gwei'), time]),
+    )
+    if (receipt?.status) {
+      toastSuccess('Success')
+      setIsApproved(false)
+    }
+  }
   return (
     <AppBody>
       <AppHeader title="TimeLock" subtitle="LockYourToken" />

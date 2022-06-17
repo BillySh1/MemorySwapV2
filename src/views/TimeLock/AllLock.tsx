@@ -1,12 +1,14 @@
-import { LockItem } from "./components/LockItem"
-import useLockList from "./hooks/useLockList"
+import { LockItem } from './components/LockItem'
+import useLockList from './hooks/useLockList'
 
-export default function AllLock(){
-    const list = useLockList()
-    console.log(list,'list')
-    return (
-        <div>
-            <LockItem/>
-        </div>
-    )
+export default function AllLock() {
+  const list = useLockList()
+  if (!list.length) return null
+  return (
+    <div>
+      {list.map((x) => {
+        return <LockItem />
+      })}
+    </div>
+  )
 }
