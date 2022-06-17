@@ -2087,6 +2087,14 @@ export const mainnetTokens = defineTokens({
     'Project Galaxy',
     'https://galaxy.eco/',
   ),
+  mdao: new Token(
+    TESTNET,
+    '0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41',
+    18,
+    'MDAO',
+    'MemoryLab Token',
+    'https://www.google.com'
+  ),
 } as const)
 
 export const testnetTokens = defineTokens({

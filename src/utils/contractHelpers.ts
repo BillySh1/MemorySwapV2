@@ -156,6 +156,9 @@ export const getPointCenterIfoContract = (signer?: Signer | Provider) => {
 export const getCakeContract = (signer?: Signer | Provider) => {
   return getContract(cakeAbi, tokens.cake.address, signer) as Cake
 }
+export const getMDAOContract = (signer?: Signer | Provider) =>{
+  return getContract(cakeAbi, tokens.mdao.address, signer) as Cake
+}
 export const getProfileContract = (signer?: Signer | Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer) as PancakeProfile
 }

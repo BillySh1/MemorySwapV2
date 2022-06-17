@@ -1,10 +1,18 @@
-import { useRef, useState, useEffect, RefObject } from 'react'
+import { useRef, useState, useEffect, RefObject, useCallback } from 'react'
 import { Button, CardBody, CardFooter, Flex } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TimeLockIcon, Input } from '@pancakeswap/uikit'
 import { AppHeader, AppBody } from '../../components/App'
 import { DatePicker } from 'views/Voting/components/DatePicker'
 import TimeCards from './components/TImeCards'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import bep20Abi from '../../config/abi/erc20.json'
+import { getContract, isAddress } from 'utils'
+import useToast from 'hooks/useToast'
+import { parseUnits } from '@ethersproject/units'
+import { getTimeLockerAddress } from 'utils/addressHelpers'
+import useCatchTxError from 'hooks/useCatchTxError'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt2};
@@ -19,12 +27,47 @@ const Intro = styled.div`
 export default function NewLock() {
   const [contractAddress, setContractAddress] = useState<string>('')
   const [remainTime, setRemainTime] = useState(['00', '00', '00'])
-  const [lockNum, setLockNum] = useState(0)
-  const [lockTime, setLockTiem] = useState<Date>(new Date())
+  const [lockNum, setLockNum] = useState<string>('0')
+  const [lockTime, setLockTime] = useState<Date>(new Date())
+  const [isApproved, setIsApproved] = useState(false)
+  const { callWithGasPrice } = useCallWithGasPrice()
+  const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
+  const { toastSuccess, toastError } = useToast()
+  const { library } = useActiveWeb3React()
   const inputRef = useRef<HTMLInputElement>()
   useEffect(() => {
     inputRef.current.focus()
   }, [])
+
+  const handleSelectDate = (v) => {
+    setLockTime(v)
+    const diff = (new Date(v).getTime() - new Date().getTime()) / 1000
+    const days = Math.floor(diff / 3600 / 24)
+    const hours = Math.floor((diff - days * 24 * 3600) / 3600)
+    const mins = Math.floor((diff - days * 24 * 3600 - hours * 3600) / 60)
+    setRemainTime([
+      days.toString().padStart(2, '0'),
+      hours.toString().padStart(2, '0'),
+      mins.toString().padStart(2, '0'),
+    ])
+  }
+
+  const approve = async () => {
+    const isValidAddress = isAddress(contractAddress) !== false
+    if (!isValidAddress) {
+      toastError('not valid address')
+      return
+    }
+    const contract = getContract(contractAddress, bep20Abi, library.getSigner())
+    const receipt = await fetchWithCatchTxError(() => {
+      return callWithGasPrice(contract, 'approve', [getTimeLockerAddress(), parseUnits(lockNum, 'gwei')])
+    })
+    if (receipt?.status) {
+      toastSuccess('Approved')
+      setIsApproved(true)
+    }
+  }
+  const handleLock = async () => {}
   return (
     <AppBody>
       <AppHeader title="TimeLock" subtitle="LockYourToken" />
@@ -38,7 +81,7 @@ export default function NewLock() {
             autoComplete="off"
             value={contractAddress}
             ref={inputRef as RefObject<HTMLInputElement>}
-            // onChange={handleInput}
+            onChange={(e) => setContractAddress(e.target.value)}
             // onKeyDown={handleEnter}
           />
           <Intro>请输入抵押数量</Intro>
@@ -48,21 +91,28 @@ export default function NewLock() {
             autoComplete="off"
             value={lockNum}
             ref={inputRef as RefObject<HTMLInputElement>}
-            // onChange={handleInput}
+            onChange={(e) => setLockNum(e.target.value)}
             // onKeyDown={handleEnter}
           />
           <Intro>请输入抵押时间</Intro>
-          <DatePicker
-            onChange={(v) => console.log(v)}
-            name="lockTime"
-            selected={lockTime}
-            placeholderText="YYYY/MM/DD/HH"
-          />
-         <TimeCards remainTime={remainTime} />
+          <DatePicker onChange={handleSelectDate} name="lockTime" selected={lockTime} placeholderText="YYYY/MM/DD" />
+          <TimeCards remainTime={remainTime} />
         </Flex>
       </Body>
       <CardFooter style={{ textAlign: 'center' }}>
-        <Button width="100%">Lock</Button>
+        <Button
+          isLoading={isApproving}
+          width="100%"
+          onClick={async () => {
+            if (isApproved) {
+              await handleLock()
+            } else {
+              await approve()
+            }
+          }}
+        >
+          {isApproved ? 'Lock' : 'Approve'}
+        </Button>
       </CardFooter>
     </AppBody>
   )
