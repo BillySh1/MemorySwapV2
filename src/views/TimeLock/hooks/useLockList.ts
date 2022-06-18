@@ -8,8 +8,7 @@ const useLockList = () => {
   if (!account) return []
   const locker = useTimeLocker()
   const { data } = useSWRContract([locker, 'allLockInfo', ['0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41', account]])
-  console.log(data, 'list')
-  return []
+  return data
 }
 
 export default useLockList

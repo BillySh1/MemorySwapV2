@@ -62,7 +62,7 @@ export default function NewLock() {
     }
     const contract = getContract(contractAddress, bep20Abi, library.getSigner())
     const receipt = await fetchWithCatchTxError(() => {
-      return callWithGasPrice(contract, 'approve', [getTimeLockerAddress(), parseUnits(lockNum, 'gwei')])
+      return callWithGasPrice(contract, 'approve', [getTimeLockerAddress(), parseUnits(lockNum, 18)])
     })
     if (receipt?.status) {
       toastSuccess('Approved')
@@ -70,9 +70,10 @@ export default function NewLock() {
     }
   }
   const handleLock = async () => {
-    const time = new Date(lockTime).getTime() / 1000
+    const time = Math.ceil(new Date(lockTime).getTime() / 1000)
+    console.log(parseUnits(lockNum, 18), time, 'param')
     const receipt = await fetchWithCatchTxError(() =>
-      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 'gwei'), time]),
+      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 18), 1655543144]),
     )
     if (receipt?.status) {
       toastSuccess('Success')

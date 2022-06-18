@@ -1,14 +1,23 @@
+import styled from 'styled-components'
 import { LockItem } from './components/LockItem'
 import useLockList from './hooks/useLockList'
 
+const ListWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+`
+
 export default function AllLock() {
   const list = useLockList()
-  if (!list.length) return null
+  if (!list || !list.length) return null
   return (
-    <div>
+    <ListWrapper>
       {list.map((x) => {
-        return <LockItem />
+        return <LockItem info={x} />
       })}
-    </div>
+    </ListWrapper>
   )
 }

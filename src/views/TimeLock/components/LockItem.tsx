@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { WETH } from '@pancakeswap/sdk'
 import { TimeLockIcon } from '@pancakeswap/uikit'
 import TimeCards from './TImeCards'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useTheme from 'hooks/useTheme'
+import { formatEther, formatUnits, parseUnits } from '@ethersproject/units'
 
 const Wrapper = styled.div`
   width: 360px;
@@ -55,10 +56,45 @@ const InfoItem = styled.div`
   margin: 12px 0;
 `
 
-export function LockItem() {
+interface LockItemProps {
+  info: any
+}
+
+export function LockItem(props: LockItemProps) {
+  const { info } = props
   const [remainTime, setRemainTime] = useState(['00', '00', '00'])
+  const [lockInfo, setLockInfo] = useState<any>({})
+  const [canClaim,setCanClaim]  = useState(false)
   const token = WETH[321]
   const color = useTheme()
+  useEffect(() => {
+    setLockInfo({
+      amount: formatEther(info.amount),
+      lockId: info.lockId.toString(),
+      releaseTime: info.releaseTime.toString(),
+      lockTime: info.lockTime.toString(),
+      claimed: info.claimed,
+      address: info.tokenAddress,
+    })
+    getRemainTime(lockInfo.releaseTime)
+  }, [info])
+
+  const getRemainTime = (v) => {
+    const diff = Math.ceil((v * 1000 - new Date().getTime()) / 1000)
+    if (diff <= 0) {
+      setRemainTime(['00', '00', '00'])
+      setCanClaim(true)
+      return
+    }
+    const days = Math.floor(diff / 3600 / 24)
+    const hours = Math.floor((diff - days * 24 * 3600) / 3600)
+    const mins = Math.floor((diff - days * 24 * 3600 - hours * 3600) / 60)
+    setRemainTime([
+      days.toString().padStart(2, '0'),
+      hours.toString().padStart(2, '0'),
+      mins.toString().padStart(2, '0'),
+    ])
+  }
   return (
     <Wrapper>
       <InfoHeader>
@@ -78,11 +114,11 @@ export function LockItem() {
       </div>
       <InfoItem>
         <div>锁仓</div>
-        <div> 1644222 MDAO</div>
+        <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
       <InfoItem style={{ color: color.theme.colors.primary }}>
         <div>锁仓时间</div>
-        <div> 16天06小时32分 </div>
+        <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
       </InfoItem>
     </Wrapper>
   )
