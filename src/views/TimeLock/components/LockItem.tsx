@@ -1,11 +1,15 @@
 import { TokenImage } from 'components/TokenImage'
 import styled from 'styled-components'
 import { WETH } from '@pancakeswap/sdk'
-import { TimeLockIcon } from '@pancakeswap/uikit'
+import { Button, TimeLockIcon } from '@pancakeswap/uikit'
 import TimeCards from './TImeCards'
 import { useEffect, useState } from 'react'
 import useTheme from 'hooks/useTheme'
 import { formatEther, formatUnits, parseUnits } from '@ethersproject/units'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { useTimeLocker } from 'hooks/useContract'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import useToast from 'hooks/useToast'
 
 const Wrapper = styled.div`
   width: 360px;
@@ -64,8 +68,13 @@ export function LockItem(props: LockItemProps) {
   const { info } = props
   const [remainTime, setRemainTime] = useState(['00', '00', '00'])
   const [lockInfo, setLockInfo] = useState<any>({})
-  const [canClaim,setCanClaim]  = useState(false)
+  const [canClaim, setCanClaim] = useState(false)
+  const { callWithGasPrice } = useCallWithGasPrice()
+  const lockerContract = useTimeLocker()
+  console.log(lockerContract, 'locker')
+  const { fetchWithCatchTxError, loading: isClaiming } = useCatchTxError()
   const token = WETH[321]
+  const { toastSuccess } = useToast()
   const color = useTheme()
   useEffect(() => {
     setLockInfo({
@@ -76,6 +85,8 @@ export function LockItem(props: LockItemProps) {
       claimed: info.claimed,
       address: info.tokenAddress,
     })
+
+    setCanClaim(lockInfo.releaseTime <= Math.floor(new Date().getTime()))
     getRemainTime(lockInfo.releaseTime)
   }, [info])
 
@@ -95,6 +106,14 @@ export function LockItem(props: LockItemProps) {
       mins.toString().padStart(2, '0'),
     ])
   }
+  const onClaim = async () => {
+    const receipt = await fetchWithCatchTxError(() =>
+      callWithGasPrice(lockerContract, 'claim'),
+    )
+    if (receipt?.status) {
+      toastSuccess('Success')
+    }
+  }
   return (
     <Wrapper>
       <InfoHeader>
@@ -105,10 +124,17 @@ export function LockItem(props: LockItemProps) {
         </InfoLeft>
         <TokenImage width={48} height={48} token={token} />
       </InfoHeader>
-      <InfoStatus>
-        <TimeLockIcon width={24} height={24} />
-        <span>进行中</span>
-      </InfoStatus>
+      {(canClaim && (
+        <InfoStatus>
+          <TimeLockIcon width={24} height={24} />
+          <span>进行中</span>
+        </InfoStatus>
+      )) || (
+        <InfoStatus>
+          <TimeLockIcon width={24} height={24} />
+          <span>已结束</span>
+        </InfoStatus>
+      )}
       <div style={{ width: '100%', marginBottom: '48px' }}>
         <TimeCards remainTime={remainTime} />
       </div>
@@ -116,9 +142,16 @@ export function LockItem(props: LockItemProps) {
         <div>锁仓</div>
         <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
-      <InfoItem style={{ color: color.theme.colors.primary }}>
-        <div>锁仓时间</div>
-        <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
+      {!canClaim && (
+        <InfoItem style={{ color: color.theme.colors.primary }}>
+          <div>锁仓时间</div>
+          <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
+        </InfoItem>
+      )}
+      <InfoItem style={{ justifyContent: 'center' }}>
+        <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
+          领取
+        </Button>
       </InfoItem>
     </Wrapper>
   )
