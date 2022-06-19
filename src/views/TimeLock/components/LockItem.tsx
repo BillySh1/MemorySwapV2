@@ -71,7 +71,7 @@ export function LockItem(props: LockItemProps) {
   const [canClaim, setCanClaim] = useState(false)
   const { callWithGasPrice } = useCallWithGasPrice()
   const lockerContract = useTimeLocker()
-  console.log(lockerContract, 'locker')
+
   const { fetchWithCatchTxError, loading: isClaiming } = useCatchTxError()
   const token = WETH[321]
   const { toastSuccess } = useToast()
@@ -85,8 +85,7 @@ export function LockItem(props: LockItemProps) {
       claimed: info.claimed,
       address: info.tokenAddress,
     })
-
-    setCanClaim(lockInfo.releaseTime <= Math.floor(new Date().getTime()))
+    setCanClaim(info.releaseTime.toString() <= Math.floor(new Date().getTime() / 1000))
     getRemainTime(lockInfo.releaseTime)
   }, [info])
 
@@ -108,7 +107,7 @@ export function LockItem(props: LockItemProps) {
   }
   const onClaim = async () => {
     const receipt = await fetchWithCatchTxError(() =>
-      callWithGasPrice(lockerContract, 'claim'),
+      callWithGasPrice(lockerContract, 'claim', ['0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41', lockInfo.lockId]),
     )
     if (receipt?.status) {
       toastSuccess('Success')
@@ -127,12 +126,12 @@ export function LockItem(props: LockItemProps) {
       {(canClaim && (
         <InfoStatus>
           <TimeLockIcon width={24} height={24} />
-          <span>进行中</span>
+          <span>{lockInfo.claimed ? '已领取' : '可领取'}</span>
         </InfoStatus>
       )) || (
         <InfoStatus>
           <TimeLockIcon width={24} height={24} />
-          <span>已结束</span>
+          <span>{info.claimed ? '已结束' : '进行中'}</span>
         </InfoStatus>
       )}
       <div style={{ width: '100%', marginBottom: '48px' }}>
@@ -142,17 +141,19 @@ export function LockItem(props: LockItemProps) {
         <div>锁仓</div>
         <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
-      {!canClaim && (
+      {(!canClaim && (
         <InfoItem style={{ color: color.theme.colors.primary }}>
           <div>锁仓时间</div>
           <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
         </InfoItem>
-      )}
-      <InfoItem style={{ justifyContent: 'center' }}>
-        <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
-          领取
-        </Button>
-      </InfoItem>
+      )) ||
+        (!info.claimed && (
+          <InfoItem style={{ justifyContent: 'center' }}>
+            <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
+              领取
+            </Button>
+          </InfoItem>
+        ))}
     </Wrapper>
   )
 }
