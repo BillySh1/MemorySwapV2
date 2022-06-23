@@ -75,21 +75,22 @@ function useNowRound() {
 }
 
 export default function FivePlusTwo() {
-  const [frontSelected, setFrontSelected] = useState<Number[]>([])
-  const [backSelected, setBackSelected] = useState<Number[]>([])
-  const [isApproved, setIsApproved] = useState(false)
-  const [onPresentBuyTicketsModal] = useModal(<BuyConfirmModal />)
+  const [frontSelected, setFrontSelected] = useState<Array<any>>([])
+  const [backSelected, setBackSelected] = useState<Array<any>>([])
+  const fivePlusTwoContract = useFivePlusTwo()
+  const [onPresentBuyTicketsModal] = useModal(<BuyConfirmModal contract={fivePlusTwoContract} frontNumbers={frontSelected} backNumbers={backSelected} />)
   const handleSelectFront = (x: number) => {
-    const tempData = JSON.parse(JSON.stringify(frontSelected))
-    if (tempData.includes(x)) {
-      setFrontSelected(
-        tempData.slice(
-          tempData.findIndex((i) => i === x),
-          1,
-        ),
-      )
+    if (frontSelected.includes(x)) {
+      setFrontSelected(frontSelected.filter((i) => i !== x))
     } else {
-      setFrontSelected(tempData.push(x))
+      setFrontSelected([...frontSelected, x])
+    }
+  }
+  const handleSelectBack = (x: number) => {
+    if (backSelected.includes(x)) {
+      setBackSelected(backSelected.filter((i) => i !== x))
+    } else {
+      setBackSelected([...backSelected, x])
     }
   }
   const round = useNowRound()
@@ -128,7 +129,7 @@ export default function FivePlusTwo() {
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
-                  <NumberSelectItem onClick={() => handleSelectFront(x)}>
+                  <NumberSelectItem onClick={() => handleSelectBack(x)}>
                     <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={56} height={56} />
                   </NumberSelectItem>
                 )
@@ -144,6 +145,7 @@ export default function FivePlusTwo() {
           </div>
           <div>
             <Button
+              disabled={frontSelected.length < 5 || backSelected.length < 2}
               onClick={onPresentBuyTicketsModal}
               scale="md"
             >

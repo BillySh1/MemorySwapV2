@@ -14,6 +14,7 @@ import {
   Skeleton,
   Button,
   ArrowForwardIcon,
+  Input,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
@@ -28,7 +29,7 @@ import useTheme from 'hooks/useTheme'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { FetchStatus } from 'config/constants/types'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useLotteryV2Contract } from 'hooks/useContract'
+import { useCake, useLotteryV2Contract, useMdao } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -37,6 +38,7 @@ import ApproveConfirmButtons, { ButtonArrangement } from 'components/ApproveConf
 import { useTicketsReducer } from 'views/Lottery/components/BuyTicketsModal/useTicketsReducer'
 import EditNumbersModal from 'views/Lottery/components/BuyTicketsModal/EditNumbersModal'
 import NumTicketsToBuyButton from 'views/Lottery/components/BuyTicketsModal/NumTicketsToBuyButton'
+import NumberCom from './NumberCom'
 
 const StyledModal = styled(Modal)`
   min-width: 280px;
@@ -52,6 +54,9 @@ const ShortcutButtonsWrapper = styled(Flex)<{ isVisible: boolean }>`
 
 interface BuyTicketsModalProps {
   onDismiss?: () => void
+  frontNumbers: Array<string | number>
+  backNumbers: Array<string | number>
+  contract: any
 }
 
 enum BuyingStage {
@@ -59,7 +64,7 @@ enum BuyingStage {
   EDIT = 'Edit',
 }
 
-const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
+const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbers, backNumbers, contract }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { theme } = useTheme()
@@ -67,7 +72,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     maxNumberTicketsPerBuyOrClaim,
     currentLotteryId,
     currentRound: {
-      priceTicketInCake,
+      priceTicketInCake = new BigNumber('200000'),
       discountDivisor,
       userTickets: { tickets: userCurrentTickets },
     },
@@ -80,9 +85,9 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const [buyingStage, setBuyingStage] = useState<BuyingStage>(BuyingStage.BUY)
   const [maxPossibleTicketPurchase, setMaxPossibleTicketPurchase] = useState(BIG_ZERO)
   const [maxTicketPurchaseExceeded, setMaxTicketPurchaseExceeded] = useState(false)
+  const [buyToAddress, setBuyToAddress] = useState('')
   const [userNotEnoughCake, setUserNotEnoughCake] = useState(false)
-  const lotteryContract = useLotteryV2Contract()
-  const { reader: cakeContractReader, signer: cakeContractApprover } = useCake()
+  const { reader: mdaoContractReader, signer: mdaoContractApprover } = useMdao()
   const { toastSuccess } = useToast()
   const { balance: userCake, fetchStatus } = useTokenBalance(tokens.cake.address)
   // balance from useTokenBalance causes rerenders in effects as a new BigNumber is instantiated on each render, hence memoising it using the stringified value below.
@@ -215,26 +220,6 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     return Math.floor(percentageOfMaxTickets.toNumber())
   }
 
-  const tenPercentOfBalance = getNumTicketsByPercentage(10)
-  const twentyFivePercentOfBalance = getNumTicketsByPercentage(25)
-  const fiftyPercentOfBalance = getNumTicketsByPercentage(50)
-  const oneHundredPercentOfBalance = getNumTicketsByPercentage(100)
-
-  const handleInputChange = (input: string) => {
-    // Force input to integer
-    const inputAsInt = parseInt(input, 10)
-    const inputAsBN = new BigNumber(inputAsInt)
-    const limitedNumberTickets = limitNumberByMaxTicketsPerBuy(inputAsBN)
-    validateInput(inputAsBN)
-    setTicketsToBuy(inputAsInt ? limitedNumberTickets.toString() : '')
-  }
-
-  const handleNumberButtonClick = (number: number) => {
-    setTicketsToBuy(number.toFixed())
-    setUserNotEnoughCake(false)
-    setMaxTicketPurchaseExceeded(false)
-  }
-
   const [updateTicket, randomize, tickets, allComplete, getTicketsForPurchase] = useTicketsReducer(
     parseInt(ticketsToBuy, 10),
     userCurrentTickets,
@@ -243,20 +228,21 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
-        return requiresApproval(cakeContractReader, account, lotteryContract.address)
+        return requiresApproval(mdaoContractReader, account, contract.address)
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContractApprover, 'approve', [lotteryContract.address, MaxUint256])
+        console.log(contract, 'sss')
+        return callWithGasPrice(mdaoContractApprover, 'approve', [contract.address, MaxUint256])
       },
       onApproveSuccess: async ({ receipt }) => {
         toastSuccess(
-          t('Contract enabled - you can now purchase tickets'),
+          t('Contract enabled - you can now purchase lottery'),
           <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
         )
       },
       onConfirm: () => {
         const ticketsForPurchase = getTicketsForPurchase()
-        return callWithGasPrice(lotteryContract, 'buyTickets', [currentLotteryId, ticketsForPurchase])
+        return callWithGasPrice(contract, 'buyTickets', [frontNumbers, backNumbers, 1, buyToAddress])
       },
       onSuccess: async ({ receipt }) => {
         onDismiss?.()
@@ -272,21 +258,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     })
   }
 
-  const percentageDiscount = () => {
-    const percentageAsBn = new BigNumber(discountValue).div(new BigNumber(ticketCostBeforeDiscount)).times(100)
-    if (percentageAsBn.isNaN() || percentageAsBn.eq(0)) {
-      return 0
-    }
-    return percentageAsBn.toNumber().toFixed(2)
-  }
-
-  const disableBuying =
-    !isApproved ||
-    isConfirmed ||
-    userNotEnoughCake ||
-    !ticketsToBuy ||
-    new BigNumber(ticketsToBuy).lte(0) ||
-    getTicketsForPurchase().length !== parseInt(ticketsToBuy, 10)
+  const disableBuying = !isApproved || isConfirmed
 
   if (buyingStage === BuyingStage.EDIT) {
     return (
@@ -304,27 +276,25 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <StyledModal title={t('Buy Tickets')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <StyledModal title={t('Buy 5+2')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text color="textSubtle">{t('Buy')}:</Text>
-        <Flex alignItems="center" minWidth="70px">
-          <Text mr="4px" bold>
-            {t('Tickets')}
-          </Text>
-          <Ticket />
-        </Flex>
+        <Text color="textSubtle">{t('Your Numbers')}:</Text>
       </Flex>
-      <BalanceInput
-        isWarning={account && (userNotEnoughCake || maxTicketPurchaseExceeded)}
-        placeholder="0"
-        value={ticketsToBuy}
-        onUserInput={handleInputChange}
-        currencyValue={
-          cakePriceBusd.gt(0) &&
-          `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInCake.times(new BigNumber(ticketsToBuy))) : '0.00'} CAKE`
-        }
-      />
+      <Flex style={{ gap: '8px' }}>
+        {frontNumbers.map((x) => (
+          <NumberCom value={x as any} width={28} height={28} />
+        ))}
+        {backNumbers.map((i) => (
+          <NumberCom extra value={i as any} width={28} height={28} />
+        ))}
+      </Flex>
+      <Flex alignItems="center" justifyContent="space-between" mb="8px">
+        <Text color="textSubtle">{t('To')}:</Text>
+      </Flex>
+      <Flex style={{ gap: '8px' }}>
+        <Input placeholder='Optional' value={buyToAddress} onChange={(e) => setBuyToAddress(e.target.value)} />
+      </Flex>
       <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px">
         <Flex justifyContent="flex-end" flexDirection="column">
           {account && (userNotEnoughCake || maxTicketPurchaseExceeded) && (
@@ -332,80 +302,25 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
               {getErrorMessage()}
             </Text>
           )}
-          {account && (
-            <Flex justifyContent="flex-end">
-              <Text fontSize="12px" color="textSubtle" mr="4px">
-                CAKE {t('Balance')}:
-              </Text>
-              {hasFetchedBalance ? (
-                <Text fontSize="12px" color="textSubtle">
-                  {userCakeDisplayBalance}
-                </Text>
-              ) : (
-                <Skeleton width={50} height={12} />
-              )}
-            </Flex>
-          )}
         </Flex>
       </Flex>
 
-      {account && !hasFetchedBalance ? (
-        <Skeleton width="100%" height={20} mt="8px" mb="24px" />
-      ) : (
-        <ShortcutButtonsWrapper isVisible={account && hasFetchedBalance && oneHundredPercentOfBalance >= 1}>
-          {tenPercentOfBalance >= 1 && (
-            <NumTicketsToBuyButton onClick={() => handleNumberButtonClick(tenPercentOfBalance)}>
-              {hasFetchedBalance ? tenPercentOfBalance : ``}
-            </NumTicketsToBuyButton>
-          )}
-          {twentyFivePercentOfBalance >= 1 && (
-            <NumTicketsToBuyButton onClick={() => handleNumberButtonClick(twentyFivePercentOfBalance)}>
-              {hasFetchedBalance ? twentyFivePercentOfBalance : ``}
-            </NumTicketsToBuyButton>
-          )}
-          {fiftyPercentOfBalance >= 1 && (
-            <NumTicketsToBuyButton onClick={() => handleNumberButtonClick(fiftyPercentOfBalance)}>
-              {hasFetchedBalance ? fiftyPercentOfBalance : ``}
-            </NumTicketsToBuyButton>
-          )}
-          {oneHundredPercentOfBalance >= 1 && (
-            <NumTicketsToBuyButton onClick={() => handleNumberButtonClick(oneHundredPercentOfBalance)}>
-              MAX
-            </NumTicketsToBuyButton>
-          )}
-        </ShortcutButtonsWrapper>
-      )}
       <Flex flexDirection="column">
         <Flex mb="8px" justifyContent="space-between">
           <Text color="textSubtle" fontSize="14px">
-            {t('Cost')} (CAKE)
+            {t('Cost')} (MDAO)
           </Text>
           <Text color="textSubtle" fontSize="14px">
-            {priceTicketInCake && getFullDisplayBalance(priceTicketInCake.times(ticketsToBuy || 0))} CAKE
+            {priceTicketInCake && getFullDisplayBalance(priceTicketInCake.times(ticketsToBuy || 0))} MDAO
           </Text>
         </Flex>
-        <Flex mb="8px" justifyContent="space-between">
-          <Flex>
-            <Text display="inline" bold fontSize="14px" mr="4px">
-              {discountValue && totalCost ? percentageDiscount() : 0}%
-            </Text>
-            <Text display="inline" color="textSubtle" fontSize="14px">
-              {t('Bulk discount')}
-            </Text>
-            <Flex alignItems="center" justifyContent="center" ref={targetRef}>
-              <HelpIcon ml="4px" width="14px" height="14px" color="textSubtle" />
-            </Flex>
-          </Flex>
-          <Text fontSize="14px" color="textSubtle">
-            ~{discountValue} CAKE
-          </Text>
-        </Flex>
+
         <Flex borderTop={`1px solid ${theme.colors.cardBorder}`} pt="8px" mb="24px" justifyContent="space-between">
           <Text color="textSubtle" fontSize="16px">
             {t('You pay')}
           </Text>
           <Text fontSize="16px" bold>
-            ~{totalCost} CAKE
+            ~{totalCost} MDAO
           </Text>
         </Flex>
 
@@ -422,7 +337,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
               confirmLabel={t('Buy Instantly')}
               confirmId="lotteryBuyInstant"
             />
-            {isApproved && (
+            {/* {isApproved && (
               <Button
                 variant="secondary"
                 mt="8px"
@@ -441,7 +356,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
               >
                 {t('View/Edit Numbers')}
               </Button>
-            )}
+            )} */}
           </>
         ) : (
           <ConnectWalletButton />
@@ -449,7 +364,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
 
         <Text mt="24px" fontSize="12px" color="textSubtle">
           {t(
-            '"Buy Instantly" chooses random numbers, with no duplicates among your tickets. Prices are set before each round starts, equal to $5 at that time. Purchases are final.',
+            '"5+2" chooses lottery numbers, with no duplicates among your tickets. Prices are set before each round starts, equal to $5 at that time. Purchases are final.',
           )}
         </Text>
       </Flex>
