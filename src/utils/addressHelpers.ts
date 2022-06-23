@@ -107,3 +107,7 @@ export const getFactoryAddress = () => {
 export const getTimeLockerAddress = ()=>{
   return getAddress(addresses.timeLocker)
 }
+
+export const getFivePlusTwoAddress = ()=>{
+  return getAddress(addresses.fiveplustwo)
+}

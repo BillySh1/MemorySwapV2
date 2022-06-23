@@ -37,6 +37,7 @@ import {
   getFactoryContract,
   getTimeLockerContract,
   getMDAOContract,
+  getFivePlusTwoContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 import { Erc20, Erc20Bytes32, Multicall, Weth, Cake, Erc721collection, CakeVaultV2 } from 'config/abi/types'
@@ -99,7 +100,7 @@ export const useCake = (): { reader: Cake; signer: Cake } => {
   )
 }
 
-export const useMdao = ()=>{
+export const useMdao = () => {
   const { account, library } = useActiveWeb3React()
   return useMemo(
     () => ({
@@ -257,6 +258,10 @@ export const useFactory = () => {
 export const useTimeLocker = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getTimeLockerContract(library.getSigner()), [library])
+}
+export const useFivePlusTwo = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getFivePlusTwoContract(library.getSigner()), [library])
 }
 
 export const useGalaxyNFTClaimingContract = () => {

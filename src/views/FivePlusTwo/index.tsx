@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import LastWinNumber from './components/lastWinNumber'
 import NumberCom from './components/NumberCom'
 import { useState } from 'react'
+import { useFivePlusTwo } from 'hooks/useContract'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -67,6 +68,8 @@ const NumbersIntro = styled.div`
 export default function FivePlusTwo() {
   const [frontSelected, setFrontSelected] = useState<Number[]>([])
   const [backSelected, setBackSelected] = useState<Number[]>([])
+  const fivePlusTwoContract = useFivePlusTwo();
+  console.log(fivePlusTwoContract,'contract')
   const handleSelectFront = (x: number) => {
     const tempData = JSON.parse(JSON.stringify(frontSelected))
     if (tempData.includes(x)) {

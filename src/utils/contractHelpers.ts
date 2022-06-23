@@ -38,6 +38,7 @@ import {
   getGalaxyNFTClaimingAddress,
   getFactoryAddress,
   getTimeLockerAddress,
+  getFivePlusTwoAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -80,6 +81,7 @@ import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
 import factoryAbi from 'config/abi/Factory.json'
 import timeLockerAbi from 'config/abi/TokenLocker.json'
+import fivePlusTwoAbi from 'config/abi/FivePlusTwo.json'
 
 // Types
 import type {
@@ -156,7 +158,7 @@ export const getPointCenterIfoContract = (signer?: Signer | Provider) => {
 export const getCakeContract = (signer?: Signer | Provider) => {
   return getContract(cakeAbi, tokens.cake.address, signer) as Cake
 }
-export const getMDAOContract = (signer?: Signer | Provider) =>{
+export const getMDAOContract = (signer?: Signer | Provider) => {
   return getContract(cakeAbi, tokens.mdao.address, signer) as Cake
 }
 export const getProfileContract = (signer?: Signer | Provider) => {
@@ -251,4 +253,8 @@ export const getFactoryContract = (signer?: Signer | Provider) => {
 }
 export const getTimeLockerContract = (signer?: Signer | Provider) => {
   return getContract(timeLockerAbi, getTimeLockerAddress(), signer) as any
+}
+
+export const getFivePlusTwoContract = (signer?: Signer | Provider) => {
+  return getContract(fivePlusTwoAbi, getFivePlusTwoAddress(), signer) as any
 }
