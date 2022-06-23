@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { Flex } from '@pancakeswap/uikit'
+import NumberCom from './NumberCom'
 
 const Container = styled.div`
   display: flex;
@@ -16,10 +18,23 @@ const LeftTitle = styled.div`
 `
 
 export default function LastWinNumber() {
+  const lastWinNumbers = [
+    { value: 1 },
+    { value: 2 },
+    { value: 3 },
+    { value: 4 },
+    { value: 5 },
+    { value: 6, extra: true },
+    { value: 7, extra: true },
+  ]
   return (
     <Container>
       <LeftTitle>Last Wining Number</LeftTitle>
-      <div>22</div>
+      <Flex style={{ gap: '4px' }}>
+        {lastWinNumbers.map((x) => {
+          return <NumberCom extra={x.extra} value={x.value} width={57} height={57} />
+        })}
+      </Flex>
     </Container>
   )
 }
