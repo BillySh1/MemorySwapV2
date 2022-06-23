@@ -125,7 +125,7 @@ export default {
   },
   fiveplustwo: {
     321: '',
-    322: '0xc69a5aDc93Efb9d0E237b6e1581e70E0C3f9F9Ce',
+    322: '0x0D5fcbe20Cb100e7d53A2b9113C51e5e871F5962',
   },
   random: {
     321: '',

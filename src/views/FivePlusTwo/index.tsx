@@ -6,6 +6,8 @@ import LastWinNumber from './components/lastWinNumber'
 import NumberCom from './components/NumberCom'
 import { useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
+import { useSWRContract } from 'hooks/useSWRContract'
+import FivePlusTwoPage from 'pages/fivePlusTwo'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -65,11 +67,15 @@ const NumbersIntro = styled.div`
   line-height: 1.2;
 `
 
+function useNowRound() {
+  const fivePlusTwoContract = useFivePlusTwo()
+  const { data } = useSWRContract({ contract: fivePlusTwoContract, methodName: 'nowPeriod' })
+  return data.toNumber() ?? data
+}
+
 export default function FivePlusTwo() {
   const [frontSelected, setFrontSelected] = useState<Number[]>([])
   const [backSelected, setBackSelected] = useState<Number[]>([])
-  const fivePlusTwoContract = useFivePlusTwo();
-  console.log(fivePlusTwoContract,'contract')
   const handleSelectFront = (x: number) => {
     const tempData = JSON.parse(JSON.stringify(frontSelected))
     if (tempData.includes(x)) {
@@ -83,10 +89,11 @@ export default function FivePlusTwo() {
       setFrontSelected(tempData.push(x))
     }
   }
+  const round = useNowRound()
   return (
     <Page>
       <LotteryWrapper>
-        <AppHeader title="Lottery 5+2" subtitle="Get your tickets now!" />
+        <AppHeader title={`Lottery 5+2 Round ${round}`} subtitle="Get your tickets now!" />
         <Body>
           <LastWinNumber />
           <FlexSelectContainer>
