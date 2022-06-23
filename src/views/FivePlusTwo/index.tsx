@@ -1,6 +1,6 @@
 import { AppHeader } from 'components/App'
 import Page from 'views/Page'
-import { Button, Card, CardBody, CardFooter } from '@pancakeswap/uikit'
+import { Button, Card, CardBody, CardFooter, useModal } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import LastWinNumber from './components/lastWinNumber'
 import NumberCom from './components/NumberCom'
@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import FivePlusTwoPage from 'pages/fivePlusTwo'
+import BuyConfirmModal from './components/BuyConfirmModal'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -70,12 +71,14 @@ const NumbersIntro = styled.div`
 function useNowRound() {
   const fivePlusTwoContract = useFivePlusTwo()
   const { data } = useSWRContract({ contract: fivePlusTwoContract, methodName: 'nowPeriod' })
-  return data.toNumber() ?? data
+  return data ? data.toNumber() : undefined
 }
 
 export default function FivePlusTwo() {
   const [frontSelected, setFrontSelected] = useState<Number[]>([])
   const [backSelected, setBackSelected] = useState<Number[]>([])
+  const [isApproved, setIsApproved] = useState(false)
+  const [onPresentBuyTicketsModal] = useModal(<BuyConfirmModal />)
   const handleSelectFront = (x: number) => {
     const tempData = JSON.parse(JSON.stringify(frontSelected))
     if (tempData.includes(x)) {
@@ -140,7 +143,12 @@ export default function FivePlusTwo() {
             </FooterText>
           </div>
           <div>
-            <Button scale="md">BUY</Button>
+            <Button
+              onClick={onPresentBuyTicketsModal}
+              scale="md"
+            >
+              BUY NOW
+            </Button>
           </div>
         </FlexFooter>
       </LotteryWrapper>
