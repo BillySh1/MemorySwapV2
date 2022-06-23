@@ -49,7 +49,6 @@ const NumbersContainer = styled.div`
   max-width: 60%;
   display: flex;
   flex-wrap: wrap;
-  
 `
 
 const NumberSelectItem = styled.div`
