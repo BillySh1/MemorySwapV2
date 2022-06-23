@@ -1,3 +1,3 @@
-import TimeLock from '../../views/TimeLock'
+import TimeLock from 'views/TimeLock'
 
 export default TimeLock

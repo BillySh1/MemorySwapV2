@@ -1,3 +1,3 @@
-import WhiteList from '../../views/WhiteList'
+import WhiteList from 'views/WhiteList'
 
 export default WhiteList

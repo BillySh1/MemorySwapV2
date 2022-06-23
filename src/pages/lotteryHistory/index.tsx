@@ -1,7 +1,3 @@
 import LotteryHistory from 'views/lotteryHistory'
 
-const LotteryHistoryPage = () => {
-  return <LotteryHistory />
-}
-
-export default LotteryHistoryPage
+export default LotteryHistory
