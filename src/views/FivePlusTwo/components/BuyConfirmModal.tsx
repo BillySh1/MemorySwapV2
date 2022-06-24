@@ -81,6 +81,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
   const [ticketsToBuy, setTicketsToBuy] = useState('')
   const [discountValue, setDiscountValue] = useState('')
   const [totalCost, setTotalCost] = useState('')
+  const [multiple,setMultiple] = useState('')
   const [ticketCostBeforeDiscount, setTicketCostBeforeDiscount] = useState('')
   const [buyingStage, setBuyingStage] = useState<BuyingStage>(BuyingStage.BUY)
   const [maxPossibleTicketPurchase, setMaxPossibleTicketPurchase] = useState(BIG_ZERO)
@@ -290,10 +291,16 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
         ))}
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text color="textSubtle">{t('To')}:</Text>
+        <Text color="textSubtle">{t('To (optional)')}:</Text>
       </Flex>
       <Flex style={{ gap: '8px' }}>
-        <Input placeholder='Optional' value={buyToAddress} onChange={(e) => setBuyToAddress(e.target.value)} />
+        <Input  value={buyToAddress} onChange={(e) => setBuyToAddress(e.target.value)} />
+      </Flex>
+      <Flex alignItems="center" justifyContent="space-between" mb="8px">
+        <Text color="textSubtle">{t('Multiple')}:</Text>
+      </Flex>
+      <Flex style={{ gap: '8px' }}>
+        <Input  value={multiple} onChange={(e) => setMultiple(e.target.value)} />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px">
         <Flex justifyContent="flex-end" flexDirection="column">
@@ -337,26 +344,6 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
               confirmLabel={t('Buy Instantly')}
               confirmId="lotteryBuyInstant"
             />
-            {/* {isApproved && (
-              <Button
-                variant="secondary"
-                mt="8px"
-                endIcon={
-                  <ArrowForwardIcon
-                    ml="2px"
-                    color={disableBuying || isConfirming ? 'disabled' : 'primary'}
-                    height="24px"
-                    width="24px"
-                  />
-                }
-                disabled={disableBuying || isConfirming}
-                onClick={() => {
-                  setBuyingStage(BuyingStage.EDIT)
-                }}
-              >
-                {t('View/Edit Numbers')}
-              </Button>
-            )} */}
           </>
         ) : (
           <ConnectWalletButton />
