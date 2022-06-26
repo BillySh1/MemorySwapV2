@@ -18,6 +18,8 @@ import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import WinningNumbers from '../WinningNumbers'
 import ViewTicketsModal from '../ViewTicketsModal'
+import Logo from 'components/Logo/Logo'
+import LogoWithText from '../../../../../packages/uikit/src/components/Svg/Icons/LogoWithText'
 
 const StyledCardBody = styled(CardBody)`
   position: relative;
@@ -105,7 +107,7 @@ const PreviousRoundCardBody: React.FC<{ lotteryNodeData: LotteryRound; lotteryId
             <>
               <Flex flexDirection="column" alignItems="center" width={['240px', null, null, '480px']}>
                 <Text mb="8px">{t('Please specify Round')}</Text>
-                <BunnyPlaceholderIcon height="64px" width="64px" />
+                <Text mb="8px">{t('MemorySwap Lottery')}</Text>
               </Flex>
             </>
           )}
