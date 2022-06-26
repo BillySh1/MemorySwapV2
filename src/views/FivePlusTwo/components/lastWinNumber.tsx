@@ -10,11 +10,23 @@ const Container = styled.div`
   padding: 24px;
   box-sizing: border-box;
   width: 100%;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 const LeftTitle = styled.div`
   font-weight: bold;
   font-size: large;
+`
+
+const NumbersContainer = styled(Flex)`
+  gap: 4px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 `
 
 export default function LastWinNumber() {
@@ -30,11 +42,11 @@ export default function LastWinNumber() {
   return (
     <Container>
       <LeftTitle>Last Wining Number</LeftTitle>
-      <Flex style={{ gap: '4px' }}>
+      <NumbersContainer>
         {lastWinNumbers.map((x) => {
           return <NumberCom extra={x.extra} value={x.value} width={57} height={57} />
         })}
-      </Flex>
+      </NumbersContainer>
     </Container>
   )
 }

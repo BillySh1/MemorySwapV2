@@ -47,18 +47,30 @@ const FlexSelectContainer = styled.div`
   display: flex;
   align-items: flex-start;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
+  ${({ theme }) => theme.mediaQueries.xs} {
+    flex-direction: column;
+    gap: 16px;
+  }
 `
 
 const NumbersContainer = styled.div`
   max-width: 60%;
   display: flex;
   flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    max-width: 100%;
+    width: 100%;
+  }
 `
 
 const NumberSelectItem = styled.div`
   margin-right: 24px;
   margin-bottom: 8px;
   cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-right: 12px;
+    margin-bottom: 8px;
+  }
 `
 
 const NumbersIntro = styled.div`
@@ -78,7 +90,9 @@ export default function FivePlusTwo() {
   const [frontSelected, setFrontSelected] = useState<Array<any>>([])
   const [backSelected, setBackSelected] = useState<Array<any>>([])
   const fivePlusTwoContract = useFivePlusTwo()
-  const [onPresentBuyTicketsModal] = useModal(<BuyConfirmModal contract={fivePlusTwoContract} frontNumbers={frontSelected} backNumbers={backSelected} />)
+  const [onPresentBuyTicketsModal] = useModal(
+    <BuyConfirmModal contract={fivePlusTwoContract} frontNumbers={frontSelected} backNumbers={backSelected} />,
+  )
   const handleSelectFront = (x: number) => {
     if (frontSelected.includes(x)) {
       setFrontSelected(frontSelected.filter((i) => i !== x))
