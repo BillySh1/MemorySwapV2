@@ -18,6 +18,9 @@ const LotteryWrapper = styled(Card)`
   ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 400px;
   }
+  ${({ theme }) => theme.mediaQueries.md} {
+    max-width: 764px;
+  }
 `
 
 const Body = styled(CardBody)`
