@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import BuyConfirmModal from './components/BuyConfirmModal'
+import Flex from 'components/Layout/Flex'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -43,7 +44,7 @@ const Frimary = styled.span`
 
 const FlexSelectContainer = styled.div`
   width: 100%;
-  padding: 36px;
+  padding: 24px;
   box-sizing: border-box;
   justify-content: space-between;
   display: flex;
@@ -76,10 +77,16 @@ const NumberSelectItem = styled.div`
 `
 
 const NumbersIntro = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
+`
+
+const FooterButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `
 
 function useNowRound() {
@@ -114,13 +121,14 @@ export default function FivePlusTwo() {
     <Page>
       <LotteryWrapper>
         <AppHeader title={`Lottery 5+2 Round ${round}`} subtitle="Get your tickets now!" />
+
         <Body>
           <LastWinNumber />
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
                 Please select at least 5 <br />
-                <strong style={{ fontSize: 24 }}>Front area number </strong>
+                <strong style={{ fontSize: 20 }}>Front area number </strong>
               </p>
               <p>5 were selected</p>
             </NumbersIntro>
@@ -128,7 +136,7 @@ export default function FivePlusTwo() {
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectFront(x)}>
-                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={56} height={56} />
+                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={46} height={46} />
                   </NumberSelectItem>
                 )
               })}
@@ -138,7 +146,7 @@ export default function FivePlusTwo() {
             <NumbersIntro>
               <p>
                 Please select at least 2 <br />
-                <strong style={{ fontSize: 24 }}>Back area number </strong>
+                <strong style={{ fontSize: 20 }}>Back area number </strong>
               </p>
               <p>2 were selected</p>
             </NumbersIntro>
@@ -146,7 +154,7 @@ export default function FivePlusTwo() {
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectBack(x)}>
-                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={56} height={56} />
+                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={46} height={46} />
                   </NumberSelectItem>
                 )
               })}
@@ -159,7 +167,13 @@ export default function FivePlusTwo() {
               Selected: <Frimary>1</Frimary> Bets <Frimary>158</Frimary> MDAO
             </FooterText>
           </div>
-          <div>
+          <FooterButtonWrapper >
+            <Button
+              onClick={onPresentBuyTicketsModal}
+              scale="md"
+            >
+              RANDOM
+            </Button>
             <Button
               disabled={frontSelected.length < 5 || backSelected.length < 2}
               onClick={onPresentBuyTicketsModal}
@@ -167,7 +181,7 @@ export default function FivePlusTwo() {
             >
               BUY NOW
             </Button>
-          </div>
+          </FooterButtonWrapper>
         </FlexFooter>
       </LotteryWrapper>
     </Page>

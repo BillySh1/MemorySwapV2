@@ -14,7 +14,7 @@ interface NumberComProps {
 
 const CommonText = styled.div`
   color: white;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
   letter-spacing: 2px;
   border-radius: 99px;

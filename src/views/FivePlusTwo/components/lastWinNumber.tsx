@@ -7,7 +7,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
-  padding: 24px;
+  padding: 16px;
   box-sizing: border-box;
   width: 100%;
   ${({ theme }) => theme.mediaQueries.xs} {
