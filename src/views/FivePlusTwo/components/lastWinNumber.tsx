@@ -44,7 +44,7 @@ export default function LastWinNumber() {
       <LeftTitle>Last Wining Number</LeftTitle>
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
-          return <NumberCom extra={x.extra} value={x.value} width={57} height={57} />
+          return <NumberCom extra={x.extra} value={x.value} width={36} height={36} />
         })}
       </NumbersContainer>
     </Container>

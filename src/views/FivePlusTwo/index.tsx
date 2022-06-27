@@ -61,6 +61,7 @@ const NumbersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: center;
     max-width: 100%;
     width: 100%;
   }
@@ -71,8 +72,8 @@ const NumberSelectItem = styled.div`
   margin-bottom: 8px;
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-right: 12px;
-    margin-bottom: 8px;
+    margin-right: 16px;
+    margin-bottom: 10px;
   }
 `
 
@@ -127,16 +128,15 @@ export default function FivePlusTwo() {
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
-                Please select at least 5 <br />
-                <strong style={{ fontSize: 20 }}>Front area number </strong>
+                Please select at least 5 
+                <strong style={{ fontSize: 18 }}>Front area number </strong>
               </p>
-              <p>5 were selected</p>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectFront(x)}>
-                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={46} height={46} />
+                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={36} height={36} />
                   </NumberSelectItem>
                 )
               })}
@@ -146,15 +146,14 @@ export default function FivePlusTwo() {
             <NumbersIntro>
               <p>
                 Please select at least 2 <br />
-                <strong style={{ fontSize: 20 }}>Back area number </strong>
+                <strong style={{ fontSize: 18 }}>Back area number </strong>
               </p>
-              <p>2 were selected</p>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectBack(x)}>
-                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={46} height={46} />
+                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={36} height={36} />
                   </NumberSelectItem>
                 )
               })}
@@ -167,11 +166,8 @@ export default function FivePlusTwo() {
               Selected: <Frimary>1</Frimary> Bets <Frimary>158</Frimary> MDAO
             </FooterText>
           </div>
-          <FooterButtonWrapper >
-            <Button
-              onClick={onPresentBuyTicketsModal}
-              scale="md"
-            >
+          <FooterButtonWrapper>
+            <Button onClick={onPresentBuyTicketsModal} scale="md">
               RANDOM
             </Button>
             <Button
