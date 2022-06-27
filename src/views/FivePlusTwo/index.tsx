@@ -7,7 +7,6 @@ import NumberCom from './components/NumberCom'
 import { useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
-import FivePlusTwoPage from 'pages/fivePlusTwo'
 import BuyConfirmModal from './components/BuyConfirmModal'
 
 const LotteryWrapper = styled(Card)`
@@ -16,9 +15,9 @@ const LotteryWrapper = styled(Card)`
   width: 100%;
   z-index: 1;
 
-  /* ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 400px;
-  } */
+  }
 `
 
 const Body = styled(CardBody)`
