@@ -120,7 +120,8 @@ const PanelFooter: React.FC<Props> = ({
         </Flex>
       </SocialEntry>
       <SettingsEntry>
-        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
+        <div></div>
+        {/* <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} /> */}
         <Dropdown
           position="top-right"
           target={
@@ -134,7 +135,6 @@ const PanelFooter: React.FC<Props> = ({
               key={lang.code}
               fullWidth
               onClick={() => setLang(lang)}
-              // Safari fix
               style={{ minHeight: "32px", height: "auto" }}
             >
               {lang.language}

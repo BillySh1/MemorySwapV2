@@ -15,11 +15,11 @@ export default function TimeLock() {
     <Page>
       <TabWrapper>
         <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
-          <ButtonMenuItem>All</ButtonMenuItem>
           <ButtonMenuItem>New</ButtonMenuItem>
+          <ButtonMenuItem>All</ButtonMenuItem>
         </ButtonMenu>
       </TabWrapper>
-      {activeIndex === 0 ? <AllLock /> : activeIndex === 1 ? <NewLock /> : null}
+      {activeIndex === 0 ? <NewLock /> : activeIndex === 1 ? <AllLock /> : null}
     </Page>
   )
 }

@@ -154,6 +154,7 @@ export function LockItem(props: LockItemProps) {
             </Button>
           </InfoItem>
         ))}
+        
     </Wrapper>
   )
 }
