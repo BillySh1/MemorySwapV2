@@ -9,10 +9,15 @@ const TabWrapper = styled.div`
   margin-bottom: 32px;
 `
 
+const PageWrapper = styled(Page)`
+  justify-content:flex-start;
+
+`
+
 export default function TimeLock() {
   const [activeIndex, setActiveIndex] = useState(0)
   return (
-    <Page>
+    <PageWrapper>
       <TabWrapper>
         <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
           <ButtonMenuItem>New</ButtonMenuItem>
@@ -20,6 +25,6 @@ export default function TimeLock() {
         </ButtonMenu>
       </TabWrapper>
       {activeIndex === 0 ? <NewLock /> : activeIndex === 1 ? <AllLock /> : null}
-    </Page>
+    </PageWrapper>
   )
 }

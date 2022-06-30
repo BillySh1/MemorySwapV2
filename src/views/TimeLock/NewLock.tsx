@@ -82,7 +82,7 @@ export default function NewLock() {
   }
   return (
     <AppBody>
-      <AppHeader title="TimeLock" subtitle="LockYourToken" />
+      <AppHeader noConfig title="TimeLock" subtitle="LockYourToken" />
       <Body>
         <Flex width="100%" alignItems="center" flexDirection="column">
           <TimeLockIcon></TimeLockIcon>
