@@ -1,6 +1,6 @@
 import { AppHeader } from 'components/App'
 import Page from 'views/Page'
-import { Button, Card, CardBody, CardFooter, useModal } from '@pancakeswap/uikit'
+import { Button, Card, CardBody, CardFooter, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import LastWinNumber from './components/lastWinNumber'
 import NumberCom from './components/NumberCom'
@@ -9,6 +9,7 @@ import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import BuyConfirmModal from './components/BuyConfirmModal'
 import Flex from 'components/Layout/Flex'
+import HeaderCom from './components/HeaderCom'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -26,7 +27,7 @@ const LotteryWrapper = styled(Card)`
 
 const Body = styled(CardBody)`
   padding: 0;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt2};
+  background-color: rgba(251, 251, 251, 1);
 `
 
 const FlexFooter = styled(CardFooter)`
@@ -34,6 +35,7 @@ const FlexFooter = styled(CardFooter)`
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  background: rgba(0, 123, 228, 1);
 `
 const FooterText = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -44,15 +46,20 @@ const Frimary = styled.span`
 
 const FlexSelectContainer = styled.div`
   width: 100%;
-  padding: 24px;
+  padding: 24px 48px;
   box-sizing: border-box;
   justify-content: space-between;
   display: flex;
   align-items: flex-start;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
+  color: black;
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
     gap: 16px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+    gap: 0;
   }
 `
 
@@ -60,26 +67,30 @@ const NumbersContainer = styled.div`
   max-width: 60%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: center;
     max-width: 100%;
     width: 100%;
   }
+  ${({ theme }) => theme.mediaQueries.md} {
+    justify-content: flex-start;
+    max-width: 60%;
+  }
 `
 
 const NumberSelectItem = styled.div`
-  margin-right: 24px;
+  margin-left: 40px;
   margin-bottom: 8px;
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 16px;
+    margin-left: 16px;
     margin-bottom: 10px;
   }
 `
 
 const NumbersIntro = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
@@ -100,6 +111,7 @@ function useNowRound() {
 export default function FivePlusTwo() {
   const [frontSelected, setFrontSelected] = useState<Array<any>>([])
   const [backSelected, setBackSelected] = useState<Array<any>>([])
+  const { isMobile } = useMatchBreakpoints()
   const fivePlusTwoContract = useFivePlusTwo()
   const [onPresentBuyTicketsModal] = useModal(
     <BuyConfirmModal contract={fivePlusTwoContract} frontNumbers={frontSelected} backNumbers={backSelected} />,
@@ -122,22 +134,27 @@ export default function FivePlusTwo() {
   return (
     <Page>
       <LotteryWrapper>
-        <AppHeader title={`Lottery 5+2 Round ${round}`} subtitle="Get your tickets now!" />
-
+        <HeaderCom round={round} />
         <Body>
           <LastWinNumber />
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
                 Please select at least 5 <br />
-                <strong style={{ fontSize: 18 }}>Front area number </strong>
+                <strong style={{ fontSize: 20 }}>Front area number </strong>
               </p>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectFront(x)}>
-                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={36} height={36} />
+                    <NumberCom
+                      selected={frontSelected.includes(x)}
+                      outline
+                      value={x}
+                      width={isMobile ? 36 : 48}
+                      height={isMobile ? 36 : 48}
+                    />
                   </NumberSelectItem>
                 )
               })}
@@ -154,7 +171,14 @@ export default function FivePlusTwo() {
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectBack(x)}>
-                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={36} height={36} />
+                    <NumberCom
+                      selected={backSelected.includes(x)}
+                      extra
+                      outline
+                      value={x}
+                      width={isMobile ? 36 : 48}
+                      height={isMobile ? 36 : 48}
+                    />
                   </NumberSelectItem>
                 )
               })}

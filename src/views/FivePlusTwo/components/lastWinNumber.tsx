@@ -7,18 +7,24 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
-  padding: 16px;
+  padding: 16px 48px;
   box-sizing: border-box;
   width: 100%;
+  color: black;
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
     align-items: flex-start;
   }
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `
 
 const LeftTitle = styled.div`
-  font-weight: bold;
-  font-size: large;
+  font-weight: 800;
+  font-size: 18px;
 `
 
 const NumbersContainer = styled(Flex)`
@@ -26,6 +32,9 @@ const NumbersContainer = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 100%;
     flex-wrap: wrap;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
   }
 `
 

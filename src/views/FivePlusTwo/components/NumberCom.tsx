@@ -14,12 +14,18 @@ interface NumberComProps {
 
 const CommonText = styled.div`
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 2px;
   border-radius: 99px;
   text-align: center;
   box-sizing: border-box;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 16px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 20px
+  }
 `
 
 export default function NumberCom(props: NumberComProps) {
