@@ -18,10 +18,11 @@ export const StyledCard = styled(Card)`
   position: relative;
   background: #fff;
   ${({ theme }) => theme.mediaQueries.xs} {
-    max-width: 100%;
-    margin: 0 24px 32px;
+    max-width: 90%;
+    margin: 0 12px 24px 12px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
+    zoom: 1;
     max-width: 327px;
   }
 `

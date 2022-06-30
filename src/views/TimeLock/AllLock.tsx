@@ -20,9 +20,11 @@ const ListContainer = styled.div`
   gap: 24px;
   ${({ theme }) => theme.mediaQueries.xs} {
     justify-content: center;
+    gap: 8px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: flex-start;
+    gap: 24px;
   }
 `
 
@@ -47,7 +49,7 @@ const ItemContainer = styled.div`
 export default function AllLock() {
   const list = useLockList()
   const [activeIndex, setActiveIndex] = useState(0)
-  if(!list || !list.length) return null
+  if (!list || !list.length) return null
   return (
     <ListWrapper>
       <FilterWrapper>
@@ -59,8 +61,7 @@ export default function AllLock() {
       </FilterWrapper>
       <ListContainer>
         {list.map((x) => {
-          return  <LockItem info={x} />
-           
+          return <LockItem info={x} />
         })}
       </ListContainer>
     </ListWrapper>

@@ -13,7 +13,7 @@ import useToast from 'hooks/useToast'
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 24px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,13 +21,15 @@ const Wrapper = styled.div`
   border-radius: 35px;
   box-sizing: border-box;
   box-shadow: 0px 4px 8px rgba(0, 123, 228, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 0 12px 32px;
+  margin: 0 0.8rem 2rem;
   ${({ theme }) => theme.mediaQueries.xs} {
-    max-width: 100%;
-    margin: 0 12px 12px;
+    max-width: 45%;
+    zoom: 0.5;
+    margin: 0 0.8rem 0.8rem;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 360px;
+    zoom: 1;
     transform: none;
   }
 `
@@ -36,10 +38,10 @@ const InfoHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 `
 const TokenTitle = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
 `
