@@ -17,8 +17,13 @@ const ListContainer = styled.div`
   transform: translateX(-50%);
   display: flex;
   flex-wrap: wrap;
-  justify-content: ${({ theme }) => (theme.mediaQueries.xs ? 'flex-start' : 'center')};
   gap: 24px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: center;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    justify-content: flex-start;
+  }
 `
 
 const FilterWrapper = styled.div`

@@ -50,28 +50,29 @@ const FlexSelectContainer = styled.div`
   display: flex;
   align-items: flex-start;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
-  /* ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
     gap: 16px;
-  } */
+  }
 `
 
 const NumbersContainer = styled.div`
   max-width: 60%;
   display: flex;
   flex-wrap: wrap;
-  /* ${({ theme }) => theme.mediaQueries.xs} {
+  justify-content: flex-start;
+  ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: center;
     max-width: 100%;
     width: 100%;
-  } */
+  }
 `
 
 const NumberSelectItem = styled.div`
   margin-right: 24px;
   margin-bottom: 8px;
   cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     margin-right: 16px;
     margin-bottom: 10px;
   }
@@ -128,7 +129,7 @@ export default function FivePlusTwo() {
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
-                Please select at least 5  <br/>
+                Please select at least 5 <br />
                 <strong style={{ fontSize: 18 }}>Front area number </strong>
               </p>
             </NumbersIntro>
