@@ -3,6 +3,10 @@ import { useTranslation } from 'contexts/Localization'
 import { WETH } from '@pancakeswap/sdk'
 import { TokenImage } from 'components/TokenImage'
 import styled from 'styled-components'
+import TelegramOutlineIcon from '../Icons/telegram'
+import TwitterOutline from '../Icons/twitter'
+import TwinIcon from '../Icons/twin'
+import CubeIcon from '../Icons/cube'
 
 export const StyledCard = styled(Card)`
   min-width: 280px;
@@ -51,7 +55,7 @@ const IntroItem = styled.div`
   background-color: rgba(245, 245, 245, 1);
   display: flex;
   flex-direction: column;
-  padding: 16px 20px;
+  padding: 12px 16px;
   font-size: 14px;
   color: rgba(51, 51, 51, 1);
   gap: 4px;
@@ -61,6 +65,22 @@ const IntroRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const CardFooter = styled.div`
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`
+
+const TextUnderLine = styled.div`
+  cursor: pointer;
+  text-decoration: underline;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
 `
 
 const WhitelistCard: React.FC<{ info: any }> = ({ info }) => {
@@ -118,6 +138,14 @@ const WhitelistCard: React.FC<{ info: any }> = ({ info }) => {
             <div>Scope</div>
           </IntroRow>
         </IntroItem>
+        <CardFooter>
+          <TelegramOutlineIcon width={36} height={36} />
+          <TwitterOutline width={36} height={36} />
+          <TwinIcon width={24} height={24} />
+          <TextUnderLine>查看官网</TextUnderLine>
+          <CubeIcon width={24} height={24} />
+          <TextUnderLine>链上查看</TextUnderLine>
+        </CardFooter>
       </StyledCardBody>
     </StyledCard>
   )
