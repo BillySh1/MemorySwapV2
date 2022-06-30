@@ -217,12 +217,11 @@ export default function FivePlusTwo() {
             <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
               RANDOM
             </Button>
-            {frontSelected.length < 5 ||
-              (backSelected.length < 2 && (
-                <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
-                  BUY NOW
-                </Button>
-              ))}
+            {frontSelected.length > 4 && backSelected.length > 1 && (
+              <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
+                BUY NOW
+              </Button>
+            )}
           </FooterButtonWrapper>
         </FlexFooter>
       </LotteryWrapper>
