@@ -14,31 +14,42 @@ const Container = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
     align-items: flex-start;
+    padding: 12px 24px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 16px 48px;
   }
 `
 
 const LeftTitle = styled.div`
   font-weight: 800;
   font-size: 18px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 16px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 18px;
+  }
 `
 
 const NumbersContainer = styled(Flex)`
   gap: 4px;
   ${({ theme }) => theme.mediaQueries.xs} {
+    gap: 0px;
     width: 100%;
     flex-wrap: wrap;
   }
   ${({ theme }) => theme.mediaQueries.md} {
+    gap: 4px;
     width: auto;
   }
 `
 
-export default function LastWinNumber() {
+export default function LastWinNumber(props) {
+  const { isMobile } = props
   const lastWinNumbers = [
     { value: 1 },
     { value: 2 },
@@ -53,7 +64,9 @@ export default function LastWinNumber() {
       <LeftTitle>Last Wining Number</LeftTitle>
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
-          return <NumberCom extra={x.extra} value={x.value} width={36} height={36} />
+          return (
+            <NumberCom align={isMobile ? 'left' : undefined} extra={x.extra} value={x.value} width={46} height={46} />
+          )
         })}
       </NumbersContainer>
     </Container>

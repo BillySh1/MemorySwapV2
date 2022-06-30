@@ -10,6 +10,7 @@ interface NumberComProps {
   width?: number
   height?: number
   value: number
+  align?: string
 }
 
 const CommonText = styled.div`
@@ -18,18 +19,11 @@ const CommonText = styled.div`
   font-weight: bold;
   letter-spacing: 2px;
   border-radius: 99px;
-  text-align: center;
   box-sizing: border-box;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 16px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 20px
-  }
 `
 
 export default function NumberCom(props: NumberComProps) {
-  const { value, width, height, extra, outline, selected } = props
+  const { value, width, height, extra, outline, selected, align } = props
   return (
     <CommonText
       style={{
@@ -41,7 +35,8 @@ export default function NumberCom(props: NumberComProps) {
           ? `1px 1px ${CustomBlue}, -1px -1px ${CustomBlue}, 1px -1px ${CustomBlue}, -1px 1px ${CustomBlue}`
           : `1px 1px ${CustomRed}, -1px -1px ${CustomRed}, 1px -1px ${CustomRed}, -1px 1px ${CustomRed}`,
         background: selected ? (extra ? CustomBlue : CustomRed) : '',
-        boxShadow: outline?  `0px 0px 4px 0px rgba(0, 0, 0, 0.25)`:''
+        boxShadow: outline ? `0px 0px 4px 0px rgba(0, 0, 0, 0.25)` : '',
+        textAlign: align ? align as any : 'center',
       }}
     >
       {value.toString().padStart(2, '0')}

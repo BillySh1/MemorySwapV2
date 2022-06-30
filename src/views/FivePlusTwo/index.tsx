@@ -1,4 +1,3 @@
-import { AppHeader } from 'components/App'
 import Page from 'views/Page'
 import { Button, Card, CardBody, CardFooter, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
 import styled from 'styled-components'
@@ -8,7 +7,6 @@ import { useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import BuyConfirmModal from './components/BuyConfirmModal'
-import Flex from 'components/Layout/Flex'
 import HeaderCom from './components/HeaderCom'
 
 const LotteryWrapper = styled(Card)`
@@ -36,10 +34,22 @@ const FlexFooter = styled(CardFooter)`
   justify-content: space-between;
   background: rgba(0, 123, 228, 1);
   color: white;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    flex-direction: column;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+  }
 `
 const FooterText = styled.span`
   font-weight: 800;
   color: white;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-bottom: 16px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin: 0;
+  }
 `
 const Frimary = styled.span`
   color: rgba(10, 240, 255, 1);
@@ -58,10 +68,12 @@ const FlexSelectContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
     gap: 16px;
+    padding: 12px 24px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     gap: 0;
+    padding: 24px 48px;
   }
 `
 
@@ -70,24 +82,29 @@ const NumbersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: center;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: flex-start;
     max-width: 100%;
-    width: 100%;
   }
   ${({ theme }) => theme.mediaQueries.md} {
-    justify-content: flex-start;
+    justify-content: flex-end;
     max-width: 60%;
   }
 `
 
 const NumberSelectItem = styled.div`
-  margin-left: 40px;
+  margin-left: 24px;
   margin-bottom: 8px;
   cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 16px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 0px;
+    margin-right: 12px;
     margin-bottom: 10px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 24px;
+    margin-right: 0px;
+    margin-bottom: 8px;
   }
 `
 
@@ -96,6 +113,12 @@ const NumbersIntro = styled.div`
   white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 16px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 18px;
+  }
 `
 
 const FooterButtonWrapper = styled.div`
@@ -144,9 +167,9 @@ export default function FivePlusTwo() {
   return (
     <Page>
       <LotteryWrapper>
-        <HeaderCom round={round} />
+        <HeaderCom isMobile={isMobile} round={round} />
         <Body>
-          <LastWinNumber />
+          <LastWinNumber isMobile={isMobile} />
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
@@ -158,13 +181,7 @@ export default function FivePlusTwo() {
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectFront(x)}>
-                    <NumberCom
-                      selected={frontSelected.includes(x)}
-                      outline
-                      value={x}
-                      width={isMobile ? 36 : 48}
-                      height={isMobile ? 36 : 48}
-                    />
+                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={48} height={48} />
                   </NumberSelectItem>
                 )
               })}
@@ -181,14 +198,7 @@ export default function FivePlusTwo() {
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectBack(x)}>
-                    <NumberCom
-                      selected={backSelected.includes(x)}
-                      extra
-                      outline
-                      value={x}
-                      width={isMobile ? 36 : 48}
-                      height={isMobile ? 36 : 48}
-                    />
+                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={48} height={48} />
                   </NumberSelectItem>
                 )
               })}
@@ -201,7 +211,7 @@ export default function FivePlusTwo() {
               Selected: <Frimary>1</Frimary> Bets <Frimary>158</Frimary> MDAO
             </FooterText>
           </div>
-          <Divider />
+          {!isMobile && <Divider />}
 
           <FooterButtonWrapper>
             <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">

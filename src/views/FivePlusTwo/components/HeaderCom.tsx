@@ -9,11 +9,23 @@ const HeaderContainer = styled.div`
   background: rgba(0, 123, 228, 1);
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   color: #fff;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    padding: 12px 24px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 24px 48px;
+  }
 `
 const TitleLeft = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    gap: 8px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    gap: 24px;
+  }
 `
 
 const TitleRight = styled.div`
@@ -36,26 +48,37 @@ const RoundLogo = styled.div`
 `
 
 export default function HeaderCom(props) {
-  const { round } = props
+  const { round, isMobile } = props
   return (
     <HeaderContainer>
-      <TitleLeft>
-        <h2>Round</h2>
-        <div
-          style={{
-            padding: '4px 24px',
-            border: '1px solid #FFFFFF',
-            borderRadius: '30px',
-          }}
-        >
-          {round}
-        </div>
-      </TitleLeft>
+      <div>
+        <TitleLeft>
+          <h2>Round</h2>
+          <div
+            style={{
+              padding: '4px 24px',
+              border: '1px solid #FFFFFF',
+              borderRadius: '30px',
+            }}
+          >
+            {round}
+          </div>
+        </TitleLeft>
+        {isMobile && (
+          <div style={{fontSize:12, lineHeight:1.5,marginTop:6}} >
+            <div>Stop betting 30 minutes before the lottery</div>
+            <div>Drawn July 5, 2022, 8:00 PM</div>
+          </div>
+        )}
+      </div>
+
       <TitleRight>
-        <div>
-          <div>Stop betting 30 minutes before the lottery</div>
-          <div>Drawn July 5, 2022, 8:00 PM</div>
-        </div>
+        {!isMobile && (
+          <div>
+            <div>Stop betting 30 minutes before the lottery</div>
+            <div>Drawn July 5, 2022, 8:00 PM</div>
+          </div>
+        )}
 
         <RoundLogo>5+2</RoundLogo>
       </TitleRight>
