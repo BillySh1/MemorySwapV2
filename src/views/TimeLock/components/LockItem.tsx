@@ -21,6 +21,14 @@ const Wrapper = styled.div`
   border-radius: 35px;
   box-sizing: border-box;
   box-shadow: 0px 4px 8px rgba(0, 123, 228, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 12px 32px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    max-width: 100%;
+    margin: 0 12px 12px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    max-width: 360px;
+  }
 `
 const InfoHeader = styled.div`
   width: 100%;
