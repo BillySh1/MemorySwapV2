@@ -11,6 +11,7 @@ interface NumberComProps {
   height?: number
   value: number
   align?: string
+  fontSize?: number
 }
 
 const CommonText = styled.div`
@@ -23,7 +24,7 @@ const CommonText = styled.div`
 `
 
 export default function NumberCom(props: NumberComProps) {
-  const { value, width, height, extra, outline, selected, align } = props
+  const { value, width, height, extra, outline, selected, align, fontSize } = props
   return (
     <CommonText
       style={{
@@ -36,7 +37,8 @@ export default function NumberCom(props: NumberComProps) {
           : `1px 1px ${CustomRed}, -1px -1px ${CustomRed}, 1px -1px ${CustomRed}, -1px 1px ${CustomRed}`,
         background: selected ? (extra ? CustomBlue : CustomRed) : '',
         boxShadow: outline ? `0px 0px 4px 0px rgba(0, 0, 0, 0.25)` : '',
-        textAlign: align ? align as any : 'center',
+        textAlign: align ? (align as any) : 'center',
+        fontSize: fontSize ? fontSize + 'px' : '20px',
       }}
     >
       {value.toString().padStart(2, '0')}

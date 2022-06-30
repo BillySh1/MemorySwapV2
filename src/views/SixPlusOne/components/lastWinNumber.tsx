@@ -40,7 +40,7 @@ const NumbersContainer = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.xs} {
     gap: 0px;
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     gap: 4px;

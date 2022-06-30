@@ -83,12 +83,20 @@ const NumbersContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-end;
   ${({ theme }) => theme.mediaQueries.xs} {
-    justify-content: flex-start;
+    justify-content: space-between;
     max-width: 100%;
+    &:after {
+      content: '';
+      width: 152px;
+    }
   }
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: flex-end;
     max-width: 60%;
+    &:after {
+      content: '';
+      width: 0px;
+    }
   }
 `
 
@@ -173,15 +181,22 @@ export default function SixPlusOne() {
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
-                Please select at least 6 <br />
-                <strong style={{ fontSize: 20 }}>Front area number </strong>
+                Please select at least 6 {!isMobile && <br />}
+                <strong style={{ fontSize: isMobile ? 16 : 20 }}>Front area number </strong>
               </p>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectFront(x)}>
-                    <NumberCom selected={frontSelected.includes(x)} outline value={x} width={48} height={48} />
+                    <NumberCom
+                      selected={frontSelected.includes(x)}
+                      outline
+                      value={x}
+                      width={isMobile ? 36 : 48}
+                      height={isMobile ? 36 : 48}
+                      fontSize={isMobile ? 16 : 20}
+                    />
                   </NumberSelectItem>
                 )
               })}
@@ -190,15 +205,23 @@ export default function SixPlusOne() {
           <FlexSelectContainer>
             <NumbersIntro>
               <p>
-                Please select at least 1 <br />
-                <strong style={{ fontSize: 18 }}>Back area number </strong>
+                Please select at least 1 {!isMobile && <br />}
+                <strong style={{ fontSize: isMobile ? 16 : 20 }}>Back area number </strong>
               </p>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
                 return (
                   <NumberSelectItem onClick={() => handleSelectBack(x)}>
-                    <NumberCom selected={backSelected.includes(x)} extra outline value={x} width={48} height={48} />
+                    <NumberCom
+                      selected={backSelected.includes(x)}
+                      extra
+                      outline
+                      value={x}
+                      width={isMobile ? 36 : 48}
+                      height={isMobile ? 36 : 48}
+                      fontSize={isMobile ? 16 : 20}
+                    />
                   </NumberSelectItem>
                 )
               })}
@@ -217,7 +240,7 @@ export default function SixPlusOne() {
             <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
               RANDOM
             </Button>
-            {frontSelected.length > 5 && backSelected.length > 0 && (
+            {frontSelected.length > 4 && backSelected.length > 1 && (
               <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
                 BUY NOW
               </Button>
