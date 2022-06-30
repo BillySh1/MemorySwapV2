@@ -34,14 +34,16 @@ const FlexFooter = styled(CardFooter)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 600;
   background: rgba(0, 123, 228, 1);
+  color: white;
 `
 const FooterText = styled.span`
-  color: ${({ theme }) => theme.colors.text};
+  font-weight: 800;
+  color: white;
 `
 const Frimary = styled.span`
-  color: ${({ theme }) => theme.colors.primary};
+  color: rgba(10, 240, 255, 1);
+  margin: 0 12px;
 `
 
 const FlexSelectContainer = styled.div`
@@ -97,9 +99,17 @@ const NumbersIntro = styled.div`
 `
 
 const FooterButtonWrapper = styled.div`
+  min-width: 40%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+`
+
+const Divider = styled.div`
+  height: 50px;
+  width: 1px;
+  background: #fff;
 `
 
 function useNowRound() {
@@ -191,17 +201,18 @@ export default function FivePlusTwo() {
               Selected: <Frimary>1</Frimary> Bets <Frimary>158</Frimary> MDAO
             </FooterText>
           </div>
+          <Divider />
+
           <FooterButtonWrapper>
-            <Button onClick={onPresentBuyTicketsModal} scale="md">
+            <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
               RANDOM
             </Button>
-            <Button
-              disabled={frontSelected.length < 5 || backSelected.length < 2}
-              onClick={onPresentBuyTicketsModal}
-              scale="md"
-            >
-              BUY NOW
-            </Button>
+            {frontSelected.length < 5 ||
+              (backSelected.length < 2 && (
+                <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
+                  BUY NOW
+                </Button>
+              ))}
           </FooterButtonWrapper>
         </FlexFooter>
       </LotteryWrapper>
