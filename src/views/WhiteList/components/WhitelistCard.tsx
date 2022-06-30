@@ -3,7 +3,6 @@ import { useTranslation } from 'contexts/Localization'
 import { WETH } from '@pancakeswap/sdk'
 import { TokenImage } from 'components/TokenImage'
 import styled from 'styled-components'
-import Flex from 'components/Layout/Flex'
 
 export const StyledCard = styled(Card)`
   min-width: 280px;

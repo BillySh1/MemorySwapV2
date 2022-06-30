@@ -22,15 +22,6 @@ const StyledInput = styled(Input)`
   }
 `
 
-interface WhiteListData {
-  name: string
-  market: string
-  price: string
-  total: string
-  addresses: string
-  chain: string
-}
-
 const CardLayout = styled.div`
 width: 100%;
   display: flex;
