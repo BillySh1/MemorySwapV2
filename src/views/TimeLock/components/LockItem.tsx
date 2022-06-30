@@ -12,7 +12,7 @@ import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 
 const Wrapper = styled.div`
-  width: 360px;
+  width: 100%;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   }
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 360px;
+    transform: none;
   }
 `
 const InfoHeader = styled.div`
@@ -149,20 +150,18 @@ export function LockItem(props: LockItemProps) {
         <div>锁仓</div>
         <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
-      {(!canClaim && (
-        <InfoItem style={{ color: color.theme.colors.primary }}>
-          <div>锁仓时间</div>
-          <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
+      <InfoItem style={{ color: color.theme.colors.primary }}>
+        <div>锁仓时间</div>
+        <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
+      </InfoItem>
+
+      {!info.claimed && (
+        <InfoItem style={{ justifyContent: 'center' }}>
+          <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
+            领取
+          </Button>
         </InfoItem>
-      )) ||
-        (!info.claimed && (
-          <InfoItem style={{ justifyContent: 'center' }}>
-            <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
-              领取
-            </Button>
-          </InfoItem>
-        ))}
-        
+      )}
     </Wrapper>
   )
 }

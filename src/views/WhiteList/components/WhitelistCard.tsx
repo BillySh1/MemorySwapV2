@@ -19,7 +19,7 @@ export const StyledCard = styled(Card)`
   background: #fff;
   ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 100%;
-    margin: 0 12px 32px;
+    margin: 0 24px 32px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 327px;
@@ -58,7 +58,7 @@ const IntroItem = styled.div`
   padding: 12px 16px;
   font-size: 14px;
   color: rgba(51, 51, 51, 1);
-  gap: 4px;
+  gap: 8px;
 `
 
 const IntroRow = styled.div`
