@@ -85,7 +85,7 @@ export default function NewLock() {
       <AppHeader noConfig title="TimeLock" subtitle="LockYourToken" />
       <Body>
         <Flex width="100%" alignItems="center" flexDirection="column">
-          <TimeLockIcon></TimeLockIcon>
+          <TimeLockIcon width={48} height={48} />
           <Intro>请输入合约地址</Intro>
           <Input
             placeholder={'Please paste address'}
