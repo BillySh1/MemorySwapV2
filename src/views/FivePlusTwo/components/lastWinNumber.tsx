@@ -46,7 +46,7 @@ const NumbersContainer = styled(Flex)`
   }
 `
 
-const StyledNumberCom = styled(NumberCom)`
+const StyledNumberCom = styled.div`
   margin-right: 4px;
 `
 
@@ -67,13 +67,15 @@ export default function LastWinNumber(props) {
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
           return (
-            <StyledNumberCom
-              align={isMobile ? 'left' : undefined}
-              extra={x.extra}
-              value={x.value}
-              width={isMobile ? 32 : 46}
-              height={isMobile ? 32 : 46}
-            />
+            <StyledNumberCom>
+              <NumberCom
+                align={isMobile ? 'left' : undefined}
+                extra={x.extra}
+                value={x.value}
+                width={isMobile ? 32 : 46}
+                height={isMobile ? 32 : 46}
+              />
+            </StyledNumberCom>
           )
         })}
       </NumbersContainer>
