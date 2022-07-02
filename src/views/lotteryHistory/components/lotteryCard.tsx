@@ -99,6 +99,15 @@ const ActionText = styled.div`
   font-weight: 800;
   cursor: pointer;
 `
+const BadgeText = styled.div`
+  color: rgba(0, 123, 228, 1);
+  font-size: 16px;
+  font-weight: 800;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  transform: translate(-20%, -50%);
+`
 
 export default function LotteryCard() {
   const [winNumbers, setWinNumbers] = useState([1, 2, 3, 4, 5, 6, 7])
@@ -152,6 +161,7 @@ export default function LotteryCard() {
       </LotteryMainWrapper>
       <BadgeIconWrapper>
         <BadgeIcon />
+        <BadgeText>竞猜进行中</BadgeText>
       </BadgeIconWrapper>
     </LotteryCardWrapper>
   )
