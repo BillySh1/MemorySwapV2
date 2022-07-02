@@ -10,19 +10,19 @@ const Row = styled.div`
 `
 
 const TimeItem = styled.div`
-  margin-top: 12px;
   background-color: ${({ theme }) => theme.colors.background};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.125);
   border-radius: 8px;
   padding: 16px 12px;
   box-sizing: border-box;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: ${({ theme }) => theme.colors.textSubtle};
-  margin-bottom: 16px;
+  margin: '12px 1rem';
 `
 const TimeText = styled.div`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-weight: 400;
+  margin-top: 12px;
   font-size: 16;
 `
 export default function TimeCards(props: any) {

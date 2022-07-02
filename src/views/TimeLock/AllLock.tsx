@@ -36,28 +36,18 @@ const FilterWrapper = styled.div`
   margin-bottom: 24px;
 `
 
-const ItemContainer = styled.div`
-  width: 360px;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    scale: 0.5;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 360px;
-  }
-`
-
 export default function AllLock() {
   const list = useLockList()
   const [activeIndex, setActiveIndex] = useState(0)
   if (!list || !list.length) return null
   return (
     <ListWrapper>
+      <SearchCom />
       <FilterWrapper>
         <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
           <ButtonMenuItem>进行中</ButtonMenuItem>
           <ButtonMenuItem>已结束</ButtonMenuItem>
         </ButtonMenu>
-        <SearchCom />
       </FilterWrapper>
       <ListContainer>
         {list.map((x) => {

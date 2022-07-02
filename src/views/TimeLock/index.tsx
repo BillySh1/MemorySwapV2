@@ -6,7 +6,7 @@ import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 const TabWrapper = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 `
 
 const PageWrapper = styled(Page)`
