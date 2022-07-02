@@ -30,7 +30,7 @@ const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   if (!isActive) {
     return (
       <InactiveButton
-        style={{ fontWeight: 700, fontFamily: "system-ui" }}
+        style={{ fontWeight: 700, fontFamily: "system-ui", whiteSpace: "nowrap" }}
         forwardedAs={as}
         variant={variant}
         {...props}
@@ -38,7 +38,14 @@ const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
     );
   }
 
-  return <StyledButton style={{ fontWeight: 700, fontFamily: "system-ui" }} as={as} variant={variant} {...props} />;
+  return (
+    <StyledButton
+      style={{ fontWeight: 700, fontFamily: "system-ui", whiteSpace: "nowrap" }}
+      as={as}
+      variant={variant}
+      {...props}
+    />
+  );
 };
 
 export default ButtonMenuItem;
