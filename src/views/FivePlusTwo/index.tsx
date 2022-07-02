@@ -228,7 +228,16 @@ export default function FivePlusTwo() {
           {!isMobile && <Divider />}
 
           <FooterButtonWrapper>
-            <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
+            <Button
+              style={{ color: 'white' }}
+              variant="text"
+              onClick={() => {
+                setFrontSelected(Array.from({ length: 5 }, (v) => Math.ceil(Math.random() * 30)))
+                setBackSelected(Array.from({ length: 2 }, (v) => Math.ceil(Math.random() * 15)))
+                
+              }}
+              scale="md"
+            >
               RANDOM
             </Button>
             {frontSelected.length > 4 && backSelected.length > 1 && (

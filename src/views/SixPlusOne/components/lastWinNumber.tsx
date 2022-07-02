@@ -28,9 +28,13 @@ const LeftTitle = styled.div`
   font-weight: 800;
   font-size: 18px;
   ${({ theme }) => theme.mediaQueries.xs} {
+    width: 100%;
+    text-align: center;
     font-size: 16px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
+    text-align: left;
     font-size: 18px;
   }
 `

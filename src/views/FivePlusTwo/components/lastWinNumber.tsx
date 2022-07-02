@@ -28,20 +28,27 @@ const LeftTitle = styled.div`
   font-weight: 800;
   font-size: 18px;
   ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 14px;
-    margin-bottom: 12px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 1rem;
   }
   ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
+    text-align: left;
     font-size: 18px;
+    margin-bottom: 0;
   }
 `
 
 const NumbersContainer = styled(Flex)`
   flex-wrap: wrap;
   ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: center;
     width: 100%;
   }
   ${({ theme }) => theme.mediaQueries.md} {
+    justify-content: flex-start;
     width: auto;
   }
 `
