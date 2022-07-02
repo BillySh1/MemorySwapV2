@@ -28,7 +28,8 @@ const LeftTitle = styled.div`
   font-weight: 800;
   font-size: 18px;
   ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 12px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 18px;
@@ -36,7 +37,17 @@ const LeftTitle = styled.div`
 `
 
 const NumbersContainer = styled(Flex)`
-  gap: 4px;
+  flex-wrap: wrap;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 100%;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
+  }
+`
+
+const StyledNumberCom = styled(NumberCom)`
+  margin-right: 4px;
 `
 
 export default function LastWinNumber(props) {
@@ -56,12 +67,12 @@ export default function LastWinNumber(props) {
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
           return (
-            <NumberCom
+            <StyledNumberCom
               align={isMobile ? 'left' : undefined}
               extra={x.extra}
               value={x.value}
-              width={isMobile ? 36 : 46}
-              height={isMobile ? 36 : 46}
+              width={isMobile ? 32 : 46}
+              height={isMobile ? 32 : 46}
             />
           )
         })}

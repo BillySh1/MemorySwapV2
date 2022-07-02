@@ -6,7 +6,6 @@ const Row = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
 `
 
 const TimeItem = styled.div`
@@ -25,15 +24,23 @@ const TimeText = styled.div`
   margin-top: 12px;
   font-size: 16;
 `
+
+const StyledFlex = styled(Flex)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+`
 export default function TimeCards(props: any) {
   const { remainTime } = props
   return (
     <Row>
       {remainTime.map((x, idx) => (
-        <Flex flexDirection={'column'} alignItems="center">
+        <StyledFlex>
           <TimeItem>{x}</TimeItem>
           <TimeText>{['DAYS', 'HOURS', 'MINS'][idx]}</TimeText>
-        </Flex>
+        </StyledFlex>
       ))}
     </Row>
   )

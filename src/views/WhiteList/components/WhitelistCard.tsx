@@ -46,7 +46,7 @@ const StyledCardBody = styled(CardBody)`
   padding: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
   box-sizing: border-box;
 `
 
@@ -59,13 +59,14 @@ const IntroItem = styled.div`
   padding: 12px 16px;
   font-size: 14px;
   color: rgba(51, 51, 51, 1);
-  gap: 8px;
+  margin-bottom: 8px;
 `
 
 const IntroRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 8px;
 `
 
 const CardFooter = styled.div`
