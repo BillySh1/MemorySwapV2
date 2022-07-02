@@ -14,7 +14,7 @@ const LotteryWrapper = styled(Card)`
   max-width: 764px;
   width: 100%;
   z-index: 1;
-
+  margin-bottom: 3rem;
   ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 400px;
   }
@@ -67,12 +67,10 @@ const FlexSelectContainer = styled.div`
   color: black;
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
-    gap: 16px;
     padding: 12px 24px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-    gap: 0;
     padding: 24px 48px;
   }
 `
@@ -83,20 +81,12 @@ const NumbersContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-end;
   ${({ theme }) => theme.mediaQueries.xs} {
-    justify-content: space-between;
+    justify-content: center;
     max-width: 100%;
-    &:after {
-      content: '';
-      width: 152px;
-    }
   }
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: flex-end;
     max-width: 60%;
-    &:after {
-      content: '';
-      width: 0px;
-    }
   }
 `
 
@@ -106,7 +96,7 @@ const NumberSelectItem = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 0px;
-    margin-right: 12px;
+    margin-right: 6px;
     margin-bottom: 10px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
@@ -122,10 +112,11 @@ const NumbersIntro = styled.div`
   margin-right: 48px;
   line-height: 1.2;
   ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 16px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
+    font-size: 16px;
   }
 `
 
@@ -180,10 +171,10 @@ export default function SixPlusOne() {
           <LastWinNumber isMobile={isMobile} />
           <FlexSelectContainer>
             <NumbersIntro>
-              <p>
-                Please select at least 6 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 16 : 20 }}>Front area number </strong>
-              </p>
+              <div>
+                Please select at least 5 {!isMobile && <br />}
+                <strong style={{ fontSize: isMobile ? 14 : 20 }}>Front area number </strong>
+              </div>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
@@ -204,10 +195,10 @@ export default function SixPlusOne() {
           </FlexSelectContainer>
           <FlexSelectContainer>
             <NumbersIntro>
-              <p>
-                Please select at least 1 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 16 : 20 }}>Back area number </strong>
-              </p>
+              <div>
+                Please select at least 2 {!isMobile && <br />}
+                <strong style={{ fontSize: isMobile ? 14 : 20 }}>Back area number </strong>
+              </div>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
@@ -237,7 +228,16 @@ export default function SixPlusOne() {
           {!isMobile && <Divider />}
 
           <FooterButtonWrapper>
-            <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
+            <Button
+              style={{ color: 'white' }}
+              variant="text"
+              onClick={() => {
+                setFrontSelected(Array.from({ length: 5 }, (v) => Math.ceil(Math.random() * 30)))
+                setBackSelected(Array.from({ length: 2 }, (v) => Math.ceil(Math.random() * 15)))
+                
+              }}
+              scale="md"
+            >
               RANDOM
             </Button>
             {frontSelected.length > 4 && backSelected.length > 1 && (
