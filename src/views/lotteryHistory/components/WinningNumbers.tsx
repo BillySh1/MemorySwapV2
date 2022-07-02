@@ -11,7 +11,10 @@ interface WinningNumbersProps extends FlexProps {
 
 const StyledFlex = styled(Flex)`
   justify-content: space-between;
-  gap: 4px;
+`
+
+const StyledNumberCom = styled.div`
+  margin-right: 4px;
 `
 
 const WinningNumbers: React.FC<WinningNumbersProps> = ({
@@ -25,7 +28,11 @@ const WinningNumbers: React.FC<WinningNumbersProps> = ({
   return (
     <StyledFlex {...containerProps}>
       {numbers.map((num) => {
-        return <NumberCom extra={num > 5} value={num} width={isMobile ? 40 : 42} height={isMobile ? 40 : 42}  />
+        return (
+          <StyledNumberCom>
+            <NumberCom outline extra={num > 5} value={num} width={isMobile ? 40 : 42} height={isMobile ? 40 : 42} />
+          </StyledNumberCom>
+        )
       })}
     </StyledFlex>
   )

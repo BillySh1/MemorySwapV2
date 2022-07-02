@@ -86,15 +86,9 @@ const LotteryInfoRow = styled.div`
 const TitleLeft = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
   color: white;
   margin-bottom: 12px;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    gap: 8px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    gap: 24px;
-  }
+
 `
 
 const LotteryMainWrapper = styled.div`
@@ -124,7 +118,6 @@ const RoundInfo = styled.div`
 
 const LotteryStatusTimeInfo = styled.div`
   display: flex;
-  gap: 8px;
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 12px;
   }
@@ -229,7 +222,7 @@ export default function LotteryCard(props) {
         <RoundInfo>
           <div>
             <TitleLeft>
-              <h2 style={{ fontSize: isMobile ? 14 : 18 }}>Round</h2>
+              <h2 style={{ fontSize: isMobile ? 14 : 18, marginRight: isMobile?8:24 }}>Round</h2>
               <div
                 style={{
                   padding: isMobile ? '2px 12px' : '4px 24px',
@@ -244,7 +237,7 @@ export default function LotteryCard(props) {
             <div style={{ fontSize: isMobile ? 12 : 16 }}>Drawn May 5, 2022, 8:00 PM</div>
           </div>
           <LotteryStatusTimeInfo>
-            <div>开奖时间</div>
+            <div style={{marginRight:8}}>开奖时间</div>
             <div>16h 36m 19s</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>

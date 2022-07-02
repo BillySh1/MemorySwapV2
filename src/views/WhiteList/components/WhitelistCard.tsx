@@ -56,10 +56,10 @@ const IntroItem = styled.div`
   background-color: rgba(245, 245, 245, 1);
   display: flex;
   flex-direction: column;
-  padding: 12px 16px;
+  padding: 12px 16px 0px 16px;
   font-size: 14px;
   color: rgba(51, 51, 51, 1);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `
 
 const IntroRow = styled.div`

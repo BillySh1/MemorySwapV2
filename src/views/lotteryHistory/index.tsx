@@ -27,8 +27,8 @@ export default function LotteryHistory() {
   return (
     <Container>
       <LotteryCard type={0} />
-      <LotteryCard type={1} />
-      <LotteryCard type={2} />
+      {/* <LotteryCard type={1} />
+      <LotteryCard type={2} /> */}
       <StyledPage>
         <Flex width="100%" flexDirection="column" alignItems="center" justifyContent="center">
           <Heading style={{ color: 'rgba(0, 123, 228, 1)' }} mb="24px" scale="xl">
