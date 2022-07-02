@@ -39,6 +39,12 @@ const LotteryInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 100%;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: auto;
+  }
 `
 
 const LotteryInfo = styled.div`
