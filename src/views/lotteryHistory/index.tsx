@@ -8,8 +8,6 @@ import YourHistoryCard from 'views/Lottery/components/YourHistoryCard'
 import AllHistoryCard from 'views/Lottery/components/AllHistoryCard'
 import HistoryTabMenu from 'views/Lottery/components/HistoryTabMenu'
 import useShowMoreUserHistory from 'views/Lottery/hooks/useShowMoreUserRounds'
-import CheckPrizesSection from 'views/Lottery/components/CheckPrizesSection'
-import PageHeader from 'components/PageHeader'
 import styled from 'styled-components'
 import LotteryCard from './components/lotteryCard'
 
@@ -18,6 +16,8 @@ const Container = styled.div`
   height: calc(100% - 164px);
 `
 
+
+
 export default function LotteryHistory() {
   const [historyTabMenuIndex, setHistoryTabMenuIndex] = useState(0)
   const theme = useTheme()
@@ -25,7 +25,9 @@ export default function LotteryHistory() {
   const { numUserRoundsRequested, handleShowMoreUserRounds } = useShowMoreUserHistory()
   return (
     <Container>
-        <LotteryCard />
+        <LotteryCard type={0} />
+        <LotteryCard type={1} />
+        <LotteryCard type={2} />
       <Page>
         <PageSection
           innerProps={{ style: { margin: '0', width: '100%' } }}

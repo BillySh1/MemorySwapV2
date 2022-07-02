@@ -5,10 +5,10 @@ import { useMatchBreakpoints } from '../../../../packages/uikit/src/hooks'
 import BadgeIcon from '../assets/badge'
 import LotteryCardIcon from '../assets/lottery'
 
-const LotteryCardWrapper = styled.div`
+const LotteryCardWrapper = styled.div<{ type: number }>`
   position: relative;
   width: 100%;
-  background: rgba(0, 123, 228, 1);
+  background: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : 'rgba(26, 115, 190, 1)')};
   padding: 24px;
   display: flex;
   align-items: center;
@@ -127,11 +127,12 @@ const LotteryStatusTimeInfo = styled.div`
   }
 `
 
-const ActionWrapper = styled.div`
+const ActionWrapper = styled.div<{ type: number }>`
   width: 100%;
-  background: #75b5eb;
   position: relative;
   border-radius: 75px;
+  background: ${({ type }) =>
+    type === 0 ? '#75b5eb' : type === 1 ? 'rgba(46, 242, 255, 1)' : 'rgba(205, 205, 205, 1)'};
 `
 
 const NumbersWrapper = styled.div`
@@ -162,8 +163,8 @@ const ActionText = styled.div`
     transform: translateY(-50%);
   }
 `
-const BadgeText = styled.div`
-  color: rgba(0, 123, 228, 1);
+const BadgeText = styled.div<{ type: number }>`
+  color: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : 'white')};
   font-size: 16px;
   font-weight: 800;
   position: absolute;
@@ -172,22 +173,48 @@ const BadgeText = styled.div`
   transform: translate(-20%, -50%);
 `
 
-export default function LotteryCard() {
+export default function LotteryCard(props) {
+  const { type } = props
   const [winNumbers, setWinNumbers] = useState([1, 2, 3, 4, 5, 6, 7])
   const { isMobile } = useMatchBreakpoints()
   return (
-    <LotteryCardWrapper>
+    <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
         <LotteryCardIcon width={isMobile ? 48 : 200} height={isMobile ? 48 : 200} style={{ marginRight: 32 }} />
         <LotteryInfo>
           <LotteryInfoRow>
-            <p>Lottery Time Remain</p>
-            <p>12：02：03</p>
+            {type === 0 ? (
+              <>
+                <p>Lottery Time Remain</p>
+                <p>12：02：03</p>
+              </>
+            ) : type === 1 ? (
+              <>
+                <p>Lottery Win</p>
+                <p>233,400 MDAO</p>
+              </>
+            ) : (
+              <p>Failed</p>
+            )}
           </LotteryInfoRow>
 
           <LotteryInfoRow>
-            <p>Lottery Amount</p>
-            <p>84</p>
+            {type === 0 ? (
+              <>
+                <p>Lottery Amount</p>
+                <p>24</p>
+              </>
+            ) : type === 1 ? (
+              <>
+                <p>Lottery Win Multiple</p>
+                <p>1</p>
+              </>
+            ) : (
+              <>
+                <p>Lottery Amount</p>
+                <p>1</p>
+              </>
+            )}
           </LotteryInfoRow>
         </LotteryInfo>
       </LotteryInfoWrapper>
@@ -215,7 +242,7 @@ export default function LotteryCard() {
             <div>16h 36m 19s</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
-        <ActionWrapper>
+        <ActionWrapper type={type}>
           <NumbersWrapper>
             {winNumbers.map((x) => {
               return (
@@ -234,8 +261,8 @@ export default function LotteryCard() {
         </ActionWrapper>
       </LotteryMainWrapper>
       <BadgeIconWrapper>
-        <BadgeIcon />
-        <BadgeText>竞猜进行中</BadgeText>
+        <BadgeIcon fill={type === 0 ? 'white' : 'rgba(10, 240, 255, 1)'} />
+        <BadgeText type={type}>{type === 0 ? '竞猜进行中' : '竞猜已结束'}</BadgeText>
       </BadgeIconWrapper>
     </LotteryCardWrapper>
   )
