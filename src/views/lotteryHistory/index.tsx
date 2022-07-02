@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { useState } from 'react'
 import YourHistoryCard from 'views/Lottery/components/YourHistoryCard'
-import AllHistoryCard from 'views/Lottery/components/AllHistoryCard'
+import AllHistoryCard from './components/AllHistoryCard'
 import HistoryTabMenu from 'views/Lottery/components/HistoryTabMenu'
 import useShowMoreUserHistory from 'views/Lottery/hooks/useShowMoreUserRounds'
 import styled from 'styled-components'
@@ -16,8 +16,7 @@ const Container = styled.div`
 `
 
 const StyledPage = styled(Page)`
-  align-items: flex-start;
-  justify-content: baseline;
+  justify-content: flex-start;
 `
 
 export default function LotteryHistory() {
