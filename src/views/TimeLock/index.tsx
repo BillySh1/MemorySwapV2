@@ -9,7 +9,12 @@ const TabWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 70%;
-  margin-bottom: 1rem;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-bottom: 1rem;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-bottom: 2rem;
+  }
 `
 
 const PageWrapper = styled(Page)`

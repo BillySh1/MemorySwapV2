@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, RefObject, useCallback } from 'react'
-import { Button, CardBody, CardFooter, Flex } from '@pancakeswap/uikit'
+import { useRef, useState, useEffect, RefObject } from 'react'
+import { Button, CardBody, CardFooter, Flex, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TimeLockIcon, Input } from '@pancakeswap/uikit'
 import { AppHeader, AppBody } from '../../components/App'
@@ -14,6 +14,7 @@ import { getTimeLockerAddress } from 'utils/addressHelpers'
 import useCatchTxError from 'hooks/useCatchTxError'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTimeLocker } from 'hooks/useContract'
+import { useTranslation } from 'contexts/Localization'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt2};
@@ -25,12 +26,18 @@ const Intro = styled.div`
   margin: 12px 0;
 `
 
+const StyledDatePicker = styled(DatePicker)`
+  margin-bottom: 1rem;
+`
+
 export default function NewLock() {
   const [contractAddress, setContractAddress] = useState<string>('')
   const [remainTime, setRemainTime] = useState(['00', '00', '00'])
   const [lockNum, setLockNum] = useState<string>('0')
+  const { t } = useTranslation()
   const [lockTime, setLockTime] = useState<Date>(new Date())
   const [isApproved, setIsApproved] = useState(false)
+  const { account } = useActiveWeb3React()
   const lockerContract = useTimeLocker()
   const { callWithGasPrice } = useCallWithGasPrice()
   const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
@@ -82,10 +89,11 @@ export default function NewLock() {
   }
   return (
     <AppBody>
-      <AppHeader noConfig title="TimeLock" subtitle="LockYourToken" />
+      <AppHeader noConfig title="TimeLock" subtitle="Lock your token in period">
+        <TimeLockIcon width={48} height={48} />
+      </AppHeader>
       <Body>
         <Flex width="100%" alignItems="center" flexDirection="column">
-          <TimeLockIcon width={48} height={48} />
           <Intro>请输入合约地址</Intro>
           <Input
             placeholder={'Please paste address'}
@@ -96,6 +104,15 @@ export default function NewLock() {
             onChange={(e) => setContractAddress(e.target.value)}
             // onKeyDown={handleEnter}
           />
+          {account && contractAddress && (
+            <Text
+              color="textSubtle"
+              fontSize="14px"
+              style={{ display: 'inline', cursor: 'pointer', width: '100%', textAlign: 'right' }}
+            >
+              {t('Balance: %balance%', { balance: '6.3827' })}
+            </Text>
+          )}
           <Intro>请输入抵押数量</Intro>
           <Input
             placeholder={'Please enter lock amount'}
@@ -107,7 +124,12 @@ export default function NewLock() {
             // onKeyDown={handleEnter}
           />
           <Intro>请输入抵押时间</Intro>
-          <DatePicker onChange={handleSelectDate} name="lockTime" selected={lockTime} placeholderText="YYYY/MM/DD" />
+          <StyledDatePicker
+            onChange={handleSelectDate}
+            name="lockTime"
+            selected={lockTime}
+            placeholderText="YYYY/MM/DD"
+          />
           <TimeCards remainTime={remainTime} />
         </Flex>
       </Body>

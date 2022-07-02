@@ -32,7 +32,6 @@ const Menu = styled.div<{ hide: boolean }>`
   width: 100%;
   top: 50px;
   max-height: 400px;
-  overflow: auto;
   right: 0;
   padding: 1.5rem;
   padding-bottom: 2.5rem;

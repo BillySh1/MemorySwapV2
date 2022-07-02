@@ -17,12 +17,12 @@ interface Props {
 const AppHeaderContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 16px 24px;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
+const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false, children }) => {
   const [expertMode] = useExpertModeManager()
 
   return (
@@ -55,6 +55,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
           <Transactions />
         </Flex>
       )}
+      {children}
     </AppHeaderContainer>
   )
 }
