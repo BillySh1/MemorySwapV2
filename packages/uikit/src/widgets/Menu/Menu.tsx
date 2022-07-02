@@ -127,12 +127,7 @@ const Menu: React.FC<NavProps> = ({
       }
       refPrevOffset.current = currentOffset;
     };
-    const throttledHandleScroll = throttle(handleScroll, 200);
-
-    window.addEventListener("scroll", throttledHandleScroll);
-    return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
-    };
+   
   }, [totalTopMenuHeight]);
 
   // Find the home link if provided

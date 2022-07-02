@@ -14,6 +14,7 @@ const LotteryWrapper = styled(Card)`
   max-width: 764px;
   width: 100%;
   z-index: 1;
+  margin-bottom: 3rem;
   ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 400px;
   }
