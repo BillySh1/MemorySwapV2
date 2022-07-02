@@ -1,11 +1,10 @@
-import { Heading, Input } from '@pancakeswap/uikit'
-import PageHeader from 'components/PageHeader'
+import { Input, useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import Page from 'views/Page'
 import useWhiteList from './hooks/useWhiteList'
 import WhitelistCard from './components/WhitelistCard'
-import FlexLayout from 'components/Layout/Flex'
 import { useState } from 'react'
+import VerifyIcon from './Icons/verify'
 
 const Container = styled.div`
   width: 100%;
@@ -13,42 +12,62 @@ const Container = styled.div`
 `
 
 const StyledInput = styled(Input)`
+  width: auto;
   border-radius: 99px;
-  margin-bottom: 24px;
-  background: #1F8EEC;
+  background: #1f8eec;
   color: #fff;
   &::placeholder {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
   }
 `
 
 const CardLayout = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  
-   ${({ theme }) => theme.mediaQueries.xs} {
+
+  ${({ theme }) => theme.mediaQueries.xs} {
     justify-content: center;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: flex-start;
   }
+`
 
+const HeaderFlex = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: space-around;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    justify-content: flex-end;
+  }
 `
 
 export default function WhiteList() {
   const [value, setValue] = useState('')
+  const { isMobile } = useMatchBreakpoints()
   const list = useWhiteList()
 
   return (
     <Container>
       <Page style={{ justifyContent: 'flex-start' }}>
-     <StyledInput placeholder='enter address to search' value={value} onChange={(e)=>setValue(e.target.value)} />
-
+        <HeaderFlex>
+          {isMobile && <VerifyIcon style={{ width: '60px', height: '60px' }} />}
+          <StyledInput
+            scale="sm"
+            placeholder="searching address"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </HeaderFlex>
         <CardLayout>
           {list.map((item) => (
-            <WhitelistCard key={item} info={item}  />
+            <WhitelistCard key={item} info={item} />
           ))}
         </CardLayout>
       </Page>

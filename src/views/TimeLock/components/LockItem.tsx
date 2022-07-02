@@ -10,45 +10,49 @@ import useCatchTxError from 'hooks/useCatchTxError'
 import { useTimeLocker } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
+import SteamIcon from '../assets/steam'
 
 const Wrapper = styled.div`
-  width: 360px;
-  padding: 24px;
+  position: relative;
+  width: 100%;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.card.background};
-  border-radius: 35px;
+  border-radius: 48px;
   box-sizing: border-box;
   box-shadow: 0px 4px 8px rgba(0, 123, 228, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 0 12px 32px;
+  margin: 0 0.8rem 2rem;
   ${({ theme }) => theme.mediaQueries.xs} {
     max-width: 100%;
-    margin: 0 12px 12px;
+    margin: 0 0.8rem 0.8rem;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 360px;
+    transform: none;
   }
 `
 const InfoHeader = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0.8rem;
+`
+const TokenTitle = styled.div`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: bold;
+`
+
+const InfoRow = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-`
-const TokenTitle = styled.div`
-  font-size: 20px;
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
-`
-const InfoLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: 2px;
-  font-size: 14;
-  color: ${({ theme }) => theme.colors.silver};
+  font-size: 12px;
+  margin-bottom: 1rem;
 `
 
 const InfoStatus = styled.div`
@@ -57,7 +61,7 @@ const InfoStatus = styled.div`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
-  gap: 16px;
+  gap: 8px;
   margin: 8px 0;
 `
 const InfoItem = styled.div`
@@ -65,7 +69,15 @@ const InfoItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 12px 0;
+  margin: 4px 0;
+  font-size: 12px;
+`
+
+const LinkWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `
 
 interface LockItemProps {
@@ -124,45 +136,47 @@ export function LockItem(props: LockItemProps) {
   return (
     <Wrapper>
       <InfoHeader>
-        <InfoLeft>
-          <TokenTitle>{token.name ?? token.symbol}</TokenTitle>
-          <div>{new Date().toDateString()}</div>
-          <div>{new Date().toDateString()}</div>
-        </InfoLeft>
-        <TokenImage width={48} height={48} token={token} />
+        <TokenImage width={36} height={36} token={token} />
+        <TokenTitle>{token.name ?? token.symbol}</TokenTitle>
+        {(canClaim && (
+          <InfoStatus>
+            <TimeLockIcon width={24} height={24} />
+            <span>{lockInfo.claimed ? '已领取' : '可领取'}</span>
+          </InfoStatus>
+        )) || (
+          <InfoStatus>
+            <TimeLockIcon width={24} height={24} />
+            <span>{info.claimed ? '已结束' : '进行中'}</span>
+          </InfoStatus>
+        )}
+        <LinkWrapper>
+          <SteamIcon width={48} height={48} />
+        </LinkWrapper>
       </InfoHeader>
-      {(canClaim && (
-        <InfoStatus>
-          <TimeLockIcon width={24} height={24} />
-          <span>{lockInfo.claimed ? '已领取' : '可领取'}</span>
-        </InfoStatus>
-      )) || (
-        <InfoStatus>
-          <TimeLockIcon width={24} height={24} />
-          <span>{info.claimed ? '已结束' : '进行中'}</span>
-        </InfoStatus>
-      )}
-      <div style={{ width: '100%', marginBottom: '48px' }}>
+      <div style={{ width: '100%', margin: '8px 0' }}>
+        <InfoRow>
+          <div>2022.9.2 16:00 Rise</div>
+          <div>-</div>
+          <div>2022.9.12 20:00 Stop</div>
+        </InfoRow>
         <TimeCards remainTime={remainTime} />
       </div>
       <InfoItem>
-        <div>锁仓</div>
+        <div>Lock up quantity</div>
         <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
-      {(!canClaim && (
-        <InfoItem style={{ color: color.theme.colors.primary }}>
-          <div>锁仓时间</div>
-          <div> {remainTime[0] + '天' + remainTime[1] + '小时' + remainTime[2] + '分'} </div>
+      <InfoItem style={{ color: color.theme.colors.primary }}>
+        <div>Lock up time</div>
+        <div> {remainTime[0] + 'days' + remainTime[1] + 'hours' + remainTime[2] + 'mins'} </div>
+      </InfoItem>
+
+      {!info.claimed && (
+        <InfoItem style={{ justifyContent: 'center' }}>
+          <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
+            领取
+          </Button>
         </InfoItem>
-      )) ||
-        (!info.claimed && (
-          <InfoItem style={{ justifyContent: 'center' }}>
-            <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
-              领取
-            </Button>
-          </InfoItem>
-        ))}
-        
+      )}
     </Wrapper>
   )
 }

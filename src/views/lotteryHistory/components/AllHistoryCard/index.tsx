@@ -7,9 +7,9 @@ import { useLottery } from 'state/lottery/hooks'
 import { fetchLottery } from 'state/lottery/helpers'
 import { LotteryStatus } from 'config/constants/types'
 import RoundSwitcher from './RoundSwitcher'
-import { getDrawnDate, processLotteryResponse } from '../../helpers'
 import PreviousRoundCardBody from '../PreviousRoundCard/Body'
 import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
+import { getDrawnDate, processLotteryResponse } from 'views/Lottery/helpers'
 
 const StyledCard = styled(Card)`
   width: 100%;

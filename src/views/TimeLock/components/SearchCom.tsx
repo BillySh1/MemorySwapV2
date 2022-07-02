@@ -3,7 +3,6 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
-    max-width: 50%;
     width: auto;
 `
 

@@ -65,7 +65,7 @@ export default function LastWinNumber(props) {
     { value: 3 },
     { value: 4 },
     { value: 5 },
-    { value: 6, extra: true },
+    { value: 6},
     { value: 7, extra: true },
   ]
   return (
