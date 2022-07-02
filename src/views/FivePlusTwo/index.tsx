@@ -66,12 +66,10 @@ const FlexSelectContainer = styled.div`
   color: black;
   ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column;
-    gap: 16px;
     padding: 12px 24px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-    gap: 0;
     padding: 24px 48px;
   }
 `
@@ -81,7 +79,6 @@ const NumbersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 4px;
   ${({ theme }) => theme.mediaQueries.xs} {
     justify-content: center;
     max-width: 100%;
@@ -115,6 +112,7 @@ const NumbersIntro = styled.div`
   line-height: 1.2;
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 14px;
+    margin-bottom: 16px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
