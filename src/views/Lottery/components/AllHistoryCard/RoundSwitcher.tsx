@@ -55,10 +55,9 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
         <StyledInput
           pattern="^[0-9]+$"
           inputMode="numeric"
-          disabled={isLoading}
           id="round-id"
           name="round-id"
-          value={selectedRoundId}
+          value={'001'}
           scale="lg"
           onChange={handleOnChange}
         />

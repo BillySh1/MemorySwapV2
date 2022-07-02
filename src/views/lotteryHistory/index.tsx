@@ -1,6 +1,5 @@
 import { Box, Flex, Heading } from '@pancakeswap/uikit'
 import Page from 'views/Page'
-import PageSection from 'components/PageSection'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { useState } from 'react'
@@ -16,7 +15,10 @@ const Container = styled.div`
   height: calc(100% - 164px);
 `
 
-
+const StyledPage = styled(Page)`
+  align-items: flex-start;
+  justify-content: baseline;
+`
 
 export default function LotteryHistory() {
   const [historyTabMenuIndex, setHistoryTabMenuIndex] = useState(0)
@@ -25,37 +27,30 @@ export default function LotteryHistory() {
   const { numUserRoundsRequested, handleShowMoreUserRounds } = useShowMoreUserHistory()
   return (
     <Container>
-        <LotteryCard type={0} />
-        <LotteryCard type={1} />
-        <LotteryCard type={2} />
-      <Page>
-        <PageSection
-          innerProps={{ style: { margin: '0', width: '100%' } }}
-          background={'transparent'}
-          hasCurvedDivider={false}
-          index={2}
-        >
-          <Flex width="100%" flexDirection="column" alignItems="center" justifyContent="center">
-            <Heading mb="24px" scale="xl">
-              {t('Finished Rounds')}
-            </Heading>
-            <Box mb="24px">
-              <HistoryTabMenu
-                activeIndex={historyTabMenuIndex}
-                setActiveIndex={(index) => setHistoryTabMenuIndex(index)}
-              />
-            </Box>
-            {historyTabMenuIndex === 0 ? (
-              <AllHistoryCard />
-            ) : (
-              <YourHistoryCard
-                handleShowMoreClick={handleShowMoreUserRounds}
-                numUserRoundsRequested={numUserRoundsRequested}
-              />
-            )}
-          </Flex>
-        </PageSection>
-      </Page>
+      <LotteryCard type={0} />
+      <LotteryCard type={1} />
+      <LotteryCard type={2} />
+      <StyledPage>
+        <Flex width="100%" flexDirection="column" alignItems="center" justifyContent="center">
+          <Heading style={{ color: 'rgba(0, 123, 228, 1)' }} mb="24px" scale="xl">
+            {t('Finished Rounds')}
+          </Heading>
+          <Box mb="24px">
+            <HistoryTabMenu
+              activeIndex={historyTabMenuIndex}
+              setActiveIndex={(index) => setHistoryTabMenuIndex(index)}
+            />
+          </Box>
+          {historyTabMenuIndex === 0 ? (
+            <AllHistoryCard />
+          ) : (
+            <YourHistoryCard
+              handleShowMoreClick={handleShowMoreUserRounds}
+              numUserRoundsRequested={numUserRoundsRequested}
+            />
+          )}
+        </Flex>
+      </StyledPage>
     </Container>
   )
 }

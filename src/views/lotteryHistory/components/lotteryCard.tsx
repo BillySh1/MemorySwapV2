@@ -8,7 +8,7 @@ import LotteryCardIcon from '../assets/lottery'
 const LotteryCardWrapper = styled.div<{ type: number }>`
   position: relative;
   width: 100%;
-  background: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : 'rgba(26, 115, 190, 1)')};
+  background: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : type === 1 ? 'rgba(26, 115, 190, 1)' : '#E45050')};
   padding: 24px;
   display: flex;
   align-items: center;
