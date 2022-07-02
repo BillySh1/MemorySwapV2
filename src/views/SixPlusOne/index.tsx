@@ -232,8 +232,8 @@ export default function SixPlusOne() {
               style={{ color: 'white' }}
               variant="text"
               onClick={() => {
-                setFrontSelected(Array.from({ length: 5 }, (v) => Math.ceil(Math.random() * 30)))
-                setBackSelected(Array.from({ length: 2 }, (v) => Math.ceil(Math.random() * 15)))
+                setFrontSelected(Array.from({ length: 6 }, (v) => Math.ceil(Math.random() * 30)))
+                setBackSelected(Array.from({ length: 1 }, (v) => Math.ceil(Math.random() * 15)))
                 
               }}
               scale="md"

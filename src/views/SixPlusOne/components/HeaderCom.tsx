@@ -86,7 +86,7 @@ export default function HeaderCom(props) {
           </div>
         )}
 
-        <RoundLogo>5+2</RoundLogo>
+        <RoundLogo>6+1</RoundLogo>
       </TitleRight>
     </HeaderContainer>
   )
