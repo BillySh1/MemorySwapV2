@@ -102,12 +102,18 @@ const LotteryMainWrapper = styled.div`
 `
 
 const RoundInfo = styled.div`
-  width: 100%;
+  width: auto;
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   color: white;
   justify-content: space-between;
-  margin-bottom: 28px;
+  box-sizing: border-box;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin: 12px 4px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin: 0 0 28px 0;
+  }
 `
 
 const LotteryStatusTimeInfo = styled.div`
