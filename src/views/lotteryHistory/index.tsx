@@ -11,6 +11,7 @@ import useShowMoreUserHistory from 'views/Lottery/hooks/useShowMoreUserRounds'
 import CheckPrizesSection from 'views/Lottery/components/CheckPrizesSection'
 import PageHeader from 'components/PageHeader'
 import styled from 'styled-components'
+import LotteryCard from './components/lotteryCard'
 
 const Container = styled.div`
   width: 100%;
@@ -24,9 +25,7 @@ export default function LotteryHistory() {
   const { numUserRoundsRequested, handleShowMoreUserRounds } = useShowMoreUserHistory()
   return (
     <Container>
-      <PageHeader background={theme.theme.colors.primary} width="100%">
-        <CheckPrizesSection />
-      </PageHeader>
+        <LotteryCard />
       <Page>
         <PageSection
           innerProps={{ style: { margin: '0', width: '100%' } }}

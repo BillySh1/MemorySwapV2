@@ -37,15 +37,6 @@ const LeftTitle = styled.div`
 
 const NumbersContainer = styled(Flex)`
   gap: 4px;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    gap: 0px;
-    width: 100%;
-    flex-wrap: nowrap;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    gap: 4px;
-    width: auto;
-  }
 `
 
 export default function LastWinNumber(props) {
@@ -65,7 +56,13 @@ export default function LastWinNumber(props) {
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
           return (
-            <NumberCom align={isMobile ? 'left' : undefined} extra={x.extra} value={x.value} width={46} height={46} />
+            <NumberCom
+              align={isMobile ? 'left' : undefined}
+              extra={x.extra}
+              value={x.value}
+              width={isMobile ? 36 : 46}
+              height={isMobile ? 36 : 46}
+            />
           )
         })}
       </NumbersContainer>
