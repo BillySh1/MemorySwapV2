@@ -1560,5 +1560,21 @@
   "please_enter_contract": "請輸入合約地址",
   "please_enter_number": "請輸入抵押數量",
   "please_enter_date": "請輸入抵押時間",
-  "Approve": "授權"
+  "Approve": "授權",
+  "Days": "天",
+  "Hours": "時",
+  "Mins": "分",
+  "LockUpQuanity": "鎖倉數量",
+  "LockUpTime": "鎖倉時間",
+  "Receive": "領取",
+  "TotalSupply": "總市值",
+  "Liqudity": "流動市值",
+  "TotalLiqudity": "流動總量",
+  "ReleaseTime": "發行時間",
+  "AddressNum": "持幣地址數",
+  "ReleasePrice": "開盤價",
+  "BelongChain": "所屬公鏈",
+  "Scope": "所屬板塊",
+  "ViewOfficialSite": "官方網站",
+  "ViewOnChain": "鏈上查看"
 }

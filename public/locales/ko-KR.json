@@ -1560,5 +1560,21 @@
   "please_enter_contract": "계약 주소를 입력하세요",
   "please_enter_number": "모기지 금액을 입력하세요",
   "please_enter_date": "모기지 시간을 입력하세요",
-  "Approve": "승인"
+  "Approve": "승인",
+  "Days": "하늘",
+  "Hours": "시",
+  "Mins": "분",
+  "LockUpQuanity": "잠긴 수량",
+  "LockUpTime": "잠금 시간",
+  "Receive": "받다",
+  "TotalSupply": "총 시가 총액",
+  "Liqudity": "유동성 시가총액",
+  "TotalLiqudity": "총 흐름",
+  "ReleaseTime": "출판 시간",
+  "AddressNum": "통화 보유 주소 수",
+  "ReleasePrice": "개점 가격",
+  "BelongChain": "공개 체인",
+  "Scope": "당신이 속한 섹션",
+  "ViewOfficialSite": "공식 웹 사이트",
+  "ViewOnChain": "온체인 보기"
 }

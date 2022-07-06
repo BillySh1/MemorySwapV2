@@ -1551,7 +1551,7 @@
   "Highest": "Highest",
   "lock_progress": "进行中",
   "lock_received": "已领取",
-  "lock_finished":"已结束",
+  "lock_finished": "已结束",
   "Own": "拥有",
   "NEW": "新建",
   "ALL": "所有",
@@ -1560,6 +1560,21 @@
   "please_enter_contract": "請輸入合約地址",
   "please_enter_number": "請輸入抵押數量",
   "please_enter_date": "請輸入抵押時間",
-  "Approve": "授權"
- 
+  "Approve": "授權",
+  "Days": "天",
+  "Hours": "时",
+  "Mins": "分",
+  "LockUpQuanity": "锁仓数量",
+  "LockUpTime": "锁仓时间",
+  "Receive": "领取",
+  "TotalSupply": "最大供应市值",
+  "Liqudity": "流通市值",
+  "TotalLiqudity": "流通总量",
+  "ReleaseTime": "发行时间",
+  "AddressNum": "持币地址数",
+  "ReleasePrice": "开盘价",
+  "BelongChain": "所属公链",
+  "Scope": "所属板块",
+  "ViewOfficialSite": "查看官网",
+  "ViewOnChain": "链上查看"
 }

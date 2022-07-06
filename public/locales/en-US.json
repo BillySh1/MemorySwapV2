@@ -1566,5 +1566,15 @@
   "Mins": "MINS",
   "LockUpQuanity": "Lock up quantity",
   "LockUpTime": "Lock up time",
-  "Receive": "领取"
+  "Receive": "Receive",
+  "TotalSupply": "Total Supply",
+  "Liqudity": "Liqudity",
+  "TotalLiqudity": "Total Liqudity",
+  "ReleaseTime": "Release Time",
+  "AddressNum": "Addresses",
+  "ReleasePrice": "Opening Price",
+  "BelongChain": "Chain",
+  "Scope": "Scope",
+  "ViewOfficialSite": "Official",
+  "ViewOnChain": "View On Chain"
 }

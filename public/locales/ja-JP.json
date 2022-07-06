@@ -1560,5 +1560,21 @@
   "please_enter_contract": "契約先住所を入力してください",
   "please_enter_number": "賭け金を入力してください",
   "please_enter_date": "賭け時間を入力してください",
-  "Approve": "承認"
+  "Approve": "承認",
+  "Days": "日々",
+  "Hours": "時間",
+  "Mins": "分",
+  "LockUpQuanity": "数量をロックアップ",
+  "LockUpTime": "ロックアップ時間",
+  "Receive": "受け取る",
+  "TotalSupply": "総供給",
+  "Liqudity": "流動性",
+  "TotalLiqudity": "総流動性",
+  "ReleaseTime": "リリース時間",
+  "AddressNum": "通貨保有住所の数",
+  "ReleasePrice": "始値",
+  "BelongChain": "ブロックチェーン",
+  "Scope": "所属セクション",
+  "ViewOfficialSite": "公式",
+  "ViewOnChain": "オンチェーンで表示"
 }
