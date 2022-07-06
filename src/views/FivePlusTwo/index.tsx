@@ -115,9 +115,13 @@ const NumbersIntro = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 14px;
     margin-bottom: 16px;
+    width: 100%;
+    text-align: center;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
+    width: auto;
+    text-align: unset;
   }
 `
 

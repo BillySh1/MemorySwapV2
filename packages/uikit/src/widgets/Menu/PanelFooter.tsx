@@ -121,7 +121,7 @@ const PanelFooter: React.FC<Props> = ({
       </SocialEntry>
       <SettingsEntry>
         <div></div>
-        {/* <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} /> */}
+        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
         <Dropdown
           position="top-right"
           target={
