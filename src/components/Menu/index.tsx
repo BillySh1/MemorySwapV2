@@ -22,7 +22,6 @@ const Menu = (props) => {
   const [showPhishingWarningBanner] = usePhishingBannerManager()
 
   const menuItems = useMenuItems()
-
   const activeMenuItem = getActiveMenuItem({ menuConfig: menuItems, pathname })
   const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
 
@@ -51,6 +50,7 @@ const Menu = (props) => {
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
       buyCakeLabel={t('Buy CAKE')}
+      t={t}
       {...props}
     />
   )

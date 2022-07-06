@@ -1597,5 +1597,7 @@
   "Launch Time": "開獎時間",
   "Betting": "繼續下注",
   "LotteryProcessing": "競猜進行中",
-  "LotteryFinished": "競猜已結束"
+  "LotteryFinished": "競猜已結束",
+  "Bridge":"跨鏈橋",
+  "WhiteList":"白名单"
 }

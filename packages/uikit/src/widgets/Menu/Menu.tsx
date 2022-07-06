@@ -96,6 +96,7 @@ const Menu: React.FC<NavProps> = ({
   langs,
   buyCakeLabel,
   children,
+  t,
 }) => {
   const { isMobile, isMd } = useMatchBreakpoints();
   const [isPushed, setIsPushed] = useState(!isMobile);
@@ -105,8 +106,6 @@ const Menu: React.FC<NavProps> = ({
   const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
 
   const totalTopMenuHeight = banner ? MENU_HEIGHT + topBannerHeight : MENU_HEIGHT;
-
-  const homeLink = links.find((link) => link.label === "Home");
 
   return (
     <MenuContext.Provider value={{ linkComponent }}>
@@ -118,7 +117,7 @@ const Menu: React.FC<NavProps> = ({
                 isPushed={isPushed}
                 togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
                 isDark={isDark}
-                href={homeLink?.href ?? "/"}
+                href={"/"}
               />
             </Flex>
             <Flex alignItems="center" height="100%">
@@ -139,7 +138,7 @@ const Menu: React.FC<NavProps> = ({
             currentLang={currentLang}
             cakePriceUsd={cakePriceUsd}
             pushNav={setIsPushed}
-            links={links}
+            links={links(t)}
             priceLink={" "}
           />
           <Inner isPushed={isPushed} showMenu={showMenu}>

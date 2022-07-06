@@ -1597,5 +1597,7 @@
   "Launch Time": "복권 추첨 시간",
   "Betting": "계속 베팅",
   "LotteryProcessing": "퀴즈 진행 중",
-  "LotteryFinished": "복권 종료"
+  "LotteryFinished": "복권 종료",
+  "Bridge": "교차 사슬 다리",
+  "WhiteList": "화이트리스트"
 }
