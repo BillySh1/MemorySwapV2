@@ -1596,6 +1596,6 @@
   "Lottery Win Multiple": "宝くじ当選マルチプル",
   "Launch Time": "宝くじ抽選時間",
   "Betting": "賭けを続ける",
-  "LotteryProcessing": "クイズが進行中です",
-  "LotteryFinished": "宝くじ終了"
+  "LotteryProcessing": "進行中",
+  "LotteryFinished": "終了"
 }
