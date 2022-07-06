@@ -1576,5 +1576,17 @@
   "BelongChain": "Chain",
   "Scope": "Scope",
   "ViewOfficialSite": "Official",
-  "ViewOnChain": "View On Chain"
+  "ViewOnChain": "View On Chain",
+  "LotterySelect": "Please select at least",
+  "FrontAreaNumber": "Front area number",
+  "BackAreaNumber": "back area number",
+  "Selected": "Selected",
+  "Bets": "Bets",
+  "Random": "RANDOM",
+  "BuyNow": "BUY NOW",
+  "LotteryTips": "Stop Betting 30 minutes before Launch",
+  "Your Numbers": "Your Numbers",
+  "To (optional)": "To (Optional)",
+  "Multiple": "Multiples",
+  "Tips": "Select lottery numbers, optional multiples and multiples. The price of each bet is related to the selected number, please refer to the number at the time of purchase"
 }

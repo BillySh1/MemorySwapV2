@@ -1576,5 +1576,17 @@
   "BelongChain": "所屬公鏈",
   "Scope": "所屬板塊",
   "ViewOfficialSite": "官方網站",
-  "ViewOnChain": "鏈上查看"
+  "ViewOnChain": "鏈上查看",
+  "LotterySelect": "請至少選擇",
+  "FrontAreaNumber": "前區號碼",
+  "BackAreaNumber": "後區號碼",
+  "Selected": "已選擇",
+  "Bets": "注",
+  "Random": "機選",
+  "BuyNow": "現在購買",
+  "LotteryTips": "開獎前30分鐘截止購買",
+  "Your Numbers": "您選擇的號碼",
+  "To (optional)": "贈與（可選）",
+  "Multiple": "倍數",
+  "Tips": "選擇彩票號碼, 可選倍數與復式. 每注的價格與所選號碼相關, 請以購買時的號碼為準"
 }

@@ -1576,5 +1576,17 @@
   "BelongChain": "所属公链",
   "Scope": "所属板块",
   "ViewOfficialSite": "查看官网",
-  "ViewOnChain": "链上查看"
+  "ViewOnChain": "链上查看",
+  "LotterySelect": "请至少选择",
+  "FrontAreaNumber": "前区号码",
+  "BackAreaNumber": "后区号码",
+  "Selected": "已选择",
+  "Bets": "注",
+  "Random": "机选",
+  "BuyNow": "现在购买",
+  "LotteryTips": "开奖前30分钟截止购买",
+  "Your Numbers": "您选择的号码",
+  "To (optional)": "赠与（可选）",
+  "Multiple": "倍数",
+  "Tips": "选择彩票号码, 可选倍数与复式. 每注的价格与所选号码相关, 请以购买时的号码为准"
 }

@@ -1576,5 +1576,17 @@
   "BelongChain": "ブロックチェーン",
   "Scope": "所属セクション",
   "ViewOfficialSite": "公式",
-  "ViewOnChain": "オンチェーンで表示"
+  "ViewOnChain": "オンチェーンで表示",
+  "LotterySelect": "少なくとも選択してください",
+  "FrontAreaNumber": "フロント市外局番",
+  "BackAreaNumber": "バックエリア番号",
+  "Selected": "選ばれた",
+  "Bets": "ノート",
+  "Random": "ランダム",
+  "BuyNow": "即購入",
+  "LotteryTips": "抽選の30分前に購入が締め切られます",
+  "Your Numbers": "お好みの番号",
+  "To (optional)": "ギフト（オプション）",
+  "Multiple": "多数",
+  "Tips": "宝くじ番号、オプションの倍数、倍数を選択します。各賭けの価格は、選択した番号に関連しています。購入時の番号を参照してください。"
 }

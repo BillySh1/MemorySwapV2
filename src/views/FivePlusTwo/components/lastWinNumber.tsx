@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Flex } from '@pancakeswap/uikit'
 import NumberCom from './NumberCom'
+import { useTranslation } from 'contexts/Localization'
 
 const Container = styled.div`
   display: flex;
@@ -58,6 +59,7 @@ const StyledNumberCom = styled.div`
 `
 
 export default function LastWinNumber(props) {
+  const { t } = useTranslation()
   const { isMobile } = props
   const lastWinNumbers = [
     { value: 1 },
@@ -70,7 +72,7 @@ export default function LastWinNumber(props) {
   ]
   return (
     <Container>
-      <LeftTitle>Last Wining Number</LeftTitle>
+      <LeftTitle>{t('Winning number')}</LeftTitle>
       <NumbersContainer>
         {lastWinNumbers.map((x) => {
           return (

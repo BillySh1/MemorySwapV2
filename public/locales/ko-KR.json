@@ -1551,7 +1551,7 @@
   "Highest": "Highest",
   "lock_progress": "처리",
   "lock_received": "받았다",
-  "lock_finished":"~ 위에",
+  "lock_finished": "~ 위에",
   "Own": "가지다",
   "NEW": "새로운",
   "ALL": "모두",
@@ -1576,5 +1576,17 @@
   "BelongChain": "공개 체인",
   "Scope": "당신이 속한 섹션",
   "ViewOfficialSite": "공식 웹 사이트",
-  "ViewOnChain": "온체인 보기"
+  "ViewOnChain": "온체인 보기",
+  "LotterySelect": "적어도 선택하십시오",
+  "FrontAreaNumber": "앞 지역 번호",
+  "BackAreaNumber": "후면 영역 번호",
+  "Selected": "선택된",
+  "Bets": "注메모",
+  "Random": "기계 선택",
+  "BuyNow": "지금 구매하세요",
+  "LotteryTips": "구매는 추첨 30분 전에 마감됩니다.",
+  "Your Numbers": "원하는 번호",
+  "To (optional)": "선물(선택사항)",
+  "Multiple": "다수의",
+  "Tips": "로또번호, 선택 배수, 배수 선택 각 베팅의 가격은 선택한 번호와 관련이 있으므로 구매 시 번호를 참고하세요"
 }
