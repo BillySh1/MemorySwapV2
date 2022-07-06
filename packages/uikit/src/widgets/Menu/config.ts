@@ -1,68 +1,68 @@
-export const links = [
+export const links = (t: any) => [
   {
-    label: "Home",
+    label: t("Home"),
     icon: "HomeIcon",
     href: "/",
   },
   {
-    label: "Trade",
+    label: t("Trade"),
     icon: "TradeIcon",
     items: [
       {
-        label: "Exchange",
+        label: t("Exchange"),
         href: "/swap",
       },
       {
-        label: "Liquidity",
+        label: t("Liquidity"),
         href: "/liquidity",
       },
       {
-        label: "Bridge",
+        label: t("Bridge"),
         href: "/bridge",
       },
     ],
   },
   {
-    label: "Farms",
+    label: t("Farms"),
     icon: "FarmIcon",
     href: "/farm",
   },
   {
-    label: "Pools",
+    label: t("Pools"),
     icon: "PoolIcon",
     href: "/pools",
   },
   {
-    label: "TimeLock",
+    label: t("TimeLock"),
     icon: "TicketIcon",
     href: "/timeLock",
   },
   {
-    label: "DAO",
+    label: t("DAO"),
     icon: "NftIcon",
     href: "/dao",
   },
   {
-    label: "WhiteList",
+    label: t("WhiteList"),
     icon: "WhiteListIcon",
     href: "/whitelist",
   },
   {
-    label: "NFTs",
+    label: t("NFTs"),
     icon: "GroupsIcon",
     items: [
       {
-        label: "Market",
+        label: t("Market"),
         href: "/market",
       },
       {
-        label: "BlindBox",
+        label: t("BlindBox"),
         href: "/blind",
       },
     ],
   },
   {
-    label: "Lottery",
+    label: t("Lottery"),
     icon: "LotteryIcon",
     items: [
       {
@@ -74,53 +74,53 @@ export const links = [
         href: "/sixPlusOne",
       },
       {
-        label:'History',
-        href:'/lotteryHistory'
-      }
+        label: t("History"),
+        href: "/lotteryHistory",
+      },
     ],
   },
   {
-    label: "Info",
+    label: t("Info"),
     icon: "InfoIcon",
     items: [
       {
-        label: "Overview",
+        label: t("Overview"),
         href: "/overview",
       },
       {
-        label: "Tokens",
+        label: t("Tokens"),
         href: "/tokens",
       },
       {
-        label: "Pairs",
+        label: t("Pairs"),
         href: "/pairs",
       },
       {
-        label: "Accounts",
+        label: t("Accounts"),
         href: "/accounts",
       },
     ],
   },
   {
-    label: "IDO",
+    label: t("IDO"),
     icon: "IfoIcon",
     href: "/ido",
   },
   {
-    label: "GameFi",
+    label: t("GameFi"),
     icon: "GameFiIcon",
     href: "/gamefi",
   },
   {
-    label: "More",
+    label: t("More"),
     icon: "MoreIcon",
     items: [
       {
-        label: "Github",
+        label: t("Github"),
         href: "/github",
       },
       {
-        label: "Docs",
+        label: t("Docs"),
         href: "https://docs.memorylabs.cloud",
       },
     ],

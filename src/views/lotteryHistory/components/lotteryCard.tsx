@@ -1,3 +1,4 @@
+import { useTranslation } from 'contexts/Localization'
 import { useState } from 'react'
 import styled from 'styled-components'
 import NumberCom from 'views/FivePlusTwo/components/NumberCom'
@@ -88,7 +89,6 @@ const TitleLeft = styled.div`
   align-items: center;
   color: white;
   margin-bottom: 12px;
-
 `
 
 const LotteryMainWrapper = styled.div`
@@ -142,6 +142,7 @@ const NumbersWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
 `
 
@@ -176,6 +177,7 @@ export default function LotteryCard(props) {
   const { type } = props
   const [winNumbers, setWinNumbers] = useState([1, 2, 3, 4, 5, 6, 7])
   const { isMobile } = useMatchBreakpoints()
+  const { t } = useTranslation()
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -184,33 +186,33 @@ export default function LotteryCard(props) {
           <LotteryInfoRow>
             {type === 0 ? (
               <>
-                <p>Lottery Time Remain</p>
+                <p>{t('Lottery Time Remain')}</p>
                 <p>12：02：03</p>
               </>
             ) : type === 1 ? (
               <>
-                <p>Lottery Win</p>
+                <p>{t('Lottery Win')}</p>
                 <p>233,400 MDAO</p>
               </>
             ) : (
-              <p>Failed</p>
+              <p>{t('Lottery Failed')}</p>
             )}
           </LotteryInfoRow>
 
           <LotteryInfoRow>
             {type === 0 ? (
               <>
-                <p>Lottery Amount</p>
+                <p>{t('Lottery Amount')}</p>
                 <p>24</p>
               </>
             ) : type === 1 ? (
               <>
-                <p>Lottery Win Multiple</p>
+                <p>{t('Lottery Win Multiple')}</p>
                 <p>1</p>
               </>
             ) : (
               <>
-                <p>Lottery Amount</p>
+                <p>{t('Lottery Amount')}</p>
                 <p>1</p>
               </>
             )}
@@ -222,7 +224,7 @@ export default function LotteryCard(props) {
         <RoundInfo>
           <div>
             <TitleLeft>
-              <h2 style={{ fontSize: isMobile ? 14 : 18, marginRight: isMobile?8:24 }}>Round</h2>
+              <h2 style={{ fontSize: isMobile ? 14 : 18, marginRight: isMobile ? 8 : 24 }}>{t('Round')}</h2>
               <div
                 style={{
                   padding: isMobile ? '2px 12px' : '4px 24px',
@@ -237,7 +239,7 @@ export default function LotteryCard(props) {
             <div style={{ fontSize: isMobile ? 12 : 16 }}>Drawn May 5, 2022, 8:00 PM</div>
           </div>
           <LotteryStatusTimeInfo>
-            <div style={{marginRight:8}}>开奖时间</div>
+            <div style={{ marginRight: 8 }}>{t('Launch Time')}</div>
             <div>16h 36m 19s</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
@@ -256,12 +258,12 @@ export default function LotteryCard(props) {
               )
             })}
           </NumbersWrapper>
-          <ActionText>继续下注</ActionText>
+          <ActionText>{t('Betting')}</ActionText>
         </ActionWrapper>
       </LotteryMainWrapper>
       <BadgeIconWrapper>
         <BadgeIcon fill={type === 0 ? 'white' : 'rgba(10, 240, 255, 1)'} />
-        <BadgeText type={type}>{type === 0 ? '竞猜进行中' : '竞猜已结束'}</BadgeText>
+        <BadgeText type={type}>{type === 0 ? t('LotteryProcessing') : t('LotteryFinished')}</BadgeText>
       </BadgeIconWrapper>
     </LotteryCardWrapper>
   )

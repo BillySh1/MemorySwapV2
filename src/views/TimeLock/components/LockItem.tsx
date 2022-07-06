@@ -5,12 +5,13 @@ import { Button, TimeLockIcon } from '@pancakeswap/uikit'
 import TimeCards from './TImeCards'
 import { useEffect, useState } from 'react'
 import useTheme from 'hooks/useTheme'
-import { formatEther, formatUnits, parseUnits } from '@ethersproject/units'
+import { formatEther } from '@ethersproject/units'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useTimeLocker } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 import SteamIcon from '../assets/steam'
+import { useTranslation } from 'contexts/Localization'
 
 const Wrapper = styled.div`
   position: relative;
@@ -91,6 +92,7 @@ export function LockItem(props: LockItemProps) {
   const [canClaim, setCanClaim] = useState(false)
   const { callWithGasPrice } = useCallWithGasPrice()
   const lockerContract = useTimeLocker()
+  const { t } = useTranslation()
 
   const { fetchWithCatchTxError, loading: isClaiming } = useCatchTxError()
   const token = WETH[321]
@@ -141,12 +143,12 @@ export function LockItem(props: LockItemProps) {
         {(canClaim && (
           <InfoStatus>
             <TimeLockIcon width={24} height={24} />
-            <span>{lockInfo.claimed ? '已领取' : '可领取'}</span>
+            <span>{lockInfo.claimed ? t('lock_progress') : t('lock_received')}</span>
           </InfoStatus>
         )) || (
           <InfoStatus>
             <TimeLockIcon width={24} height={24} />
-            <span>{info.claimed ? '已结束' : '进行中'}</span>
+            <span>{info.claimed ? t('lock_finished') : t('lock_progress')}</span>
           </InfoStatus>
         )}
         <LinkWrapper>
@@ -155,25 +157,25 @@ export function LockItem(props: LockItemProps) {
       </InfoHeader>
       <div style={{ width: '100%', margin: '8px 0' }}>
         <InfoRow>
-          <div>2022.9.2 16:00 Rise</div>
+          <div>2022.9.2 16:00 {t('Start')}</div>
           <div>-</div>
-          <div>2022.9.12 20:00 Stop</div>
+          <div>2022.9.12 20:00 {t('end')}</div>
         </InfoRow>
         <TimeCards remainTime={remainTime} />
       </div>
       <InfoItem>
-        <div>Lock up quantity</div>
+        <div>{t('LockUpQuanity')}</div>
         <div> {lockInfo.amount} MDAO</div>
       </InfoItem>
       <InfoItem style={{ color: color.theme.colors.primary }}>
-        <div>Lock up time</div>
-        <div> {remainTime[0] + 'days' + remainTime[1] + 'hours' + remainTime[2] + 'mins'} </div>
+        <div>{t('LockUpTime')}</div>
+        <div> {remainTime[0] + 'd' + remainTime[1] + 'h' + remainTime[2] + 'm'} </div>
       </InfoItem>
 
       {!info.claimed && (
         <InfoItem style={{ justifyContent: 'center' }}>
           <Button scale="md" width={'100%'} isLoading={isClaiming} onClick={onClaim}>
-            领取
+            {t('Receive')}
           </Button>
         </InfoItem>
       )}

@@ -98,45 +98,45 @@ const WhitelistCard: React.FC<{ info: any }> = ({ info }) => {
       <StyledCardBody>
         <IntroItem>
           <IntroRow>
-            <div>最大供应市值</div>
+            <div>{t('TotalSupply')}</div>
             <div>＄12131</div>
           </IntroRow>
           <IntroRow>
-            <div>流通市值</div>
+            <div>{t('Liqudity')}</div>
             <div>＄1,123,111,222,131</div>
           </IntroRow>
           <IntroRow>
-            <div>流通总量</div>
+            <div>{t('TotalLiqudity')}</div>
             <div>123,156,461 BTC</div>
           </IntroRow>
         </IntroItem>
         <IntroItem>
           <IntroRow>
-            <div>发行时间</div>
+            <div>{t('ReleaseTime')}</div>
             <div>2008.02.02</div>
           </IntroRow>
         </IntroItem>
         <IntroItem>
           <IntroRow>
-            <div>持币地址数</div>
+            <div>{t('AddressNum')}</div>
             <div>111,222,131</div>
           </IntroRow>
         </IntroItem>
         <IntroItem>
           <IntroRow>
-            <div>开盘价</div>
+            <div>{t('ReleasePrice')}</div>
             <div>＄0.001</div>
           </IntroRow>
         </IntroItem>
         <IntroItem>
           <IntroRow>
-            <div>所属公链</div>
+            <div>{t('BelongChain')}</div>
             <div>Bitchain</div>
           </IntroRow>
         </IntroItem>
         <IntroItem>
           <IntroRow>
-            <div>所属板块</div>
+            <div>{t('Scope')}</div>
             <div>Scope</div>
           </IntroRow>
         </IntroItem>
@@ -144,9 +144,9 @@ const WhitelistCard: React.FC<{ info: any }> = ({ info }) => {
           <TelegramOutlineIcon width={36} height={36} />
           <TwitterOutline width={36} height={36} />
           <TwinIcon width={24} height={24} />
-          <TextUnderLine>查看官网</TextUnderLine>
+          <TextUnderLine>{t('ViewOfficialSite')}</TextUnderLine>
           <CubeIcon width={24} height={24} />
-          <TextUnderLine>链上查看</TextUnderLine>
+          <TextUnderLine>{t('ViewOnChain')}</TextUnderLine>
         </CardFooter>
       </StyledCardBody>
     </StyledCard>

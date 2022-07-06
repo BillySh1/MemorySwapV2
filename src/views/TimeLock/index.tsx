@@ -4,6 +4,7 @@ import NewLock from './NewLock'
 import AllLock from './AllLock'
 import { ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 
 const TabWrapper = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const PageWrapper = styled(Page)`
 export default function TimeLock() {
   const [activeIndex, setActiveIndex] = useState(0)
   const { isMobile } = useMatchBreakpoints()
+  const { t } = useTranslation()
 
   return (
     <PageWrapper>
@@ -35,8 +37,8 @@ export default function TimeLock() {
           scale="sm"
           variant="primary"
         >
-          <ButtonMenuItem>New</ButtonMenuItem>
-          <ButtonMenuItem>All</ButtonMenuItem>
+          <ButtonMenuItem>{t('NEW')}</ButtonMenuItem>
+          <ButtonMenuItem>{t('ALL')}</ButtonMenuItem>
         </ButtonMenu>
       </TabWrapper>
       {activeIndex === 0 ? <NewLock /> : activeIndex === 1 ? <AllLock /> : null}
