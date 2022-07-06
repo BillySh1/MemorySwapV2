@@ -1548,5 +1548,18 @@
   "Learn More about IFO 3.1": "Learn More about IFO 3.1",
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
-  "Highest": "Highest"
+  "Highest": "Highest",
+  "lock_progress": "进行中",
+  "lock_received": "已领取",
+  "lock_finished":"已结束",
+  "Own": "拥有",
+  "NEW": "新建",
+  "ALL": "所有",
+  "TimeLock": "时间锁",
+  "LockYourToken": "在一段时间内锁定您的token",
+  "please_enter_contract": "請輸入合約地址",
+  "please_enter_number": "請輸入抵押數量",
+  "please_enter_date": "請輸入抵押時間",
+  "Approve": "授權"
+ 
 }

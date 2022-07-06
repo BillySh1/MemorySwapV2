@@ -1548,5 +1548,17 @@
   "Learn More about IFO 3.1": "Learn More about IFO 3.1",
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
-  "Highest": "Highest"
+  "Highest": "Highest",
+  "lock_progress": "처리",
+  "lock_received": "받았다",
+  "lock_finished":"~ 위에",
+  "Own": "가지다",
+  "NEW": "새로운",
+  "ALL": "모두",
+  "TimeLock": "시간 잠금",
+  "LockYourToken": "일정 기간 동안 토큰 잠금",
+  "please_enter_contract": "계약 주소를 입력하세요",
+  "please_enter_number": "모기지 금액을 입력하세요",
+  "please_enter_date": "모기지 시간을 입력하세요",
+  "Approve": "승인"
 }

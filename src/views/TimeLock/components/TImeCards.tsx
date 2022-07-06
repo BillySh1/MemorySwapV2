@@ -1,4 +1,5 @@
 import { Flex } from '@pancakeswap/uikit'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 const Row = styled.div`
   width: 100%;
@@ -34,12 +35,13 @@ const StyledFlex = styled(Flex)`
 `
 export default function TimeCards(props: any) {
   const { remainTime } = props
+  const {t} = useTranslation()
   return (
     <Row>
       {remainTime.map((x, idx) => (
         <StyledFlex>
           <TimeItem>{x}</TimeItem>
-          <TimeText>{['DAYS', 'HOURS', 'MINS'][idx]}</TimeText>
+          <TimeText>{[t('DAYS'), t('HOURS'), t('MINS')][idx]}</TimeText>
         </StyledFlex>
       ))}
     </Row>

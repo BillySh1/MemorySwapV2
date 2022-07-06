@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { LockItem } from './components/LockItem'
 import useLockList from './hooks/useLockList'
 import { Input } from '@pancakeswap/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const ListWrapper = styled.div`
   position: relative;
@@ -53,6 +54,7 @@ export default function AllLock() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [search, setSearch] = useState('')
   const { isMobile } = useMatchBreakpoints()
+  const { t } = useTranslation()
   if (!list || !list.length) return null
   return (
     <ListWrapper>
@@ -66,11 +68,11 @@ export default function AllLock() {
           />
           <FilterWrapper>
             <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
-              <ButtonMenuItem>进行中</ButtonMenuItem>
-              <ButtonMenuItem>已结束</ButtonMenuItem>
+              <ButtonMenuItem>{t('lock_progress')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('lock_received')}</ButtonMenuItem>
             </ButtonMenu>
             <OwnButton scale="sm" variant="primary">
-              Own
+              {t('Own')}
             </OwnButton>
           </FilterWrapper>
         </>
@@ -79,11 +81,11 @@ export default function AllLock() {
           <FilterWrapper>
             <FlexContainer>
               <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
-                <ButtonMenuItem>进行中</ButtonMenuItem>
-                <ButtonMenuItem>已结束</ButtonMenuItem>
+                <ButtonMenuItem>{t('lock_progress')}</ButtonMenuItem>
+                <ButtonMenuItem>{t('lock_received')}</ButtonMenuItem>
               </ButtonMenu>
               <OwnButton scale="sm" variant="primary">
-                Own
+                {t('Own')}
               </OwnButton>
             </FlexContainer>
             <StyledInput

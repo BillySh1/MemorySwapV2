@@ -89,12 +89,12 @@ export default function NewLock() {
   }
   return (
     <AppBody>
-      <AppHeader noConfig title="TimeLock" subtitle="Lock your token in period">
+      <AppHeader noConfig title={t('TimeLock')} subtitle={t('LockYourToken')}>
         <TimeLockIcon width={48} height={48} />
       </AppHeader>
       <Body>
         <Flex width="100%" alignItems="center" flexDirection="column">
-          <Intro>请输入合约地址</Intro>
+          <Intro>{t('please_enter_contract')}</Intro>
           <Input
             placeholder={'Please paste address'}
             scale="md"
@@ -113,9 +113,9 @@ export default function NewLock() {
               {t('Balance: %balance%', { balance: '6.3827' })}
             </Text>
           )}
-          <Intro>请输入抵押数量</Intro>
+          <Intro>{t('please_enter_number')}</Intro>
           <Input
-            placeholder={'Please enter lock amount'}
+            placeholder={t('Search')}
             scale="md"
             autoComplete="off"
             value={lockNum}
@@ -123,7 +123,7 @@ export default function NewLock() {
             onChange={(e) => setLockNum(e.target.value)}
             // onKeyDown={handleEnter}
           />
-          <Intro>请输入抵押时间</Intro>
+          <Intro>{t('please_enter_date')}</Intro>
           <StyledDatePicker
             onChange={handleSelectDate}
             name="lockTime"
@@ -145,7 +145,7 @@ export default function NewLock() {
             }
           }}
         >
-          {isApproved ? 'Lock' : 'Approve'}
+          {isApproved ? t('Confirm') : t('Approve')}
         </Button>
       </CardFooter>
     </AppBody>
