@@ -1588,5 +1588,14 @@
   "Your Numbers": "您選擇的號碼",
   "To (optional)": "贈與（可選）",
   "Multiple": "倍數",
-  "Tips": "選擇彩票號碼, 可選倍數與復式. 每注的價格與所選號碼相關, 請以購買時的號碼為準"
+  "Tips": "選擇彩票號碼, 可選倍數與復式. 每注的價格與所選號碼相關, 請以購買時的號碼為準",
+  "Lottery Time Remain": "開獎剩餘時間",
+  "Lottery Win": "中獎了",
+  "Lottery Failed": "未中獎",
+  "Lottery Amount": "獎金數量",
+  "Lottery Win Multiple": "中獎倍數",
+  "Launch Time": "開獎時間",
+  "Betting": "繼續下注",
+  "LotteryProcessing": "競猜進行中",
+  "LotteryFinished": "競猜已結束"
 }

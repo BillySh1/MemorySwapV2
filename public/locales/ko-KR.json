@@ -1588,5 +1588,14 @@
   "Your Numbers": "원하는 번호",
   "To (optional)": "선물(선택사항)",
   "Multiple": "다수의",
-  "Tips": "로또번호, 선택 배수, 배수 선택 각 베팅의 가격은 선택한 번호와 관련이 있으므로 구매 시 번호를 참고하세요"
+  "Tips": "로또번호, 선택 배수, 배수 선택 각 베팅의 가격은 선택한 번호와 관련이 있으므로 구매 시 번호를 참고하세요",
+  "Lottery Time Remain": "복권 시간 남음",
+  "Lottery Win": "복권 당첨",
+  "Lottery Failed": "복권 실패",
+  "Lottery Amount": "복권 금액",
+  "Lottery Win Multiple": "복권 당첨 다중",
+  "Launch Time": "복권 추첨 시간",
+  "Betting": "계속 베팅",
+  "LotteryProcessing": "퀴즈 진행 중",
+  "LotteryFinished": "복권 종료"
 }

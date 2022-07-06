@@ -1588,5 +1588,14 @@
   "Your Numbers": "您选择的号码",
   "To (optional)": "赠与（可选）",
   "Multiple": "倍数",
-  "Tips": "选择彩票号码, 可选倍数与复式. 每注的价格与所选号码相关, 请以购买时的号码为准"
+  "Tips": "选择彩票号码, 可选倍数与复式. 每注的价格与所选号码相关, 请以购买时的号码为准",
+  "Lottery Time Remain":"开奖剩余时间",
+  "Lottery Win":"中奖了",
+  "Lottery Failed":"未中奖",
+  "Lottery Amount":"奖金数量",
+  "Lottery Win Multiple":"中奖倍数",
+  "Launch Time":"开奖时间",
+  "Betting":"继续下注",
+  "LotteryProcessing":"竞猜进行中",
+  "LotteryFinished":"竞猜已结束"
 }

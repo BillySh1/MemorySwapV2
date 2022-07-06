@@ -1588,5 +1588,14 @@
   "Your Numbers": "お好みの番号",
   "To (optional)": "ギフト（オプション）",
   "Multiple": "多数",
-  "Tips": "宝くじ番号、オプションの倍数、倍数を選択します。各賭けの価格は、選択した番号に関連しています。購入時の番号を参照してください。"
+  "Tips": "宝くじ番号、オプションの倍数、倍数を選択します。各賭けの価格は、選択した番号に関連しています。購入時の番号を参照してください。",
+  "Lottery Time Remain": "宝くじの残り時間",
+  "Lottery Win": "宝くじ当選",
+  "Lottery Failed": "宝くじに失敗しました",
+  "Lottery Amount": "宝くじの金額",
+  "Lottery Win Multiple": "宝くじ当選マルチプル",
+  "Launch Time": "宝くじ抽選時間",
+  "Betting": "賭けを続ける",
+  "LotteryProcessing": "クイズが進行中です",
+  "LotteryFinished": "宝くじ終了"
 }

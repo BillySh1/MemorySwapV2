@@ -1588,5 +1588,15 @@
   "Your Numbers": "Your Numbers",
   "To (optional)": "To (Optional)",
   "Multiple": "Multiples",
-  "Tips": "Select lottery numbers, optional multiples and multiples. The price of each bet is related to the selected number, please refer to the number at the time of purchase"
+  "Tips": "Select lottery numbers, optional multiples and multiples. The price of each bet is related to the selected number, please refer to the number at the time of purchase",
+  "Lottery Time Remain":"Lottery Time Remain",
+  "Lottery Win":"Lottery Win",
+  "Lottery Failed":"Lottery Failed",
+  "Lottery Amount":"Lottery Amount",
+  "Lottery Win Multiple":"Lottery Win Multiple",
+  "Launch Time":"Launch Time",
+  "Betting":"Betting",
+  "LotteryProcessing":"Lottery Processing",
+  "LotteryFinished":"Lottery Finished"
+
 }
