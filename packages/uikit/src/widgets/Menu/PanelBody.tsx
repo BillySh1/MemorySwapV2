@@ -25,7 +25,9 @@ const Container = styled.div`
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   // Close the menu when a user clicks a link on mobile
   const location = useRouter();
-  const handleClick = isMobile ? () => pushNav(false) : undefined;
+  const handleClick = () => {
+    pushNav(false);
+  };
 
   return (
     <Container>
@@ -45,7 +47,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           >
             {isPushed &&
               entry.items.map((item) => (
-                <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
+                <MenuEntry key={item.label} secondary isActive={item.href === location.pathname} onClick={handleClick}>
                   <MenuLink style={{ fontWeight: 500 }} href={item.href}>
                     {item.label}
                   </MenuLink>
@@ -53,8 +55,13 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               ))}
           </Accordion>
         ) : (
-          <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
-            <MenuLink href={entry.href} onClick={handleClick}>
+          <MenuEntry
+            key={entry.label}
+            isActive={entry.href === location.pathname}
+            className={calloutClass}
+            onClick={handleClick}
+          >
+            <MenuLink href={entry.href}>
               {iconElement}
               <LinkLabel style={{ fontWeight: 500 }} isPushed={isPushed}>
                 {entry.label}

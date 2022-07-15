@@ -1,16 +1,12 @@
-import throttle from "lodash/throttle";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import { useMatchBreakpoints } from "../../hooks";
 import Mask from "./Mask";
-import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
 import {
   MENU_HEIGHT,
-  TOP_BANNER_HEIGHT_MOBILE,
-  TOP_BANNER_HEIGHT,
   SIDEBAR_WIDTH_FULL,
   SIDEBAR_WIDTH_REDUCED,
   links,
@@ -101,13 +97,8 @@ const Menu: React.FC<NavProps> = ({
   t,
 }) => {
   const { isMobile, isMd } = useMatchBreakpoints();
-  const [isPushed, setIsPushed] = useState(!isMobile);
+  const [isPushed, setIsPushed] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
-  const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
-
-  const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
-
-  const totalTopMenuHeight = banner ? MENU_HEIGHT + topBannerHeight : MENU_HEIGHT;
 
   return (
     <MenuContext.Provider value={{ linkComponent }}>
