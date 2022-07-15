@@ -1,3 +1,4 @@
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.div`
@@ -54,11 +55,12 @@ const RoundLogo = styled.div`
 
 export default function HeaderCom(props) {
   const { round, isMobile } = props
+  const { t } = useTranslation()
   return (
     <HeaderContainer>
       <div>
         <TitleLeft>
-          <h2 style={{ fontSize: isMobile ? 14 : 16, marginRight: isMobile ? 8 : 24 }}>Round</h2>
+          <h2 style={{ fontSize: isMobile ? 14 : 16, marginRight: isMobile ? 8 : 24 }}>{t('Round')}</h2>
           <div
             style={{
               padding: isMobile ? '4px 24px' : '4px 12px',
@@ -72,8 +74,8 @@ export default function HeaderCom(props) {
         </TitleLeft>
         {isMobile && (
           <div style={{ fontSize: 12, lineHeight: 1.5, marginTop: 6 }}>
-            <div>Stop betting 30 minutes before the lottery</div>
-            <div>Drawn July 5, 2022, 8:00 PM</div>
+            <div>{t('LotteryTips')}</div>
+            <div> July 5, 2022, 8:00 PM</div>
           </div>
         )}
       </div>
@@ -81,8 +83,8 @@ export default function HeaderCom(props) {
       <TitleRight>
         {!isMobile && (
           <div>
-            <div>Stop betting 30 minutes before the lottery</div>
-            <div>Drawn July 5, 2022, 8:00 PM</div>
+           <div>{t('LotteryTips')}</div>
+            <div> July 5, 2022, 8:00 PM</div>
           </div>
         )}
 

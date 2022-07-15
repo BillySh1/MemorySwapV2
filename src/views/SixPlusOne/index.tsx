@@ -8,6 +8,7 @@ import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import BuyConfirmModal from './components/BuyConfirmModal'
 import HeaderCom from './components/HeaderCom'
+import { useTranslation } from 'contexts/Localization'
 
 const LotteryWrapper = styled(Card)`
   border-radius: 24px;
@@ -107,16 +108,20 @@ const NumberSelectItem = styled.div`
 `
 
 const NumbersIntro = styled.div`
+  width: 100%;
   font-size: 18px;
-  white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 14px;
     margin-bottom: 16px;
+    width: 100%;
+    text-align: center;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
+    width: auto;
+    text-align: unset;
   }
 `
 
@@ -136,6 +141,7 @@ const Divider = styled.div`
 
 function useNowRound() {
   const fivePlusTwoContract = useFivePlusTwo()
+  const { t } = useTranslation()
   const { data } = useSWRContract({ contract: fivePlusTwoContract, methodName: 'nowPeriod' })
   return data ? data.toNumber() : undefined
 }
@@ -145,6 +151,7 @@ export default function SixPlusOne() {
   const [backSelected, setBackSelected] = useState<Array<any>>([])
   const { isMobile } = useMatchBreakpoints()
   const fivePlusTwoContract = useFivePlusTwo()
+  const { t } = useTranslation()
   const [onPresentBuyTicketsModal] = useModal(
     <BuyConfirmModal contract={fivePlusTwoContract} frontNumbers={frontSelected} backNumbers={backSelected} />,
   )
@@ -171,10 +178,8 @@ export default function SixPlusOne() {
           <LastWinNumber isMobile={isMobile} />
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                Please select at least 5 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>Front area number </strong>
-              </div>
+              {t('LotterySelect')} 6 {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('FrontAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
@@ -195,10 +200,8 @@ export default function SixPlusOne() {
           </FlexSelectContainer>
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                Please select at least 2 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>Back area number </strong>
-              </div>
+              {t('LotterySelect')} 1 {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('BackAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
@@ -222,7 +225,7 @@ export default function SixPlusOne() {
         <FlexFooter>
           <div>
             <FooterText>
-              Selected: <Frimary>1</Frimary> Bets <Frimary>158</Frimary> MDAO
+              {t('Selected')}: <Frimary>1</Frimary> {t('Bets')} <Frimary>158</Frimary> MDAO
             </FooterText>
           </div>
           {!isMobile && <Divider />}
@@ -234,15 +237,14 @@ export default function SixPlusOne() {
               onClick={() => {
                 setFrontSelected(Array.from({ length: 6 }, (v) => Math.ceil(Math.random() * 30)))
                 setBackSelected(Array.from({ length: 1 }, (v) => Math.ceil(Math.random() * 15)))
-                
               }}
               scale="md"
             >
-              RANDOM
+              {t('Random')}
             </Button>
-            {frontSelected.length > 4 && backSelected.length > 1 && (
+            {frontSelected.length > 5 && backSelected.length > 0 && (
               <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
-                BUY NOW
+                {t('BuyNow')}
               </Button>
             )}
           </FooterButtonWrapper>

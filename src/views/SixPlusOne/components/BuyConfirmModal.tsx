@@ -81,7 +81,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
   const [ticketsToBuy, setTicketsToBuy] = useState('')
   const [discountValue, setDiscountValue] = useState('')
   const [totalCost, setTotalCost] = useState('')
-  const [multiple,setMultiple] = useState('')
+  const [multiple, setMultiple] = useState('')
   const [ticketCostBeforeDiscount, setTicketCostBeforeDiscount] = useState('')
   const [buyingStage, setBuyingStage] = useState<BuyingStage>(BuyingStage.BUY)
   const [maxPossibleTicketPurchase, setMaxPossibleTicketPurchase] = useState(BIG_ZERO)
@@ -277,30 +277,30 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
   }
 
   return (
-    <StyledModal title={t('Buy 5+2')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <StyledModal title={t('Buy 6+1')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text color="textSubtle">{t('Your Numbers')}:</Text>
       </Flex>
-      <Flex style={{ gap: '8px' }}>
+      <Flex flexWrap={'wrap'} justifyContent="center" style={{ gap: '8px' }}>
         {frontNumbers.map((x) => (
-          <NumberCom value={x as any} width={28} height={28} />
+          <NumberCom outline value={x as any} width={32} height={32} fontSize={14} />
         ))}
         {backNumbers.map((i) => (
-          <NumberCom extra value={i as any} width={28} height={28} />
+          <NumberCom outline extra value={i as any} width={32} height={32} fontSize={14} />
         ))}
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text color="textSubtle">{t('To (optional)')}:</Text>
       </Flex>
       <Flex style={{ gap: '8px' }}>
-        <Input  value={buyToAddress} onChange={(e) => setBuyToAddress(e.target.value)} />
+        <Input value={buyToAddress} onChange={(e) => setBuyToAddress(e.target.value)} />
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text color="textSubtle">{t('Multiple')}:</Text>
       </Flex>
       <Flex style={{ gap: '8px' }}>
-        <Input  value={multiple} onChange={(e) => setMultiple(e.target.value)} />
+        <Input value={multiple} onChange={(e) => setMultiple(e.target.value)} />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px">
         <Flex justifyContent="flex-end" flexDirection="column">
@@ -350,9 +350,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
         )}
 
         <Text mt="24px" fontSize="12px" color="textSubtle">
-          {t(
-            '"5+2" chooses lottery numbers, with no duplicates among your tickets. Prices are set before each round starts, equal to $5 at that time. Purchases are final.',
-          )}
+          5+2 {t('Tips')}
         </Text>
       </Flex>
     </StyledModal>
