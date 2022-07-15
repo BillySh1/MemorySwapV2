@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.div`
   margin-bottom: 40px;
 `
 
 function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
-  //   const TranslateString = useI18n()
+  const { t } = useTranslation()
   return (
     <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-      <ButtonMenuItem id="swap-nav-link">Swap</ButtonMenuItem>
-      <ButtonMenuItem id="pool-nav-link">Liquidity</ButtonMenuItem>
+      <ButtonMenuItem id="swap-nav-link">{t('Swap')}</ButtonMenuItem>
+      <ButtonMenuItem id="pool-nav-link">{t('Liquidity')}</ButtonMenuItem>
       <ButtonMenuItem
         id="pool-nav-link"
         as="a"
@@ -19,7 +20,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
         target="_blank"
         rel="noreferrer noopener"
       >
-        Bridge
+        {t('Bridge')}
       </ButtonMenuItem>
     </ButtonMenu>
   )

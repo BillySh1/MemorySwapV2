@@ -1,4 +1,5 @@
 import { TxMiningIcon, IconButton } from '@pancakeswap/uikit'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -35,18 +36,20 @@ const Intro = styled.div`
   text-align: left;
   line-height: 1.2;
   color: ${({ theme }) => theme.colors.textSubtle};
+  white-space: normal;
+  max-width: 70%;
 `
 
 export const TxMining = ({ isMobile }: { isMobile?: boolean }) => {
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <RoundBox isMobile={isMobile} style={{ borderRadius: !isMobile ? '35px' : '15px' }}>
         <Intro>
-          Trade Mining {isMobile && <br />}
-          Reward 0.0024 MDAO
+          {t('Trade Mining Reward')} 0.0024 MDAO
         </Intro>
         <IconButton style={{ width: 'unset', borderRadius: 35, padding: '12px 16px', fontSize: 14, height: 'unset' }}>
-          <span>Withdraw</span>
+          <span>{t('Claim')}</span>
           {/* <TxMiningIcon color="invertedContrast" /> */}
         </IconButton>
       </RoundBox>

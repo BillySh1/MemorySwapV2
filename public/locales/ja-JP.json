@@ -1598,6 +1598,7 @@
   "Betting": "賭けを続ける",
   "LotteryProcessing": "進行中",
   "LotteryFinished": "終了",
-  "Bridge":"クロスチェーン",
-  "WhiteList":"ホワイトリスト"
+  "Bridge": "クロスチェーン",
+  "WhiteList": "ホワイトリスト",
+  "Trade Mining Reward": "トレードマイニング報酬"
 }
