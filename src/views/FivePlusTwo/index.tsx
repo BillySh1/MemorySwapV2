@@ -108,8 +108,8 @@ const NumberSelectItem = styled.div`
 `
 
 const NumbersIntro = styled.div`
+  width: 100%;
   font-size: 18px;
-  white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -178,10 +178,8 @@ export default function FivePlusTwo() {
           <LastWinNumber isMobile={isMobile} />
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                {t('LotterySelect')} 5 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('FrontAreaNumber')} </strong>
-              </div>
+              {t('LotterySelect')} 5 {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('FrontAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
@@ -202,10 +200,8 @@ export default function FivePlusTwo() {
           </FlexSelectContainer>
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                {t('LotterySelect')} 2 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('BackAreaNumber')} </strong>
-              </div>
+              {t('LotterySelect')} 2 {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('BackAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {

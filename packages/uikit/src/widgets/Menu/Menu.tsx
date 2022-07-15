@@ -62,7 +62,9 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
     margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
   }
   max-width: 100%;
-  overflow: hidden;
+  overflow-x:hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px);
 `;
 const MobileOnlyOverlay = styled(Mask)`
   position: fixed;

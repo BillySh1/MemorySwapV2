@@ -284,10 +284,10 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
       </Flex>
       <Flex flexWrap={'wrap'} justifyContent="center" style={{ gap: '8px' }}>
         {frontNumbers.map((x) => (
-          <NumberCom value={x as any} width={28} height={28} />
+          <NumberCom outline value={x as any} width={32} height={32} fontSize={14} />
         ))}
         {backNumbers.map((i) => (
-          <NumberCom extra value={i as any} width={28} height={28} />
+          <NumberCom outline extra value={i as any} width={32} height={32} fontSize={14} />
         ))}
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">

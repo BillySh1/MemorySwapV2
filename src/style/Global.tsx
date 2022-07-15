@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family:  sans-serif;
   }
   body {
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: ${({ theme }) => theme.colors.background};
 
     img {
