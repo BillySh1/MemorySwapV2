@@ -26,7 +26,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   // Close the menu when a user clicks a link on mobile
   const location = useRouter();
   const handleClick = () => {
-    pushNav(false);
+    if (isMobile) {
+      pushNav(false);
+    }
   };
 
   return (
