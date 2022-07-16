@@ -83,7 +83,7 @@ export function TransactionSubmittedContent({
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
             <Link external small href={getBscScanLink(hash, 'transaction', chainId)}>
-              {t('View on KCCScan')}
+              {t('View on CUBEScan')}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (
