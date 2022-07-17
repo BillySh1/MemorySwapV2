@@ -36,13 +36,13 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">KCC Balance Low</Text>
-            <Text as="p">{t('You need KCS for transaction fees.')}</Text>
+            <Text fontWeight="bold">cube Balance Low</Text>
+            <Text as="p">{t('You need cube for transaction fees.')}</Text>
           </Box>
         </Message>
       )}
       <Flex alignItems="center" justifyContent="space-between">
-        <Text color="textSubtle">KCC Balance</Text>
+        <Text color="textSubtle">cube Balance</Text>
         {fetchStatus !== FetchStatus.Fetched ? (
           <Skeleton height="22px" width="60px" />
         ) : (
