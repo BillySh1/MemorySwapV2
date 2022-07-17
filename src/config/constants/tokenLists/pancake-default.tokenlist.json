@@ -11,26 +11,26 @@
   "keywords": ["pancake", "default"],
   "tokens": [
     {
-      "name": "Wrapped KCS",
-      "symbol": "WKCS",
-      "address": "0xdB3A5a38C38b06A406BBBe7791c69e2B9116FBA9",
-      "chainId": 322,
+      "name": "Wrapped CUBE",
+      "symbol": "WCUBE",
+      "address": "0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41",
+      "chainId": 1819,
       "decimals": 18,
-      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/2087.png"
+      "logoURI": "https://cube.store/img/logo.8ae385b7.png"
     },
     {
       "name": "MemorySwap Token",
       "symbol": "MDAO",
-      "address": "0x7991FCCDbA857f944Af88b39d49cb7e91E4e4a41",
-      "chainId": 322,
+      "address": "0x173b2836676E0963D84416C88Cc955e7E5207Ea3",
+      "chainId": 1819,
       "decimals": 18,
       "logoURI": "../../../../public/images/tokens/0x8D5E212E640a04D604143F9097F7B655866F7c5D.png"
     },
     {
       "name": "Tether USDT",
       "symbol": "USDT",
-      "address": "0x67f6a7BbE0da067A747C6b2bEdF8aBBF7D6f60dc",
-      "chainId": 322,
+      "address": "0x9bd522cc85bd1bd6d069d5e273e46ccfee905493",
+      "chainId": 1819,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x55d398326f99059fF775485246999027B3197955.png"
     }
