@@ -173,11 +173,21 @@ const BadgeText = styled.div<{ type: number }>`
   transform: translate(-20%, -50%);
 `
 
+function getDistanceTime(time: string | number) {
+  const end = new Date(time)
+  const now = new Date()
+  const t = end.getTime() - now.getTime()
+  // const d = Math.floor(t / 1000 / 60 / 60 / 24)
+  const h = Math.floor((t / 1000 / 60 / 60) % 24)
+  const m = Math.floor((t / 1000 / 60) % 60)
+  const s = Math.floor((t / 1000) % 60)
+  return `${h} : ${m} : ${s}`
+}
+
 export default function LotteryCard(props) {
   const { type, info, periodInfo } = props
   console.log(info, periodInfo, 'ggg')
   const [numbers, setNumbers] = useState([])
-  const [round, setRound] = useState('')
   const [multiple, setMultiple] = useState('')
   const [saleCloseTime, setSaleCloseTime] = useState('')
 
@@ -198,12 +208,10 @@ export default function LotteryCard(props) {
         extra: true,
       })
     })
-    setRound(info.periodId.toString())
     setMultiple(info.multiple.toString())
     setSaleCloseTime(periodInfo.saleCloseTime.toString())
     setNumbers(res)
   }, [info])
-  console.log(saleCloseTime, 'hhh')
 
   return (
     <LotteryCardWrapper type={type}>
@@ -214,7 +222,7 @@ export default function LotteryCard(props) {
             {type === 0 ? (
               <>
                 <p>{t('Lottery Time Remain')}</p>
-                <p>12：02：03</p>
+                <p>{getDistanceTime(periodInfo.saleCloseTime.toString() * 1000)}</p>
               </>
             ) : type === 1 ? (
               <>
