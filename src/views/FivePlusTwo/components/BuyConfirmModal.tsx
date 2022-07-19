@@ -85,7 +85,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
   const [buyingStage, setBuyingStage] = useState<BuyingStage>(BuyingStage.BUY)
   const [maxPossibleTicketPurchase, setMaxPossibleTicketPurchase] = useState(BIG_ZERO)
   const [maxTicketPurchaseExceeded, setMaxTicketPurchaseExceeded] = useState(false)
-  const [buyToAddress, setBuyToAddress] = useState('')
+  const [buyToAddress, setBuyToAddress] = useState(account)
   const [userNotEnoughCake, setUserNotEnoughCake] = useState(false)
   const { reader: mdaoContractReader, signer: mdaoContractApprover } = useMdao()
   const { toastSuccess } = useToast()
@@ -209,7 +209,7 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
     getTicketCostAfterDiscount,
     getMaxTicketBuyWithDiscount,
     hasFetchedBalance,
-    multiple
+    multiple,
   ])
 
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
@@ -218,7 +218,6 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
         return requiresApproval(mdaoContractReader, account, contract.address)
       },
       onApprove: () => {
-        console.log(contract, 'sss')
         return callWithGasPrice(mdaoContractApprover, 'approve', [contract.address, MaxUint256])
       },
       onApproveSuccess: async ({ receipt }) => {
@@ -228,12 +227,13 @@ const BuyConfirmModal: React.FC<BuyTicketsModalProps> = ({ onDismiss, frontNumbe
         )
       },
       onConfirm: () => {
-        return callWithGasPrice(contract, 'buyTickets', [frontNumbers, backNumbers, 1, buyToAddress])
+        console.log('param', frontNumbers, backNumbers, multiple, buyToAddress)
+        return callWithGasPrice(contract, 'buyTicket', [frontNumbers, backNumbers, multiple, buyToAddress ?? account])
       },
       onSuccess: async ({ receipt }) => {
         onDismiss?.()
         dispatch(fetchUserTicketsAndLotteries({ account, currentLotteryId }))
-        toastSuccess(t('Lottery tickets purchased!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
+        toastSuccess(t('Purchased!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       },
     })
 

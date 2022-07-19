@@ -54,7 +54,7 @@ const RoundLogo = styled.div`
 `
 
 export default function HeaderCom(props) {
-  const { round, isMobile } = props
+  const { round, isMobile, six } = props
   const { t } = useTranslation()
   return (
     <HeaderContainer>
@@ -83,12 +83,12 @@ export default function HeaderCom(props) {
       <TitleRight>
         {!isMobile && (
           <div>
-           <div>{t('LotteryTips')}</div>
+            <div>{t('LotteryTips')}</div>
             <div> July 5, 2022, 8:00 PM</div>
           </div>
         )}
 
-        <RoundLogo>5+2</RoundLogo>
+        <RoundLogo>{six ? '6+1' : '5+2'}</RoundLogo>
       </TitleRight>
     </HeaderContainer>
   )
