@@ -189,11 +189,8 @@ export default function LotteryCard(props) {
   console.log(info, periodInfo, 'ggg')
   const [numbers, setNumbers] = useState([])
   const [multiple, setMultiple] = useState('')
-  const [saleCloseTime, setSaleCloseTime] = useState('')
-
   const { isMobile } = useMatchBreakpoints()
   const { t } = useTranslation()
-
   useEffect(() => {
     const res = []
     info.redNumbers.forEach((x) => {
@@ -209,10 +206,9 @@ export default function LotteryCard(props) {
       })
     })
     setMultiple(info.multiple.toString())
-    setSaleCloseTime(periodInfo.saleCloseTime.toString())
     setNumbers(res)
   }, [info])
-
+  if (!info || !periodInfo) return null
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -275,7 +271,7 @@ export default function LotteryCard(props) {
           </div>
           <LotteryStatusTimeInfo>
             <div style={{ marginRight: 8 }}>{t('Launch Ends At')}</div>
-            <div>{new Date(parseInt(saleCloseTime, 10) * 1000).toISOString()}</div>
+            <div>{new Date(parseInt(periodInfo.saleCloseTime, 10) * 1000).toISOString()}</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
         <ActionWrapper type={type}>
