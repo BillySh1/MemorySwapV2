@@ -1,5 +1,5 @@
 import { useTranslation } from 'contexts/Localization'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import NumberCom from 'views/FivePlusTwo/components/NumberCom'
 import { useMatchBreakpoints } from '../../../../packages/uikit/src/hooks'
@@ -174,10 +174,37 @@ const BadgeText = styled.div<{ type: number }>`
 `
 
 export default function LotteryCard(props) {
-  const { type } = props
-  const [winNumbers, setWinNumbers] = useState([1, 2, 3, 4, 5, 6, 7])
+  const { type, info, periodInfo } = props
+  console.log(info, periodInfo, 'ggg')
+  const [numbers, setNumbers] = useState([])
+  const [round, setRound] = useState('')
+  const [multiple, setMultiple] = useState('')
+  const [saleCloseTime, setSaleCloseTime] = useState('')
+
   const { isMobile } = useMatchBreakpoints()
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const res = []
+    info.redNumbers.forEach((x) => {
+      res.push({
+        value: x.toString(),
+        extra: false,
+      })
+    })
+    info.blueNumbers.forEach((x) => {
+      res.push({
+        value: x.toString(),
+        extra: true,
+      })
+    })
+    setRound(info.periodId.toString())
+    setMultiple(info.multiple.toString())
+    setSaleCloseTime(periodInfo.saleCloseTime.toString())
+    setNumbers(res)
+  }, [info])
+  console.log(saleCloseTime, 'hhh')
+
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -202,18 +229,18 @@ export default function LotteryCard(props) {
           <LotteryInfoRow>
             {type === 0 ? (
               <>
-                <p>{t('Lottery Amount')}</p>
-                <p>24</p>
+                <p>{t('Lottery Multiple')}</p>
+                <p>{multiple}</p>
               </>
             ) : type === 1 ? (
               <>
                 <p>{t('Lottery Win Multiple')}</p>
-                <p>1</p>
+                <p>{multiple}</p>
               </>
             ) : (
               <>
-                <p>{t('Lottery Amount')}</p>
-                <p>1</p>
+                <p>{t('Lottery Multiple')}</p>
+                <p>{multiple}</p>
               </>
             )}
           </LotteryInfoRow>
@@ -236,24 +263,24 @@ export default function LotteryCard(props) {
                 {1}
               </div>
             </TitleLeft>
-            <div style={{ fontSize: isMobile ? 12 : 16 }}>Drawn May 5, 2022, 8:00 PM</div>
+            <div style={{ fontSize: isMobile ? 12 : 16 }}>{new Date().toDateString()}</div>
           </div>
           <LotteryStatusTimeInfo>
-            <div style={{ marginRight: 8 }}>{t('Launch Time')}</div>
-            <div>16h 36m 19s</div>
+            <div style={{ marginRight: 8 }}>{t('Launch Ends At')}</div>
+            <div>{new Date(parseInt(saleCloseTime, 10) * 1000).toISOString()}</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
         <ActionWrapper type={type}>
           <NumbersWrapper>
-            {winNumbers.map((x) => {
+            {numbers.map((x) => {
               return (
                 <NumberCom
-                  value={x}
+                  value={x.value}
                   width={isMobile ? 30 : 42}
                   height={isMobile ? 30 : 42}
                   fontSize={isMobile ? 14 : 20}
                   outline
-                  extra={x > 5}
+                  extra={x.extra}
                 />
               )
             })}

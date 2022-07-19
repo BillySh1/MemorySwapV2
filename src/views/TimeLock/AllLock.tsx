@@ -64,7 +64,6 @@ export default function AllLock() {
     if (!search) return []
     return await locker.allLockInfo(search, account)
   }, [search])
-  console.log(list, 'gggg')
   return (
     <ListWrapper>
       {(isMobile && (
