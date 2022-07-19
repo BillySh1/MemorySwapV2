@@ -1,10 +1,13 @@
 import { Button, ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { LockItem } from './components/LockItem'
-import useLockList from './hooks/useLockList'
 import { Input } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
+import { useTimeLocker } from 'hooks/useContract'
+import { useSWRContract } from 'hooks/useSWRContract'
+import { useWeb3React } from '@web3-react/core'
+import { useAsync } from 'react-use'
 
 const ListWrapper = styled.div`
   position: relative;
@@ -50,12 +53,18 @@ const OwnButton = styled(Button)`
 `
 
 export default function AllLock() {
-  const list = useLockList()
-  const [activeIndex, setActiveIndex] = useState(0)
   const [search, setSearch] = useState('')
+  const locker = useTimeLocker()
+  const { account } = useWeb3React()
+  const [activeIndex, setActiveIndex] = useState(0)
   const { isMobile } = useMatchBreakpoints()
   const { t } = useTranslation()
-  if (!list || !list.length) return null
+
+  const { value: list } = useAsync(async () => {
+    if (!search) return []
+    return await locker.allLockInfo(search, account)
+  }, [search])
+  console.log(list, 'gggg')
   return (
     <ListWrapper>
       {(isMobile && (
@@ -68,8 +77,8 @@ export default function AllLock() {
           />
           <FilterWrapper>
             <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
-              <ButtonMenuItem>{t('lock_progress')}</ButtonMenuItem>
-              <ButtonMenuItem>{t('lock_received')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('lock progress')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('lock received')}</ButtonMenuItem>
             </ButtonMenu>
             <OwnButton scale="sm" variant="primary">
               {t('Own')}
@@ -81,8 +90,8 @@ export default function AllLock() {
           <FilterWrapper>
             <FlexContainer>
               <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="primary">
-                <ButtonMenuItem>{t('lock_progress')}</ButtonMenuItem>
-                <ButtonMenuItem>{t('lock_received')}</ButtonMenuItem>
+                <ButtonMenuItem>{t('lock progress')}</ButtonMenuItem>
+                <ButtonMenuItem>{t('lock received')}</ButtonMenuItem>
               </ButtonMenu>
               <OwnButton scale="sm" variant="primary">
                 {t('Own')}
@@ -99,11 +108,13 @@ export default function AllLock() {
         </>
       )}
 
-      <ListContainer>
-        {list.map((x) => {
-          return <LockItem info={x} />
-        })}
-      </ListContainer>
+      {list && list.length > 0 && (
+        <ListContainer>
+          {list.map((x) => {
+            return <LockItem info={x} />
+          })}
+        </ListContainer>
+      )}
     </ListWrapper>
   )
 }

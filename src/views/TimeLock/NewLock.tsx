@@ -73,9 +73,9 @@ export default function NewLock() {
   }
   const handleLock = async () => {
     const time = Math.ceil(new Date(lockTime).getTime() / 1000)
-    console.log(parseUnits(lockNum, 18), time, 'param')
+    console.log(parseUnits(lockNum, 18).toString(), time, 'param')
     const receipt = await fetchWithCatchTxError(() =>
-      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 18), 1655543144]),
+      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 18).toString(), time]),
     )
     if (receipt?.status) {
       toastSuccess('Success')
