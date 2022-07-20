@@ -1,5 +1,10 @@
 import { useTranslation } from 'contexts/Localization'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { useFivePlusTwo } from 'hooks/useContract'
+import useToast from 'hooks/useToast'
 import { useEffect, useState } from 'react'
+import { useAsync } from 'react-use'
 import styled from 'styled-components'
 import NumberCom from 'views/FivePlusTwo/components/NumberCom'
 import { useMatchBreakpoints } from '../../../../packages/uikit/src/hooks'
@@ -187,9 +192,13 @@ function getDistanceTime(time: string | number) {
 export default function LotteryCard(props) {
   const { type, info, periodInfo } = props
   console.log(info, periodInfo, 'ggg')
+  const contract = useFivePlusTwo()
   const [numbers, setNumbers] = useState([])
   const [multiple, setMultiple] = useState('')
   const { isMobile } = useMatchBreakpoints()
+  const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
+  const { callWithGasPrice } = useCallWithGasPrice()
+  const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
   useEffect(() => {
     const res = []
@@ -208,6 +217,22 @@ export default function LotteryCard(props) {
     setMultiple(info.multiple.toString())
     setNumbers(res)
   }, [info])
+
+  const handleClaim = async () => {
+    console.log(info.periodId, info.ticketId, 'param')
+    const receipt = await fetchWithCatchTxError(() =>
+      callWithGasPrice(contract, 'claim', [info.periodId, info.ticketId]),
+    )
+    if (receipt?.status) {
+      toastSuccess('Claim Success')
+    } else {
+      toastError('Claim Error')
+    }
+  }
+
+  const handleAction = async () => {
+    await handleClaim()
+  }
   if (!info || !periodInfo) return null
   return (
     <LotteryCardWrapper type={type}>
@@ -289,7 +314,7 @@ export default function LotteryCard(props) {
               )
             })}
           </NumbersWrapper>
-          <ActionText>{t('Betting')}</ActionText>
+          <ActionText onClick={handleAction}>{t('Betting')}</ActionText>
         </ActionWrapper>
       </LotteryMainWrapper>
       <BadgeIconWrapper>

@@ -38,7 +38,7 @@ export default function LotteryHistory() {
     return await contract.getHoldTickets(periodId, account)
   }, [contract, account, periodId])
   const { value: periodInfo } = useAsync(async () => {
-    return await contract.periods(periodId)
+    return await contract.getPeriod(periodId)
   }, [contract, account, periodId])
 
   const { t } = useTranslation()
