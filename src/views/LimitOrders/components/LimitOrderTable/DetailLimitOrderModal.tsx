@@ -132,17 +132,17 @@ export const DetailLimitOrderModal: React.FC<DetailLimitOrderModalProps> = ({ on
           </>
         ) : (
           <Button variant="primary" mt="16px" as="a" external href={formattedOrder.bscScanUrls.created}>
-            {t('View order creation on BSCScan')}
+            {t('View order creation on CUBEScan')}
           </Button>
         )}
         {isCancelled && bscScanUrls.cancelled && (
           <Button variant="primary" mt="16px" as="a" external href={bscScanUrls.cancelled}>
-            {t('View order cancellation on BSCScan')}
+            {t('View order cancellation on CUBEScan')}
           </Button>
         )}
         {isExecuted && bscScanUrls.executed && (
           <Button variant="primary" mt="16px" as="a" external href={bscScanUrls.executed}>
-            {t('View order execution on BSCScan')}
+            {t('View order execution on CUBEScan')}
           </Button>
         )}
       </Flex>
