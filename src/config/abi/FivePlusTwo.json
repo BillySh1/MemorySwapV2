@@ -433,52 +433,79 @@
       {
         "components": [
           {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "periodId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ticketId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "multiple",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256[]",
+                "name": "redNumbers",
+                "type": "uint256[]"
+              },
+              {
+                "internalType": "uint256[]",
+                "name": "blueNumbers",
+                "type": "uint256[]"
+              },
+              {
+                "internalType": "address",
+                "name": "holder",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "buyer",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "buyTime",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "claimTime",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct MemoryLotteryFiveAndTwo.Ticket",
+            "name": "ticket",
+            "type": "tuple"
+          },
+          {
             "internalType": "uint256",
-            "name": "periodId",
+            "name": "bingoRed",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "ticketId",
+            "name": "bingoBlue",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "multiple",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256[]",
-            "name": "redNumbers",
-            "type": "uint256[]"
-          },
-          {
-            "internalType": "uint256[]",
-            "name": "blueNumbers",
-            "type": "uint256[]"
-          },
-          {
-            "internalType": "address",
-            "name": "holder",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "buyer",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "buyTime",
+            "name": "bonusLevel",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "claimTime",
+            "name": "bonus",
             "type": "uint256"
           }
         ],
-        "internalType": "struct MemoryLotteryFiveAndTwo.Ticket[]",
+        "internalType": "struct MemoryLotteryFiveAndTwo.TicketInfo[]",
         "name": "",
         "type": "tuple[]"
       }

@@ -1,3 +1,4 @@
+import { formatUnits } from '@ethersproject/units'
 import { useTranslation } from 'contexts/Localization'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useCatchTxError from 'hooks/useCatchTxError'
@@ -6,6 +7,7 @@ import useToast from 'hooks/useToast'
 import { useEffect, useState } from 'react'
 import { useAsync } from 'react-use'
 import styled from 'styled-components'
+import isZero from 'utils/isZero'
 import NumberCom from 'views/FivePlusTwo/components/NumberCom'
 import { useMatchBreakpoints } from '../../../../packages/uikit/src/hooks'
 import BadgeIcon from '../assets/badge'
@@ -190,7 +192,7 @@ function getDistanceTime(time: string | number) {
 }
 
 export default function LotteryCard(props) {
-  const { type, info, periodInfo } = props
+  const { info, periodInfo } = props
   console.log(info, periodInfo, 'ggg')
   const contract = useFivePlusTwo()
   const [numbers, setNumbers] = useState([])
@@ -200,40 +202,48 @@ export default function LotteryCard(props) {
   const { callWithGasPrice } = useCallWithGasPrice()
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
+
   useEffect(() => {
     const res = []
-    info.redNumbers.forEach((x) => {
+    info.ticket.redNumbers.forEach((x) => {
       res.push({
         value: x.toString(),
         extra: false,
       })
     })
-    info.blueNumbers.forEach((x) => {
+    info.ticket.blueNumbers.forEach((x) => {
       res.push({
         value: x.toString(),
         extra: true,
       })
     })
-    setMultiple(info.multiple.toString())
+    setMultiple(info.ticket.multiple.toString())
     setNumbers(res)
   }, [info])
 
   const handleClaim = async () => {
-    console.log(info.periodId, info.ticketId, 'param')
+    // console.log(info.periodId, info.ticketId, 'param')
     const receipt = await fetchWithCatchTxError(() =>
-      callWithGasPrice(contract, 'claim', [info.periodId, info.ticketId]),
+      callWithGasPrice(contract, 'claim', [info.ticket.periodId, info.ticket.ticketId]),
     )
     if (receipt?.status) {
       toastSuccess('Claim Success')
-    } else {
-      toastError('Claim Error')
-    }
+    } 
   }
 
   const handleAction = async () => {
     await handleClaim()
   }
   if (!info || !periodInfo) return null
+
+  const type = (() => {
+    if (!periodInfo.isCaculated) return 0
+    if (!isZero(info.bonusLevel)) return 1
+    return 0
+  })()
+
+  console.log(type, 'gggg')
+
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -248,7 +258,7 @@ export default function LotteryCard(props) {
             ) : type === 1 ? (
               <>
                 <p>{t('Lottery Win')}</p>
-                <p>233,400 MDAO</p>
+                <p>{formatUnits(info.bonus.toString(),18)}</p>
               </>
             ) : (
               <p>{t('Lottery Failed')}</p>
@@ -263,8 +273,8 @@ export default function LotteryCard(props) {
               </>
             ) : type === 1 ? (
               <>
-                <p>{t('Lottery Win Multiple')}</p>
-                <p>{multiple}</p>
+                <p>{t('Lottery Win Level')}</p>
+                <p>{info.bonusLevel.toString()}</p>
               </>
             ) : (
               <>
