@@ -12,7 +12,7 @@
   "Coming Soon": "곧 제공 예정",
   "APY": "APY",
   "Total Liquidity": "총 유동성",
-  "View on KCCScan": "BscScan에서 보기",
+  "View on CUBEScan": "BscScan에서 보기",
   "Finished": "완료됨",
   "Project Site": "프로젝트 사이트",
   "See Token Info": "토큰 정보 보기",
@@ -1549,8 +1549,8 @@
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
   "Highest": "Highest",
-  "lock_progress": "처리",
-  "lock_received": "받았다",
+  "lock progress": "처리",
+  "lock received": "받았다",
   "lock_finished": "~ 위에",
   "Own": "가지다",
   "NEW": "새로운",
@@ -1599,5 +1599,6 @@
   "LotteryProcessing": "퀴즈 진행 중",
   "LotteryFinished": "복권 종료",
   "Bridge": "교차 사슬 다리",
-  "WhiteList": "화이트리스트"
+  "WhiteList": "화이트리스트",
+  "Trade Mining Reward":"무역 채굴 보상"
 }

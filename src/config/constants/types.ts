@@ -10,8 +10,8 @@ export type TranslatableText =
       }
     }
 export interface Address {
-  322?: string
-  321: string
+  1818?: string
+  1819: string
 }
 
 export interface SerializedToken {

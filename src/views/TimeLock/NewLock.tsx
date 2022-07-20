@@ -43,11 +43,6 @@ export default function NewLock() {
   const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
   const { toastSuccess, toastError } = useToast()
   const { library } = useActiveWeb3React()
-  const inputRef = useRef<HTMLInputElement>()
-  useEffect(() => {
-    inputRef.current.focus()
-  }, [])
-
   const handleSelectDate = (v) => {
     setLockTime(v)
     const diff = (new Date(v).getTime() - new Date().getTime()) / 1000
@@ -78,9 +73,9 @@ export default function NewLock() {
   }
   const handleLock = async () => {
     const time = Math.ceil(new Date(lockTime).getTime() / 1000)
-    console.log(parseUnits(lockNum, 18), time, 'param')
+    console.log(parseUnits(lockNum, 18).toString(), time, 'param')
     const receipt = await fetchWithCatchTxError(() =>
-      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 18), 1655543144]),
+      callWithGasPrice(lockerContract, 'lock', [contractAddress, parseUnits(lockNum, 18).toString(), time]),
     )
     if (receipt?.status) {
       toastSuccess('Success')
@@ -100,7 +95,6 @@ export default function NewLock() {
             scale="md"
             autoComplete="off"
             value={contractAddress}
-            ref={inputRef as RefObject<HTMLInputElement>}
             onChange={(e) => setContractAddress(e.target.value)}
             // onKeyDown={handleEnter}
           />
@@ -119,7 +113,6 @@ export default function NewLock() {
             scale="md"
             autoComplete="off"
             value={lockNum}
-            ref={inputRef as RefObject<HTMLInputElement>}
             onChange={(e) => setLockNum(e.target.value)}
             // onKeyDown={handleEnter}
           />

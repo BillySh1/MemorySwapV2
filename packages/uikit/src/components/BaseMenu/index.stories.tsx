@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { BrowserRouter, Link } from "react-router-dom";
 import InlineMenu from "./InlineMenu";
 import SubMenuComp from "./SubMenu";
@@ -73,7 +72,7 @@ export const SubMenu: React.FC = () => {
           options={{ placement: "right", offset: [0, 15], padding: { top: 20 } }}
         >
           <SubMenuItem as={LinkExternal} href="https://bscscan.com" bold={false} color="text">
-            View on KCCScan
+            View on CUBE Scan
           </SubMenuItem>
           <SubMenuItem as={LinkExternal} href="https://pancakeswap.info" bold={false} color="text" target="blank">
             View on PCS Info
@@ -94,7 +93,7 @@ export const SubMenu: React.FC = () => {
           }
         >
           <SubMenuItem as={LinkExternal} href="https://bscscan.com" bold={false} color="text">
-            View on KCCScan
+            View on CUBEScan
           </SubMenuItem>
           <SubMenuItem as={LinkExternal} href="https://pancakeswap.info" bold={false} color="text" target="blank">
             View on PCS Info

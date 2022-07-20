@@ -5,7 +5,6 @@ const MenuLink: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({ href, ...
   const router = useRouter();
   const isHttpLink = href?.startsWith("http");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const props = isHttpLink ? { href } : { to: href };
   return (
     <a
@@ -13,7 +12,6 @@ const MenuLink: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({ href, ...
       {...otherProps}
       onClick={(e) => {
         if (isHttpLink) window.open(href);
-        e.preventDefault();
         router.push(href ?? "/");
       }}
     />

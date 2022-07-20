@@ -1,3 +1,7 @@
-import SixPlusOne from "views/SixPlusOne"
+import FivePlusTwo from "views/FivePlusTwo"
 
-export default SixPlusOne
+
+const SixPlusOnePage = ()=>{
+    return <FivePlusTwo six />
+}
+export default SixPlusOnePage

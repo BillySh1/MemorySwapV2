@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardFooter, useMatchBreakpoints, useModal } fro
 import styled from 'styled-components'
 import LastWinNumber from './components/lastWinNumber'
 import NumberCom from './components/NumberCom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFivePlusTwo } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import BuyConfirmModal from './components/BuyConfirmModal'
@@ -108,8 +108,8 @@ const NumberSelectItem = styled.div`
 `
 
 const NumbersIntro = styled.div`
+  width: 100%;
   font-size: 18px;
-  white-space: nowrap;
   margin-right: 48px;
   line-height: 1.2;
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -146,9 +146,11 @@ function useNowRound() {
   return data ? data.toNumber() : undefined
 }
 
-export default function FivePlusTwo() {
+export default function FivePlusTwo(props) {
+  const { six } = props
   const [frontSelected, setFrontSelected] = useState<Array<any>>([])
   const [backSelected, setBackSelected] = useState<Array<any>>([])
+  const [canBuy, setCanBuy] = useState(false)
   const { isMobile } = useMatchBreakpoints()
   const fivePlusTwoContract = useFivePlusTwo()
   const { t } = useTranslation()
@@ -170,18 +172,40 @@ export default function FivePlusTwo() {
     }
   }
   const round = useNowRound()
+  useEffect(() => {
+    if (six && frontSelected.length > 5 && backSelected.length > 0) {
+      setCanBuy(true)
+      return
+    }
+    if (!six && frontSelected.length > 4 && backSelected.length > 1) {
+      setCanBuy(true)
+      return
+    }
+    setCanBuy(false)
+  }, [six, frontSelected, backSelected])
+
+  const getRandomNum = (min, max, count) => {
+    const arr = []
+    for (let i = 0; i < count; i++) {
+      const num = Math.floor(Math.random() * (max - min) + min)
+      if (arr.indexOf(num) == -1) {
+        arr.push(num)
+      } else {
+        i--
+      }
+    }
+    return arr
+  }
   return (
     <Page>
       <LotteryWrapper>
-        <HeaderCom isMobile={isMobile} round={round} />
+        <HeaderCom six={six} isMobile={isMobile} round={round} />
         <Body>
           <LastWinNumber isMobile={isMobile} />
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                {t('LotterySelect')} 5 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('FrontAreaNumber')} </strong>
-              </div>
+              {t('LotterySelect')} {six ? 6 : 5} {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('FrontAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 30 }, (_, index) => index + 1).map((x) => {
@@ -202,10 +226,8 @@ export default function FivePlusTwo() {
           </FlexSelectContainer>
           <FlexSelectContainer>
             <NumbersIntro>
-              <div>
-                {t('LotterySelect')} 2 {!isMobile && <br />}
-                <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('BackAreaNumber')} </strong>
-              </div>
+              {t('LotterySelect')} {six ? 1 : 2} {!isMobile && <br />}
+              <strong style={{ fontSize: isMobile ? 14 : 20 }}>{t('BackAreaNumber')} </strong>
             </NumbersIntro>
             <NumbersContainer>
               {Array.from({ length: 15 }, (_, index) => index + 1).map((x) => {
@@ -239,14 +261,14 @@ export default function FivePlusTwo() {
               style={{ color: 'white' }}
               variant="text"
               onClick={() => {
-                setFrontSelected(Array.from({ length: 5 }, (v) => Math.ceil(Math.random() * 30)))
-                setBackSelected(Array.from({ length: 2 }, (v) => Math.ceil(Math.random() * 15)))
+                setFrontSelected(getRandomNum(1, 30, six ? 6 : 5))
+                setBackSelected(getRandomNum(1, 15, six ? 1 : 2))
               }}
               scale="md"
             >
               {t('Random')}
             </Button>
-            {frontSelected.length > 4 && backSelected.length > 1 && (
+            {canBuy && (
               <Button style={{ color: 'white' }} variant="text" onClick={onPresentBuyTicketsModal} scale="md">
                 {t('BuyNow')}
               </Button>

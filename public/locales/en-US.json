@@ -12,7 +12,7 @@
   "Coming Soon": "Coming Soon",
   "APY": "APY",
   "Total Liquidity": "Total Liquidity",
-  "View on KCCScan": "View on KCCScan",
+  "View on CUBEScan": "View on CUBEScan",
   "Finished": "Finished",
   "Project Site": "Project Site",
   "See Token Info": "See Token Info",
@@ -1549,8 +1549,8 @@
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
   "Highest": "Highest",
-  "lock_progress": "Processing",
-  "lock_received": "Received",
+  "lock progress": "Processing",
+  "lock received": "Received",
   "lock_finished": "Finished",
   "Own": "Own",
   "NEW": "New",
@@ -1599,6 +1599,7 @@
   "LotteryProcessing":"Processing",
   "LotteryFinished":"Finished",
   "Bridge":"Bridge",
-  "WhiteList":"WhiteList"
+  "WhiteList":"WhiteList",
+  "Trade Mining Reward":"Trade Mining Reward"
 
 }

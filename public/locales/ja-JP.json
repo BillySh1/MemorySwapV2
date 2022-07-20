@@ -12,7 +12,7 @@
   "Coming Soon": "近日公開",
   "APY": "年利",
   "Total Liquidity": "総流動性",
-  "View on KCCScan": "BscScanで表示",
+  "View on CUBEScan": "BscScanで表示",
   "Finished": "終了",
   "Project Site": "プロジェクトサイト",
   "See Token Info": "トークン情報を表示",
@@ -1549,8 +1549,8 @@
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
   "Highest": "Highest",
-  "lock_progress": "処理",
-  "lock_received": "受け取った",
+  "lock progress": "処理",
+  "lock received": "受け取った",
   "lock_finished": "以上",
   "Own": "自分の",
   "NEW": "新着",
@@ -1598,6 +1598,7 @@
   "Betting": "賭けを続ける",
   "LotteryProcessing": "進行中",
   "LotteryFinished": "終了",
-  "Bridge":"クロスチェーン",
-  "WhiteList":"ホワイトリスト"
+  "Bridge": "クロスチェーン",
+  "WhiteList": "ホワイトリスト",
+  "Trade Mining Reward": "トレードマイニング報酬"
 }

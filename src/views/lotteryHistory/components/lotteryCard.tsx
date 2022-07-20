@@ -1,6 +1,14 @@
+import { formatUnits } from '@ethersproject/units'
 import { useTranslation } from 'contexts/Localization'
-import { useState } from 'react'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { useFivePlusTwo } from 'hooks/useContract'
+import useToast from 'hooks/useToast'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useAsync } from 'react-use'
 import styled from 'styled-components'
+import isZero from 'utils/isZero'
 import NumberCom from 'views/FivePlusTwo/components/NumberCom'
 import { useMatchBreakpoints } from '../../../../packages/uikit/src/hooks'
 import BadgeIcon from '../assets/badge'
@@ -9,7 +17,7 @@ import LotteryCardIcon from '../assets/lottery'
 const LotteryCardWrapper = styled.div<{ type: number }>`
   position: relative;
   width: 100%;
-  background: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : type === 1 ? 'rgba(26, 115, 190, 1)' : '#E45050')};
+  background: ${({ type }) => (type === 0 ? '#007BE4' : type === 1 ? '#1A73BE' : '#CC6D6D')};
   padding: 24px;
   display: flex;
   align-items: center;
@@ -126,12 +134,10 @@ const LotteryStatusTimeInfo = styled.div`
   }
 `
 
-const ActionWrapper = styled.div<{ type: number }>`
+const ActionWrapper = styled.div`
   width: 100%;
   position: relative;
   border-radius: 75px;
-  background: ${({ type }) =>
-    type === 0 ? '#75b5eb' : type === 1 ? 'rgba(46, 242, 255, 1)' : 'rgba(205, 205, 205, 1)'};
 `
 
 const NumbersWrapper = styled.div`
@@ -173,11 +179,85 @@ const BadgeText = styled.div<{ type: number }>`
   transform: translate(-20%, -50%);
 `
 
+function getDistanceTime(time: string | number) {
+  const end = new Date(time)
+  const now = new Date()
+  const t = end.getTime() - now.getTime()
+  // const d = Math.floor(t / 1000 / 60 / 60 / 24)
+  const h = Math.floor((t / 1000 / 60 / 60) % 24)
+  const m = Math.floor((t / 1000 / 60) % 60)
+  const s = Math.floor((t / 1000) % 60)
+  return `${h} : ${m} : ${s}`
+}
+
 export default function LotteryCard(props) {
-  const { type } = props
-  const [winNumbers, setWinNumbers] = useState([1, 2, 3, 4, 5, 6, 7])
+  const { info, periodInfo } = props
+  console.log(info, periodInfo, 'ggg')
+  const contract = useFivePlusTwo()
+  const router = useRouter()
+  const [numbers, setNumbers] = useState([])
+  const [multiple, setMultiple] = useState('')
   const { isMobile } = useMatchBreakpoints()
+  const { fetchWithCatchTxError, loading: isApproving } = useCatchTxError()
+  const { callWithGasPrice } = useCallWithGasPrice()
+  const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const res = []
+    info.ticket.redNumbers.forEach((x) => {
+      res.push({
+        value: x.toString(),
+        extra: false,
+      })
+    })
+    info.ticket.blueNumbers.forEach((x) => {
+      res.push({
+        value: x.toString(),
+        extra: true,
+      })
+    })
+    setMultiple(info.ticket.multiple.toString())
+    setNumbers(res)
+  }, [info])
+
+  const handleClaim = async () => {
+    // console.log(info.periodId, info.ticketId, 'param')
+    const receipt = await fetchWithCatchTxError(() =>
+      callWithGasPrice(contract, 'claim', [info.ticket.periodId, info.ticket.ticketId]),
+    )
+    if (receipt?.status) {
+      toastSuccess('Claim Success')
+    }
+  }
+
+  if (!info || !periodInfo) return null
+
+  const type = (() => {
+    if (!periodInfo.isCaculated) return 0
+    if (info.bonusLevel.toString() != 0) return 1
+    return 2
+  })()
+
+  const action = (() => {
+    if (!periodInfo.isCaculated) return t('Betting')
+    if (info.bonusLevel.toString() != 0) {
+      if (info.ticket.claimTime.toString() == 0) {
+        return 'Claim'
+      }
+      return 'Claimed'
+    }
+    return 'Failed'
+  })()
+
+  const handleAction = async () => {
+    if (type === 1 && info.ticket.claimTime.toString() == 0) {
+      await handleClaim()
+    }
+    if (type === 0) {
+      router.push('/fivePlusTwo')
+    }
+  }
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -187,12 +267,12 @@ export default function LotteryCard(props) {
             {type === 0 ? (
               <>
                 <p>{t('Lottery Time Remain')}</p>
-                <p>12：02：03</p>
+                <p>{getDistanceTime(periodInfo.saleCloseTime.toString() * 1000)}</p>
               </>
             ) : type === 1 ? (
               <>
                 <p>{t('Lottery Win')}</p>
-                <p>233,400 MDAO</p>
+                <p>{formatUnits(info.bonus.toString(), 18)}</p>
               </>
             ) : (
               <p>{t('Lottery Failed')}</p>
@@ -202,18 +282,18 @@ export default function LotteryCard(props) {
           <LotteryInfoRow>
             {type === 0 ? (
               <>
-                <p>{t('Lottery Amount')}</p>
-                <p>24</p>
+                <p>{t('Lottery Multiple')}</p>
+                <p>{multiple}</p>
               </>
             ) : type === 1 ? (
               <>
-                <p>{t('Lottery Win Multiple')}</p>
-                <p>1</p>
+                <p>{t('Lottery Win Level')}</p>
+                <p>{info.bonusLevel.toString()}</p>
               </>
             ) : (
               <>
-                <p>{t('Lottery Amount')}</p>
-                <p>1</p>
+                <p>{t('Lottery Multiple')}</p>
+                <p>{multiple}</p>
               </>
             )}
           </LotteryInfoRow>
@@ -236,29 +316,33 @@ export default function LotteryCard(props) {
                 {1}
               </div>
             </TitleLeft>
-            <div style={{ fontSize: isMobile ? 12 : 16 }}>Drawn May 5, 2022, 8:00 PM</div>
+            <div style={{ fontSize: isMobile ? 12 : 16 }}>{new Date().toDateString()}</div>
           </div>
           <LotteryStatusTimeInfo>
-            <div style={{ marginRight: 8 }}>{t('Launch Time')}</div>
-            <div>16h 36m 19s</div>
+            <div style={{ marginRight: 8 }}>{t('Launch Ends At')}</div>
+            <div>{new Date(parseInt(periodInfo.saleCloseTime, 10) * 1000).toISOString()}</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
-        <ActionWrapper type={type}>
+        <ActionWrapper
+          style={{
+            background: type === 0 ? '#75b5eb' : type === 1 ? 'rgba(46, 242, 255, 1)' : 'rgba(205, 205, 205, 1)',
+          }}
+        >
           <NumbersWrapper>
-            {winNumbers.map((x) => {
+            {numbers.map((x) => {
               return (
                 <NumberCom
-                  value={x}
+                  value={x.value}
                   width={isMobile ? 30 : 42}
                   height={isMobile ? 30 : 42}
                   fontSize={isMobile ? 14 : 20}
                   outline
-                  extra={x > 5}
+                  extra={x.extra}
                 />
               )
             })}
           </NumbersWrapper>
-          <ActionText>{t('Betting')}</ActionText>
+          <ActionText onClick={handleAction}>{action}</ActionText>
         </ActionWrapper>
       </LotteryMainWrapper>
       <BadgeIconWrapper>

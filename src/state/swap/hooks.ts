@@ -54,7 +54,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'KCS' : '',
+          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'cube' : '',
         }),
       )
     },
@@ -224,8 +224,8 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'KCS') return 'KCS'
-    if (valid === false) return 'KCS'
+    if (urlParam.toUpperCase() === 'cube') return 'cube'
+    if (valid === false) return 'cube'
   }
   return ''
 }

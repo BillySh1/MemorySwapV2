@@ -12,7 +12,7 @@
   "Coming Soon": "即將到來",
   "APY": "APY",
   "Total Liquidity": "總流動性",
-  "View on KCCScan": "在 BscScan 上檢視",
+  "View on CUBEScan": "在 BscScan 上檢視",
   "Finished": "已完成",
   "Project Site": "專案網站",
   "See Token Info": "檢視代幣資訊",
@@ -1549,8 +1549,8 @@
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
   "Highest": "Highest",
-  "lock_progress": "進行中",
-  "lock_received": "已領取",
+  "lock progress": "進行中",
+  "lock received": "已領取",
   "lock_finished": "已結束",
   "Own": "擁有",
   "NEW": "新建",
@@ -1599,5 +1599,6 @@
   "LotteryProcessing": "競猜進行中",
   "LotteryFinished": "競猜已結束",
   "Bridge":"跨鏈橋",
-  "WhiteList":"白名单"
+  "WhiteList":"白名单",
+  "Trade Mining Reward":"交易挖礦獎勵"
 }

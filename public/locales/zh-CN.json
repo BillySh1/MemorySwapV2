@@ -12,7 +12,7 @@
   "Coming Soon": "即将推出",
   "APY": "年化收益率",
   "Total Liquidity": "总流动性",
-  "View on KCCScan": "在 BscScan 上查看",
+  "View on CUBEScan": "在 BscScan 上查看",
   "Finished": "已完成",
   "Project Site": "项目网站",
   "See Token Info": "查看代币信息",
@@ -1549,8 +1549,8 @@
   "Lowest Price": "Lowest Price",
   "Highest Price": "Highest Price",
   "Highest": "Highest",
-  "lock_progress": "进行中",
-  "lock_received": "已领取",
+  "lock progress": "进行中",
+  "lock received": "已领取",
   "lock_finished": "已结束",
   "Own": "拥有",
   "NEW": "新建",
@@ -1598,5 +1598,6 @@
   "Betting":"继续下注",
   "LotteryProcessing":"竞猜进行中",
   "LotteryFinished":"竞猜已结束",
-  "WhiteList":"白名单"
+  "WhiteList":"白名单",
+  "Trade Mining Reward":"交易挖矿奖励"
 }

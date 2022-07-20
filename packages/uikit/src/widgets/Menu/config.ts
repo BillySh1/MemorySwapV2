@@ -38,11 +38,6 @@ export const links = (t: any) => [
     href: "/timeLock",
   },
   {
-    label: t("DAO"),
-    icon: "NftIcon",
-    href: "/dao",
-  },
-  {
     label: t("WhiteList"),
     icon: "WhiteListIcon",
     href: "/whitelist",
@@ -80,6 +75,21 @@ export const links = (t: any) => [
     ],
   },
   {
+    label: t("DAO"),
+    icon: "NftIcon",
+    href: "/dao",
+  },
+  {
+    label: t("GameFi"),
+    icon: "GameFiIcon",
+    href: "/gamefi",
+  },
+  {
+    label: t("IDO"),
+    icon: "IfoIcon",
+    href: "/ido",
+  },
+  {
     label: t("Info"),
     icon: "InfoIcon",
     items: [
@@ -100,16 +110,6 @@ export const links = (t: any) => [
         href: "/accounts",
       },
     ],
-  },
-  {
-    label: t("IDO"),
-    icon: "IfoIcon",
-    href: "/ido",
-  },
-  {
-    label: t("GameFi"),
-    icon: "GameFiIcon",
-    href: "/gamefi",
   },
   {
     label: t("More"),

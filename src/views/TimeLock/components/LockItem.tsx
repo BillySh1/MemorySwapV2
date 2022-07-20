@@ -1,17 +1,21 @@
 import { TokenImage } from 'components/TokenImage'
 import styled from 'styled-components'
-import { WETH } from '@pancakeswap/sdk'
+import { Fetcher, WETH } from '@pancakeswap/sdk'
 import { Button, TimeLockIcon } from '@pancakeswap/uikit'
 import TimeCards from './TImeCards'
 import { useEffect, useState } from 'react'
 import useTheme from 'hooks/useTheme'
 import { formatEther } from '@ethersproject/units'
 import useCatchTxError from 'hooks/useCatchTxError'
-import { useTimeLocker } from 'hooks/useContract'
+import { useERC20, useTimeLocker } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 import SteamIcon from '../assets/steam'
 import { useTranslation } from 'contexts/Localization'
+import { useAsync } from 'react-use'
+import { Contract } from '@ethersproject/contracts'
+import { getDefaultProvider, getNetwork } from '@ethersproject/providers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 const Wrapper = styled.div`
   position: relative;
@@ -95,9 +99,15 @@ export function LockItem(props: LockItemProps) {
   const { t } = useTranslation()
 
   const { fetchWithCatchTxError, loading: isClaiming } = useCatchTxError()
-  const token = WETH[321]
   const { toastSuccess } = useToast()
   const color = useTheme()
+  const tokenC = useERC20(info.tokenAddress)
+  const { value: token } = useAsync(async () => {
+    return {
+      name: await tokenC.name(),
+      symbol: await tokenC.symbol(),
+    }
+  }, [info])
   useEffect(() => {
     setLockInfo({
       amount: formatEther(info.amount),
@@ -135,20 +145,21 @@ export function LockItem(props: LockItemProps) {
       toastSuccess('Success')
     }
   }
+  if(!info || !token) return null
   return (
     <Wrapper>
       <InfoHeader>
-        <TokenImage width={36} height={36} token={token} />
-        <TokenTitle>{token.name ?? token.symbol}</TokenTitle>
+        <TokenImage width={36} height={36} token={WETH[1819]} />
+        <TokenTitle>{token.symbol ?? token.name}</TokenTitle>
         {(canClaim && (
           <InfoStatus>
             <TimeLockIcon width={24} height={24} />
-            <span>{lockInfo.claimed ? t('lock_progress') : t('lock_received')}</span>
+            <span>{lockInfo.claimed ? t('lock progress') : t('lock received')}</span>
           </InfoStatus>
         )) || (
           <InfoStatus>
             <TimeLockIcon width={24} height={24} />
-            <span>{info.claimed ? t('lock_finished') : t('lock_progress')}</span>
+            <span>{info.claimed ? t('lock_finished') : t('lock progress')}</span>
           </InfoStatus>
         )}
         <LinkWrapper>
