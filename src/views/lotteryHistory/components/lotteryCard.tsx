@@ -255,7 +255,7 @@ export default function LotteryCard(props) {
       await handleClaim()
     }
     if (type === 0) {
-      router.push('/fiveplustwo')
+      router.push('/fivePlusTwo')
     }
   }
   return (
