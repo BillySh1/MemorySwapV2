@@ -182,8 +182,20 @@ export default function FivePlusTwo(props) {
       return
     }
     setCanBuy(false)
-
   }, [six, frontSelected, backSelected])
+
+  const getRandomNum = (min, max, count) => {
+    const arr = []
+    for (let i = 0; i < count; i++) {
+      const num = Math.floor(Math.random() * (max - min) + min)
+      if (arr.indexOf(num) == -1) {
+        arr.push(num)
+      } else {
+        i--
+      }
+    }
+    return arr
+  }
   return (
     <Page>
       <LotteryWrapper>
@@ -249,8 +261,8 @@ export default function FivePlusTwo(props) {
               style={{ color: 'white' }}
               variant="text"
               onClick={() => {
-                setFrontSelected(Array.from({ length: six ? 6 : 5 }, (v) => Math.ceil(Math.random() * 30)))
-                setBackSelected(Array.from({ length: six ? 1 : 2 }, (v) => Math.ceil(Math.random() * 15)))
+                setFrontSelected(getRandomNum(1, 30, six ? 6 : 5))
+                setBackSelected(getRandomNum(1, 15, six ? 1 : 2))
               }}
               scale="md"
             >

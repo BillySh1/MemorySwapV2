@@ -4,6 +4,7 @@ import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useFivePlusTwo } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAsync } from 'react-use'
 import styled from 'styled-components'
@@ -16,7 +17,7 @@ import LotteryCardIcon from '../assets/lottery'
 const LotteryCardWrapper = styled.div<{ type: number }>`
   position: relative;
   width: 100%;
-  background: ${({ type }) => (type === 0 ? 'rgba(0, 123, 228, 1)' : type === 1 ? 'rgba(26, 115, 190, 1)' : '#E45050')};
+  background: ${({ type }) => (type === 0 ? '#007BE4' : type === 1 ? '#1A73BE' : '#CC6D6D')};
   padding: 24px;
   display: flex;
   align-items: center;
@@ -193,6 +194,7 @@ export default function LotteryCard(props) {
   const { info, periodInfo } = props
   console.log(info, periodInfo, 'ggg')
   const contract = useFivePlusTwo()
+  const router = useRouter()
   const [numbers, setNumbers] = useState([])
   const [multiple, setMultiple] = useState('')
   const { isMobile } = useMatchBreakpoints()
@@ -229,9 +231,6 @@ export default function LotteryCard(props) {
     }
   }
 
-  const handleAction = async () => {
-    await handleClaim()
-  }
   if (!info || !periodInfo) return null
 
   const type = (() => {
@@ -240,7 +239,25 @@ export default function LotteryCard(props) {
     return 2
   })()
 
+  const action = (() => {
+    if (!periodInfo.isCaculated) return t('Betting')
+    if (info.bonusLevel.toString() != 0) {
+      if (info.ticket.claimTime.toString() == 0) {
+        return 'Claim'
+      }
+      return 'Claimed'
+    }
+    return 'Failed'
+  })()
 
+  const handleAction = async () => {
+    if (type === 1 && info.ticket.claimTime.toString() == 0) {
+      await handleClaim()
+    }
+    if (type === 0) {
+      router.push('/fiveplustwo')
+    }
+  }
   return (
     <LotteryCardWrapper type={type}>
       <LotteryInfoWrapper>
@@ -325,7 +342,7 @@ export default function LotteryCard(props) {
               )
             })}
           </NumbersWrapper>
-          <ActionText onClick={handleAction}>{t('Betting')}</ActionText>
+          <ActionText onClick={handleAction}>{action}</ActionText>
         </ActionWrapper>
       </LotteryMainWrapper>
       <BadgeIconWrapper>
