@@ -133,12 +133,10 @@ const LotteryStatusTimeInfo = styled.div`
   }
 `
 
-const ActionWrapper = styled.div<{ type: number }>`
+const ActionWrapper = styled.div`
   width: 100%;
   position: relative;
   border-radius: 75px;
-  background: ${({ type }) =>
-    type === 0 ? '#75b5eb' : type === 1 ? 'rgba(46, 242, 255, 1)' : 'rgba(205, 205, 205, 1)'};
 `
 
 const NumbersWrapper = styled.div`
@@ -228,7 +226,7 @@ export default function LotteryCard(props) {
     )
     if (receipt?.status) {
       toastSuccess('Claim Success')
-    } 
+    }
   }
 
   const handleAction = async () => {
@@ -238,11 +236,10 @@ export default function LotteryCard(props) {
 
   const type = (() => {
     if (!periodInfo.isCaculated) return 0
-    if (!isZero(info.bonusLevel)) return 1
-    return 0
+    if (info.bonusLevel.toString() != 0) return 1
+    return 2
   })()
 
-  console.log(type, 'gggg')
 
   return (
     <LotteryCardWrapper type={type}>
@@ -258,7 +255,7 @@ export default function LotteryCard(props) {
             ) : type === 1 ? (
               <>
                 <p>{t('Lottery Win')}</p>
-                <p>{formatUnits(info.bonus.toString(),18)}</p>
+                <p>{formatUnits(info.bonus.toString(), 18)}</p>
               </>
             ) : (
               <p>{t('Lottery Failed')}</p>
@@ -309,7 +306,11 @@ export default function LotteryCard(props) {
             <div>{new Date(parseInt(periodInfo.saleCloseTime, 10) * 1000).toISOString()}</div>
           </LotteryStatusTimeInfo>
         </RoundInfo>
-        <ActionWrapper type={type}>
+        <ActionWrapper
+          style={{
+            background: type === 0 ? '#75b5eb' : type === 1 ? 'rgba(46, 242, 255, 1)' : 'rgba(205, 205, 205, 1)',
+          }}
+        >
           <NumbersWrapper>
             {numbers.map((x) => {
               return (
